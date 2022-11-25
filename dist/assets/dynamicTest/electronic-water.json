@@ -1,0 +1,29 @@
+{
+  "searchField":[
+    {
+      "key": "terminal",
+      "config": {
+        "type": "string",
+        "title": "设备",
+        "ui": {
+          "widget": "tree-select-cashway",
+          "width":200,
+          "nzMultiple":true,
+          "params": "",
+          "asyncData":"22"
+        }
+      },
+      "required": "true",
+      "display": "",
+      "disabled": "V"
+    }
+  ],
+  "buttons":[
+    {
+      "key": "software_type",
+      "url": "",
+      "label":"下载日志"
+    }
+  ]
+
+}

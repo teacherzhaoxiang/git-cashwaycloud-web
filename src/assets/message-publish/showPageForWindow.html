@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title></title>
+	<link rel="icon" type="image/x-icon" href="../cashway-logo.png" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+	<style>
+		body{
+			overflow: auto;
+		}
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.box {
+			width: 200px;
+			height: 100px;
+			cursor: move;
+			position: absolute;
+			top: 30px;
+			left: 30px;
+			background-color: transparent !important;
+			overflow: hidden;
+		}
+
+		.box img {
+			width: 100%;
+			height: 100%;
+		}
+		textarea{
+			resize: none;
+			border: none;
+			outline: none;
+		}
+		.swiper-slide{
+
+		}
+		.pages{
+			margin: 0 auto;
+			position: relative;
+		}
+		.swiper-container{
+			width: 100% !important;
+			height: 100% !important;
+			overflow: hidden;
+		}
+		.coor{
+			background: transparent !important;
+		}
+		.box{
+			border: none !important;
+		}
+		video{
+			outline: none;
+		}
+		.box[data-type='video']{
+			background: black;
+		}
+	</style>
+</head>
+<body>
+
+<div id="check"></div>
+<div class="swiper-container swiper-no-swiping check_out" id="advertising">
+	<div class="swiper-wrapper" id="swiper-wrapper">
+		<!-- <div class="swiper-slide">slider1</div>
+        <div class="swiper-slide">slider2</div>
+        <div class="swiper-slide">slider3</div> -->
+	</div>
+</div>
+<audio id="play_music" src="" loop="loop" controls="controls" style="visibility: hidden;"></audio>
+<script src="js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/config.js"></script>
+<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
+<script src="" type="text/javascript" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="js/data.txt"></script> -->
+<script>
+    //var url_params = location.search;
+    var url_params ='?doc_name=data';
+    var doc_name = '';
+    var json_data = {};
+    var termNo = {};
+    //if (url_params.indexOf("?") != -1) {
+    //var strs = url_params.substr(1);
+    //strs = strs.split("&")[0];
+    //doc_name = strs.split("=")[1];
+    //}
+    //windowsTest1('aa');
+    function windowsTest1(obj){
+        alert(obj.length);
+    }
+    //var moduleData="%5B%7B%22index%22:0,%22html%22:%22%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%206;%20width:%201920px;%20height:%201080px;%20top:%200px;%20left:%200px;%5C%22%20data-type=%5C%22image%5C%22%20id=%5C%22box1576742308112%5C%22%3E%3Cimg%20src=%5C%22http://114.116.120.8:8090/zuul/file/file//download?filename=hall/resource/6b8d8b0f-cb6b-4e0e-9d22-41aa49e92cbb.jpg%5C%22%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%22,%22scalehtml%22:%22%3Cdiv%20style=%5C%22width:1920px;height:1080px;background-color:;background-image:;transform:scale(0.052083333333333336);transform-origin:left%2021.875px%5C%22%20class=%5C%22cb_content%5C%22%3E%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%206;%20width:%201920px;%20height:%201080px;%20top:%200px;%20left:%200px;%5C%22%20data-type=%5C%22image%5C%22%20id=%5C%22box1576742308112%5C%22%3E%3Cimg%20src=%5C%22http://114.116.120.8:8090/zuul/file/file//download?filename=hall/resource/6b8d8b0f-cb6b-4e0e-9d22-41aa49e92cbb.jpg%5C%22%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%22,%22backgroundColor%22:%22%22,%22delay%22:0.1,%22maxZIndex%22:6,%22minZIndex%22:0,%22business_type%22:1,%22music%22:%22%22%7D%5D";
+    // var moduleData="%5B%7B%22index%22:0,%22html%22:%22%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%202;%20width:%201920px;%20height:%201200px;%20top:%200px;%20left:%200px;%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1589868724567%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%20swiper-no-swiping%5C%22%20style=%5C%22text-align:center;line-height:170px;%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%225000%5C%22%3E%3Cimg%20src=%5C%22images/f58cd3bb0a1e44d790c178d8a6775157/2a80f4fc-e8b1-409a-bb1c-2693e9e911e5.png%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%225000%5C%22%3E%3Cimg%20src=%5C%22images/f58cd3bb0a1e44d790c178d8a6775157/8355fe61-f2d5-497e-935d-a16097494eb6.jpg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%22,%22scalehtml%22:%22%3Cdiv%20style=%5C%22width:1920px;height:1200px;background-color:;background-image:;transform:scale(0.052083333333333336);transform-origin:left%2018.75px%5C%22%20class=%5C%22cb_content%5C%22%3E%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%202;%20width:%201920px;%20height:%201200px;%20top:%200px;%20left:%200px;%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1589868724567%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%20swiper-no-swiping%5C%22%20style=%5C%22text-align:center;line-height:170px;%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%225000%5C%22%3E%3Cimg%20src=%5C%22images/f58cd3bb0a1e44d790c178d8a6775157/2a80f4fc-e8b1-409a-bb1c-2693e9e911e5.png%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%225000%5C%22%3E%3Cimg%20src=%5C%22images/f58cd3bb0a1e44d790c178d8a6775157/8355fe61-f2d5-497e-935d-a16097494eb6.jpg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%22,%22backgroundColor%22:%22%22,%22delay%22:0.1,%22maxZIndex%22:2,%22minZIndex%22:0,%22business_type%22:1,%22music%22:%22/download?filename=hall/resource/308328ce-33df-4456-b0dc-7b38107b2c6b.mp3%22%7D%5D";
+
+    //var resolutionValue='1980*1080';
+	// var json='{"resolutionValue":"1920*1200","moduleData":"%5B%7B%22index%22:0,%22html%22:%22%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20onmousedown=%5C%22changeDom(this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%202;%20width:%201920px;%20height:%201200px;%20top:%200px;%20left:%200px;%5C%22%20data-type=%5C%22video%5C%22%20id=%5C%22box1590483411043%5C%22%3E%3Cvideo%20class=%5C%22video-js%5C%22%20controls=%5C%22controls%5C%22%20loop=%5C%22loop%5C%22%20preload=%5C%22%5C%22%20width=%5C%22100%25%5C%22%20height=%5C%22100%25%5C%22%20muted=%5C%22muted%5C%22%3E%3Csource%20src=%5C%22images/4581ab4ade074c33bdb3d7821d883c88/dd1c67e6-97b2-42d9-8616-96e3bbbdb1ca.mp4%5C%22%20type=%5C%22video/mp4%5C%22%3E%3Cp%3E%E6%82%A8%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E6%94%AF%E6%8C%81%E8%AF%A5%E8%A7%86%E9%A2%91%3C/p%3E%3C/video%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%22,%22scalehtml%22:%22%3Cdiv%20style=%5C%22width:1920px;height:1200px;background-color:;background-image:;transform:scale(0.052083333333333336);transform-origin:left%2018.75px%5C%22%20class=%5C%22cb_content%5C%22%3E%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20onmousedown=%5C%22changeDom(this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%202;%20width:%201920px;%20height:%201200px;%20top:%200px;%20left:%200px;%5C%22%20data-type=%5C%22video%5C%22%20id=%5C%22box1590483411043%5C%22%3E%3Cvideo%20class=%5C%22video-js%5C%22%20controls=%5C%22controls%5C%22%20loop=%5C%22loop%5C%22%20preload=%5C%22%5C%22%20width=%5C%22100%25%5C%22%20height=%5C%22100%25%5C%22%20muted=%5C%22muted%5C%22%3E%3Csource%20src=%5C%22images/4581ab4ade074c33bdb3d7821d883c88/dd1c67e6-97b2-42d9-8616-96e3bbbdb1ca.mp4%5C%22%20type=%5C%22video/mp4%5C%22%3E%3Cp%3E%E6%82%A8%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E6%94%AF%E6%8C%81%E8%AF%A5%E8%A7%86%E9%A2%91%3C/p%3E%3C/video%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%22,%22backgroundColor%22:%22%22,%22delay%22:0.1,%22maxZIndex%22:2,%22minZIndex%22:0,%22business_type%22:1,%22music%22:%22%22%7D%5D","resourceData":[{"backgroundImage":[{"id":"","md5":"","type":""}],"box1590483411043":[{"id":"1002a5979a9c4961ad656e549cf7ed4c","type":"video","path":"/download?filename=hall/resource/dd1c67e6-97b2-42d9-8616-96e3bbbdb1ca.mp4","md5":"ea32412aa3ab8b82d4df63a77d4854b7"}]}]}';
+    //  windowsReceive('030000002','4581ab4ade074c33bdb3d7821d883c88',json);
+    function windowsReceive(termNo,screenid,obj){
+        doc_name=obj;
+        json_data = JSON.parse(doc_name);
+        var termNo = termNo;
+        var resource_data=json_data.resourceData;
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>resource_data="+resource_data);
+        var wh = json_data.resolutionValue.split('*');
+        Request = {
+            width:wh[0],
+            height:wh[1]
+        };
+        var HTML = JSON.parse(decodeURIComponent(json_data.moduleData));
+        for(var i=0;i<HTML.length;i++){
+
+            HTML[i].scalehtml = replacrUrl(HTML[i].scalehtml,'../message-publish/images');
+        }
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>obj="+obj);
+        var slide = '';
+        var len = HTML.length;
+        var boxSwiper;
+        var mySwiper;
+        for (var i = 0; i < len; i++) {
+            // slide +='<div class="swiper-slide swiper-slide'+i+'" data-swiper-autoplay="'+(HTML[i].delay*1000)+'"><div class="pages" style="width:378px;height:567px;background-color:'+HTML[i].backgroundColor+';">'+HTML[i].html+'</div></div>';
+            slide += '<div class="swiper-slide swiper-slide' + i + '" data-swiper-autoplay="' + (HTML[i].delay * 1000) + '">' + HTML[i].scalehtml + '</div>';
+
+        }
+        $('#swiper-wrapper').html(slide);
+		$('video').removeAttr('muted');
+        if(showWeather && $('.textarea.weather').length>0){
+            // getWeather();
+        }else{
+            $('.textarea.weather').css({'display':'none'});
+        }
+        $('.swiper-container').css({
+            'height': Request.height,
+            'width': Request.width
+        });
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        /* var winWH = winW / winH;
+        var WH = Request.width / Request.height;
+        var scale;
+        var marginL = 0;
+        var marginT = 0;
+        if (winWH > WH) {
+            scale = winH / Request.height;
+            marginL = (winW - Request.width * scale) / 2 ;
+        } else {
+            scale = winW / Request.width;
+            marginT = (winH - Request.height * scale) / 2 ;
+
+        } */
+        var wScale = winW / Request.width;
+        var hScale = winH / Request.height;
+        $('.cb_content').css({
+            'transform': 'scale('+wScale+','+hScale+')',
+            'transform-origin': '0px 0px'
+        });
+        $('textarea').attr('readonly', 'readonly');
+        $('.swiper-container').find("[onclick]").removeAttr("onclick");
+        $('.swiper-container').find("[onchange]").removeAttr("onchange");
+        //更换textarea标签并重新赋值
+        $(".check_out .box[data-type='font']").each(function(i) {
+            if ($(this).find('.cDate').length <= 0 && $(this).find('.weather').length <= 0) {
+                var str = '<div class="textarea" style="width:100%;height:100%;' + $(this).find('.textarea').attr('style') +
+                    '">' + ($(this).find('textarea').attr('data-val') || "") + '</div>';
+            }
+            $(this).html(str);
+            // $(this).css({
+            // 	width: ($(this).width() + 20) / scale,
+            // 	height: ($(this).height() + 20) / scale
+            // })
+        });
+        $(".check_out .box[data-fType]").each(function(i){
+            var direction = "";
+            switch($(this).attr("data-fType")){
+                case "0":direction = "up";break;
+                case "1":direction = "down";break;
+                case "2":direction = "left";break;
+                case "3":direction = "right";break;
+                default:"left";breakl
+            }
+            var marqWidth = $(".check_out .box[data-fType]").eq(i).width();
+            var marquee = '<marquee behavior="scroll" direction="'+direction+'" style="width:'+marqWidth+'px !important;' +$(this).find('textarea').attr('style')+'">'+
+                $(this).find('textarea').attr("data-val")+
+                '</marquee>';
+            $(this).html(marquee);
+        })
+        getTime();
+        var activeIndex = 0;
+        function run(){
+            hideDocument("");
+            if(len>1){
+                $('video').trigger('pause');
+                //$('.box').css({'display':'none'});
+                $('.swiper-slide').fadeOut("slow");
+                setTimeout(function(){
+                    $('.swiper-slide'+activeIndex).fadeIn("slow");
+                },500)
+            }
+            // $("#div2").fadeIn("slow");
+            //    $("#div3").fadeOut(3000);
+
+            if(HTML[activeIndex].business_type==2){
+                //resource_data
+                for(k in resource_data[activeIndex]){
+                    if(resource_data[activeIndex][k][0].type=='document'){
+                        showDocument(resource_data[activeIndex][k][0].path);
+                        console.log(resource_data[activeIndex][k][0].path);
+                    }
+                }
+            }
+            var musicSrc = '';
+            if(HTML[activeIndex].music){
+                $('audio').trigger('pause');
+                musicSrc = HTML[activeIndex].music.split('/');
+                console.log('images/'+screenid + '/'+ musicSrc[musicSrc.length-1]);
+                console.log('images/'+screenid  + '/'+ musicSrc[musicSrc.length-1]);
+                $('#play_music').attr('src', 'images/'+screenid  + '/'+ musicSrc[musicSrc.length-1]);
+                //$('#play_music').attr('src',URL+'/zuul/file/file/'+HTML[activeIndex].music);
+                $('#play_music').attr('autoplay','autoplay');
+                $('#play_music').attr('loop','loop');
+
+            }
+
+            //$('.box').eq(index).css({'display':'block'});
+            $('.swiper-slide'+activeIndex+' .video-js').each(function(item,index) {
+                $(this)[0].play();
+				//$(this).trigger('play');
+
+
+                console.log("html-------------"+$(this).parent().html());
+            })
+
+            if (!!boxSwiper) {
+                try {
+                    if (Array.isArray(boxSwiper)) {
+                        for (var i = 0; i < boxSwiper.length; i++) {
+                            boxSwiper[i].destroy();
+                        }
+                    } else {
+                        boxSwiper.destroy();
+                    }
+                } catch (e) {}
+            }
+            boxSwiper = new Swiper('.check_out .swiper-slide'+activeIndex+' .swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 0,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                freeMode: true,
+                speed: 1000,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+            });
+            if(len>1){
+                setTimeout(function(){
+                    if(activeIndex>=(len-1)){
+                        activeIndex = 0;
+                    }else{
+                        activeIndex++;
+                    };
+                    run();
+                },HTML[activeIndex].delay*1000*60);
+            }
+        }
+        run();
+    }
+    function replacrUrl(str="",target){
+        var temp = str.replace(/http:\/\/114.116.120.8:8090\/zuul\/file\/file\/\/download\?filename=hall\/resource/g,target);
+        return temp;
+    }
+    function getTime(type='') {
+        timeInterval = setInterval(function() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth()+1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            var cDate = year+'年'+month+'月'+day+'日  '+hours + "时" + minutes + "分" + seconds + "秒";
+            if(month<10){
+                month = '0' + month;
+            }
+            if(day<10){
+                day = '0' + day;
+            }
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+            var nomalDate = year+'-'+month+'-'+day+' '+hours + ":" + minutes + ":" + seconds; //默认类型的日期时间格式
+            $('.timmer .textarea').text(nomalDate); // 默认类型的日期时间格式
+            $('.timmer .cDate').text(cDate);
+        }, 1000)
+    }
+    function getWeather(){
+        // $.ajax({
+        //     type: "get",
+        //     dataType: "json",
+        //     url: URL+"/hall-manage/hall_service_weather/getWeather?termNo="+termNo,
+        //     success: function(res) {
+        //         if(res.code==0){
+        //             WEATHER = res.msg;
+        //             var weatherStr = '<div class="weather">'+(WEATHER.cityName||'')+'</div><div class="weather">'+(WEATHER.temp2||'')+'/'+(WEATHER.temp1||'')+'</div><div>'+(WEATHER.wea||'')+(WEATHER.airLevel?' 空气'+WEATHER.airLevel:'')+'</div>';
+        //             $('.textarea.weather').html(weatherStr);
+        //         }
+        //     }
+        // });
+    }
+    function showDocument(filePath){
+        try {
+            window.cefQuery({
+                request : "ButtonClick_showDocument_:_"+filePath,
+                onSuccess : function(response) {
+                    console.log('onSuccess response='+response);
+                },
+                onFailure : function(response) {
+                    console.log('onFailure response='+response);
+                }
+            });
+        }catch (e) {
+
+        }
+
+    }
+
+
+    function hideDocument(filePath){
+        try {
+			window.cefQuery({
+				request : "ButtonClick_hideDocument_:_"+filePath,
+				onSuccess : function(response) {
+					console.log('onSuccess response='+response);
+				},
+				onFailure : function(response) {
+					console.log('onFailure response='+response);
+				}
+			});
+        }catch (e) {
+
+        }
+    }
+    function advclick(){
+        // event.stopPropagation(); // 只执行button的click，如果注释掉该行，将执行button、p和div的click
+        // $('video').attr('autoplay','autoplay');
+        // $('video').attr('loop','loop');
+        // $('video')[0].muted = false;
+	};
+	$("#advertising").click( function(event){
+	    // 阻止事件冒泡到DOM树上
+	    /*
+	    event.stopPropagation(); // 只执行button的click，如果注释掉该行，将执行button、p和div的click
+		$('video').attr('autoplay','autoplay');
+		$('video').attr('loop','loop');
+		$('video')[0].muted = false;
+*/	} )
+</script>
+</body>
+</html>

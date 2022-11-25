@@ -1,0 +1,125 @@
+<div class="alain-default__header-logo">
+    <a [routerLink]="['/']" class="alain-default__header-logo-link">
+        <img *ngIf="hallConfig" class="alain-default__header-logo-expanded" src="{{hallHeadBigImage}}" alt="{{settings.app.name}}" style="max-height:58px;width: 80%" />
+        <img *ngIf="!hallConfig" class="alain-default__header-logo-expanded" src="{{logoFullImage}}" alt="{{settings.app.name}}" style="max-height:58px;width: 98%" />
+        <img *ngIf="!hallConfig" class="alain-default__header-logo-collapsed" src="{{smallLogo}}" alt="{{settings.app.name}}" style="max-height:38px;" />
+        <img *ngIf="hallConfig" class="alain-default__header-logo-collapsed" src="{{hallHeadBigImage}}" alt="{{settings.app.name}}" style="max-height:38px;width: 80%" />
+
+    </a>
+</div>
+<div class="alain-default__nav-wrap">
+    <ul class="alain-default__nav">
+        <!-- Menu -->
+        <li>
+            <div class="alain-default__nav-item" (click)="toggleCollapsedSidebar()">
+                <i nz-icon [type]="settings.layout.collapsed ? 'menu-unfold' : 'menu-fold'"></i>
+            </div>
+        </li>
+
+
+
+
+        <!-- Lock Page -->
+        <!--<li class="hidden-mobile">-->
+        <!--<div class="alain-default__nav-item" [routerLink]="['/lock']">-->
+        <!--<i class="anticon anticon-lock"></i>-->
+        <!--</div>-->
+        <!--</li>-->
+        <!-- Search Button
+    <li class="header-search__btn" (click)="searchToggleChange()">
+      <div class="alain-default__nav-item">
+        <i class="anticon anticon-search"></i>
+      </div>
+    </li>
+     -->
+
+    </ul>
+    <!--
+  <header-search class="alain-default__search" [toggleChange]="searchToggleStatus"></header-search>
+  -->
+    <ul class="alain-default__nav">
+        <!--<li>-->
+        <!--<header-notify ></header-notify>-->
+        <!--</li>-->
+
+        <!-- 通知 -->
+        <li class="hidden-mobile">
+            <header-task></header-task>
+        </li>
+
+        <!-- App Icons
+    <li class="hidden-mobile">
+      <header-icon></header-icon>
+    </li>
+
+    -->
+
+        <!-- Settings -->
+        <!--<li class="hidden-mobile">-->
+        <!--<nz-dropdown nzTrigger="click" nzPlacement="bottomRight">-->
+        <!--<div class="alain-default__nav-item" nz-dropdown>-->
+        <!--<i class="anticon anticon-setting"></i>-->
+        <!--</div>-->
+        <!--<div nz-menu style="width:200px;">-->
+        <!--<div nz-menu-item>-->
+        <!--<header-fullscreen></header-fullscreen>-->
+        <!--</div>-->
+        <!--<div nz-menu-item>-->
+        <!--<header-storage></header-storage>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;-->
+        <!--<div nz-menu-item>-->
+        <!--<header-i18n></header-i18n>-->
+        <!--</div>-->
+        <!--&ndash;&gt;-->
+        <!--</div>-->
+        <!--</nz-dropdown>-->
+        <!--</li>-->
+
+        <!-- 个性化 -->
+        <li class="hidden-mobile">
+            <div #settingHost>
+                <nz-dropdown nzPlacement="bottomRight">
+                    <div class="alain-default__nav-item d-flex align-items-center px-sm" nz-dropdown>
+                        <div style="background-image: url('./assets/images/subject.png');width: 1.5rem;height: 1rem;margin-right: -5px;background-repeat: no-repeat;background-size: contain;"></div>
+                        个性化
+                    </div>
+                    <div nz-menu class="width-sm">
+                        <div nz-menu-item (click)="changeColor('#a40000')" style="height: 30px;">
+                            <div style="width: 100%;height:100%;padding-left: 5px;padding-right: 5px;background-color: #a40000;"></div>
+                        </div>
+                        <div nz-menu-item (click)="changeColor('#1890ff')" style="height: 30px;">
+                            <div style="width: 100%;height:100%;padding-left: 5px;padding-right: 5px;background-color: #1890ff;"></div>
+                        </div>
+
+                    </div>
+                </nz-dropdown>
+            </div>
+        </li>
+
+        <!-- 全屏 -->
+        <li class="hidden-mobile">
+            <div class="alain-default__nav-item">
+                <header-fullscreen></header-fullscreen>
+            </div>
+        </li>
+        <!-- user -->
+        <li class="hidden-mobile">
+            <header-user></header-user>
+        </li>
+        <!-- 注销 -->
+        <li class="hidden-mobile">
+            <div class="alain-default__nav-item">
+                <div (click)="logout()">
+                    <i nz-icon nzType="logout"></i><span style="padding-left: 3px">注销</span>
+                </div>
+            </div>
+        </li>
+        <div (click)="getNowLoginUser()" style="position: absolute;right: 17px; bottom:  2px;color: white;">
+            <span>
+                <i nz-icon nzType="global" nzTheme="outline"></i>
+                当前在线用户：{{nowLoginUser}}
+            </span>
+        </div>
+    </ul>   
+</div>

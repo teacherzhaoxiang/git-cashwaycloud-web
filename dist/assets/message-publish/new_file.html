@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		#aa{
+			position: relative;
+			width: 300px;
+			height: 300px;
+		}
+		#bb{
+			background: #007AFF;
+			padding: 10px;
+		}
+		#cc{
+			background: #19BE6B;
+			position: absolute;
+			left: 0;
+			top: 0;
+			padding: 30px;
+		}
+		.mq{
+			width: 698px !important;
+			    font-size: 40px;
+			    background: rgb(255, 255, 128);
+		}
+		textarea{
+			border: none;
+			background: none;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<body>
+		<button onclick="getVal()">getval</button>
+		<textarea id="model"></textarea>
+		<marquee class="marquee" behavior="scroll" direction="left" style="width:698px !important;font-size: 40px; background: rgb(255, 255, 128);">
+		
+			<textarea  style="width: 100%;height: 100%;">asdsad</textarea>
+		</marquee>
+		<!-- <video id="videojs" controls="controls" autoplay="autoplay" muted="true"><source src="" type="video/mp4"><p>您的浏览器不支持该视频</p></video> -->
+		<audio controls="controls" loop="loop"  preload="auto" src="http://114.116.120.8:8090/zuul/file/file//download?filename=hall/fb55b6dd-0395-4edd-be86-20aef1616877.ogg"></audio>
+		<input type="number" step="0.1" value="1" class="timmer"  />
+		<div id="aa" onclick="getdom(this)">
+			<div id="bb" onclick="getdom(this)">
+				hjbasdsad
+			</div>
+			<div id="cc" onclick="getdom(this)">
+				vvccccc
+			</div>
+		</div>
+		<!-- <video width="1080" height="2340" controls loop="loop" preload="auto">
+			<source type='video/mp4'  src="http://114.116.120.8:8090/zuul/file/file//download?filename=hall/resource/1bd7d95e-816e-4085-9d8c-5ec64a24a4dc.mp4"></source>
+		</video> -->
+		<!--type=1 模板 2节目 -->
+		<a href="index.html?id=e71fdb98cd9b44bfb397400be7047238&resolutionValue=1080*1920&type=2&resolutionId=0434abb12a7346e98cc21505cac9e362">创建节目</a>
+		<a href="showPage.html?id=464397ff008b4b23808ddb2cdd9df591&resolutionValue=1920*1080&type=2&resolutionId=1">预览</a>
+		<a href="index.html?id=1214&resolutionValue=1920*1080&type=1&resolutionId=2">创建模板</a>
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://api.html5media.info/1.1.8/html5media.min.js"></script>
+		<script>
+			debugger 
+			let record = {id:'12313'};
+			let uriArr = 'template/simpleProgramEdit/{{id}}'.split('/');
+			for(let i=0,len=uriArr.length;i<len;i++){
+				let lIndex = uriArr[i].indexOf('{{');
+				if(lIndex!==-1){
+					let rIndex = uriArr[i].indexOf('}}');
+					var key = uriArr[i].substring(lIndex+2,rIndex);
+					uriArr[i] = record[key];
+				}
+			}
+			console.log(uriArr); 
+			let abby = uriArr.join('/');
+			console.log(abby); 
+			
+			function getVal(){
+				var html = $('#model').val();
+				$('.marquee').empty();
+				$('.marquee').html(html);
+			}
+			// $('#videojs')[0].muted = false;
+			function getdom(_this){
+				console.log($(_this)[0].id)
+			}
+			var str =  '< img src="https://www.baidu.com/data/desc/1.png" />'+
+			      '< img src="https://www.baidu.com/data/desc/2.png" />'+
+			      '< img src="https://www.baidu.com/data/desc/3.png" />'+
+			      '< img src="https://www.baidu.com/data/desc/4.png" />';
+			   console.log(replacrUrl(str,'gcrong/data'));
+			   /*
+			   替换字符串
+			   str - 字符串
+			   replace - 需要替换的字符
+			   target - 替换的字符
+			   */
+			   function replacrUrl(str,target){
+			    var temp = str.replace(/https:\/\/www.baidu.com\/data\/desc/g,target);
+			    return temp;
+			   }
+			   function getMsg(name="",age=1){
+				   let type=null;
+				   console.log(!!type)
+				   if(type){
+					   alert('ok')
+				   }
+				   // let x = do {
+				   //   let t = f();
+				   //   t * t + 1;
+				   // };
+				   // console.log(x,name,age);
+			   }
+			   let {0:first,1:second,2:three} = ['a','b','c'];
+
+			   console.log(first)
+			   getMsg('abby');
+		</script>
+	</body>
+</html>

@@ -1,0 +1,98 @@
+.as-split-back{
+    background-image: url('/assets/tree-icon/tree-background.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+:host {
+    display: block;
+    width: 100%;
+    height:  -webkit-calc(100% - 90px);
+}
+.serachMatch {
+    color: red;
+}
+.active {
+    color: #1890ff;
+}
+:host ::ng-deep .ant-card-body,:host ::ng-deep .ant-card-bordered{
+    background: none;
+}
+.imageActive{
+    background-color: #1890ff;
+}
+.custom-node {
+    cursor: pointer;
+    line-height: 24px;
+    margin-left: 4px;
+    display: inline-block;
+    margin: 0 -1000px;
+    padding: 0 1000px;
+}
+.hy-flex{
+    display: flex;
+}
+.flex-center{
+    justify-content: space-between;
+    align-items: center;
+}
+.ant-card-body{
+    height: 100%;
+    border: 4px solid red;
+}
+.content{
+    display: flex;
+}
+.left{
+    width: 120px;
+    height: 100%;
+    margin-right: 10px;
+    border: 1px solid #ececec;
+}
+.right{
+    flex: 1;
+}
+.menuTree{
+    background: none;
+}
+.menuTree .search{
+    width: 100%;
+    margin: 10px 0;
+}
+.list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.list .item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ececec;
+    cursor: pointer;
+}
+.list .actItem{
+    background: #a1c5e6;
+}
+.list .item .i_left{
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 10px;
+}
+.list .item .i_right{
+    color: #1890ff;
+}
+.list .item .i_right .option{
+    padding-left: 10px;
+}
+.navGroup{
+    display: flex;
+    align-items: center;
+}
+.navGroup .nav{
+    width: 120px;
+    text-align: center;
+}

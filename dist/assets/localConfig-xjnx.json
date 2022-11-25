@@ -1,0 +1,25 @@
+{
+    "__url": "https://stmv.botibet.uat:8090",
+    "orgEdit": true,
+    "userEdit": true,
+    "orgLeafCheckable": true,
+    "orgTree": false,
+    "roleOrgFlag": false,
+    "termTeamSelectConditions": "",
+    "password": {
+        "minLength": 8,
+        "maxLength": 16,
+        "alphabet": true,
+        "number": true,
+        "specialCha": true
+    },
+    "treeDisplay": false,
+    "listType": "simple",
+    "hall-config": true,
+    "allOptional": true,
+    "roleManageFlag": true,
+    "electronicWaterFlag": "/cis/log/file",
+    "selectTerminalUrl": "/cis/busi/monitorTerminalManage/?params={}",
+    "hallHeadBigImage": "./assets/logo-full.png",
+    "projectName": "xjnx"
+}

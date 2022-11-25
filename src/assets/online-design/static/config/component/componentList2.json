@@ -1,0 +1,2914 @@
+{
+  "ui": [
+    {
+      "flag": true,
+      "path": "/page/UI_Balance.html",
+      "value": "UI_Balance",
+      "children": [
+        {
+          "value": "balanceShow",
+          "label": "余额展示页"
+        }
+      ],
+      "label": "余额页面父组件页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_RESET_PASSWD.html",
+      "value": "UI_RESET_PASSWD",
+      "label": "管理员密码重置页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_QUERY_COLLECT.html",
+      "value": "UI_QUERY_COLLECT",
+      "label": "后管汇总信息查询页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_QUERY_DETAIL.html",
+      "value": "UI_QUERY_DETAIL",
+      "label": "后管明细查询页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_INSERT_CARD.html",
+      "value": "UI_INSERT_CARD",
+      "label": "插卡页面"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_CURRENT_TRANSFER_PERIOD.html",
+      "value": "UI_CURRENT_TRANSFER_PERIOD",
+      "children": [
+        {
+          "value": "warn",
+          "label": "活转定提示页"
+        },
+        {
+          "value": "regularType",
+          "label": "类型选择页"
+        },
+        {
+          "value": "insertAccountInformate",
+          "label": "定期开户信息完善页"
+        },
+        {
+          "value": "confirmRegularInformation",
+          "label": "定期开户信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        }
+      ],
+      "label": "活转定父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_WITHDRAWAL_AMOUNT.html",
+      "value": "UI_WITHDRAWAL_AMOUNT",
+      "children": [
+        {
+          "value": "withdrawalInput",
+          "label": "取款金额输入页"
+        },
+        {
+          "value": "withdrawalGit",
+          "label": "出钞金额页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "outMoney",
+          "label": "出钞等待页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        },
+        {
+          "value": "outLimit",
+          "label": "取款限额页"
+        },
+        {
+          "value": "outMoneyError",
+          "label": "取款失败提示页"
+        },
+        {
+          "value": "notMoney",
+          "label": "钞箱钱币不足提示页"
+        }
+      ],
+      "label": "助农取款父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_TAX_SOCIAL_INSURANCE.html",
+      "value": "UI_TAX_SOCIAL_INSURANCE",
+      "children": [
+        {
+          "value": "warmPrompt",
+          "label": "温馨提示页"
+        },
+        {
+          "value": "perfectInformation",
+          "label": "完善用户信息页"
+        },
+        {
+          "value": "paymentConfirmation",
+          "label": "缴费信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "payErrorCardnoError",
+          "label": "缴费险种页"
+        },
+        {
+          "value": "checkConfirmInformation",
+          "label": "核对个人信息页"
+        },
+        {
+          "value": "improvePaymentInformation",
+          "label": "完善缴费信息页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        },
+        {
+          "value": "noPaymentType",
+          "label": "缴费项目不存在提示页"
+        }
+      ],
+      "label": "税银社保父组件页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_IDLE.html",
+      "value": "UI_IDLE",
+      "label": "index页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_RESET_DEVICE.html",
+      "value": "UI_RESET_DEVICE",
+      "label": "后管重置驱动页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_START_INFO.html",
+      "value": "UI_START_INFO",
+      "label": "设备加载页面"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_ADD_CASH.html",
+      "value": "UI_ADD_CASH",
+      "label": "后管加钞页面"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_REGULAR_TO_CURREN.html",
+      "value": "UI_REGULAR_TO_CURREN",
+      "children": [
+        {
+          "value": "warn",
+          "label": "活转定提示页"
+        },
+        {
+          "value": "accountList",
+          "label": "定期子账户列表页"
+        },
+        {
+          "value": "surePayInformate",
+          "label": "确认支取信息页"
+        },
+        {
+          "value": "confirmRegularWithdrawalInformation",
+          "label": "输入支取信息页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        }
+      ],
+      "label": "定转活父组件页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_ENTER_PIN.html",
+      "value": "UI_ENTER_PIN",
+      "label": "密码键盘输入界面"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_SETTLE_MACHINE.html",
+      "value": "UI_SETTLE_MACHINE",
+      "label": "后管清机页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_ADMIN_LOGIN.html",
+      "value": "UI_ADMIN_LOGIN",
+      "label": "管理员登录页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_GAS_PAGE.html",
+      "value": "UI_GAS_PAGE",
+      "children": [
+        {
+          "value": "insertFreeNumber",
+          "label": "输入燃气用户号页"
+        },
+        {
+          "value": "userMessageSure",
+          "label": "用户信息确认页"
+        },
+        {
+          "value": "payMessageSure",
+          "label": "缴费信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        }
+      ],
+      "label": "燃气缴费父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_WATER_PAYMENT.html",
+      "value": "UI_WATER_PAYMENT",
+      "children": [
+        {
+          "value": "insertFreeNumber",
+          "label": "输入水费用户号页"
+        },
+        {
+          "value": "userMessageSure",
+          "label": "用户信息确认页"
+        },
+        {
+          "value": "payMessageSure",
+          "label": "缴费信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        }
+      ],
+      "label": "水费缴费父组件页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_MANAGE.html",
+      "value": "UI_MANAGE",
+      "label": "终端管理页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_LOGIN.html",
+      "value": "UI_LOGIN",
+      "label": "登陆页面"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_TRANSFER.html",
+      "value": "UI_TRANSFER",
+      "children": [
+        {
+          "value": "safetyTips",
+          "label": "安全提示页"
+        },
+        {
+          "value": "insertTransferAccounts",
+          "label": "转账账号输入页"
+        },
+        {
+          "value": "insertTransferAccountsAgain",
+          "label": "转账账号再次输入页"
+        },
+        {
+          "value": "insertTransferMoney",
+          "label": "转账金额输入页"
+        },
+        {
+          "value": "insertTransferMoneySure",
+          "label": "转账金额确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        }
+      ],
+      "label": "祖农转账父组件页"
+    },
+    {
+      "flag": false,
+      "path": "/page/UI_RQCODE.html",
+      "value": "UI_RQCODE",
+      "label": "二维码页父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_DETAIL_PAGE.html",
+      "value": "UI_DETAIL_PAGE",
+      "children": [
+        {
+          "value": "detailEnquirySelect",
+          "label": "查询日期选择页"
+        },
+        {
+          "value": "detailResult",
+          "label": "明细结果页"
+        }
+      ],
+      "label": "交易明细父组件页"
+    }
+  ],
+  "uiChildren": [
+    {
+      "flag": true,
+      "path": "/page/UI_Balance.html",
+      "value": "UI_Balance",
+      "children": [
+        {
+          "value": "balanceShow",
+          "label": "余额展示页"
+        }
+      ],
+      "label": "余额页面父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_CURRENT_TRANSFER_PERIOD.html",
+      "value": "UI_CURRENT_TRANSFER_PERIOD",
+      "children": [
+        {
+          "value": "warn",
+          "label": "活转定提示页"
+        },
+        {
+          "value": "regularType",
+          "label": "类型选择页"
+        },
+        {
+          "value": "insertAccountInformate",
+          "label": "定期开户信息完善页"
+        },
+        {
+          "value": "confirmRegularInformation",
+          "label": "定期开户信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        }
+      ],
+      "label": "活转定父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_WITHDRAWAL_AMOUNT.html",
+      "value": "UI_WITHDRAWAL_AMOUNT",
+      "children": [
+        {
+          "value": "withdrawalInput",
+          "label": "取款金额输入页"
+        },
+        {
+          "value": "withdrawalGit",
+          "label": "出钞金额页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "outMoney",
+          "label": "出钞等待页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        },
+        {
+          "value": "outLimit",
+          "label": "取款限额页"
+        },
+        {
+          "value": "outMoneyError",
+          "label": "取款失败提示页"
+        },
+        {
+          "value": "notMoney",
+          "label": "钞箱钱币不足提示页"
+        }
+      ],
+      "label": "助农取款父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_TAX_SOCIAL_INSURANCE.html",
+      "value": "UI_TAX_SOCIAL_INSURANCE",
+      "children": [
+        {
+          "value": "warmPrompt",
+          "label": "温馨提示页"
+        },
+        {
+          "value": "perfectInformation",
+          "label": "完善用户信息页"
+        },
+        {
+          "value": "paymentConfirmation",
+          "label": "缴费信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "payErrorCardnoError",
+          "label": "缴费险种页"
+        },
+        {
+          "value": "checkConfirmInformation",
+          "label": "核对个人信息页"
+        },
+        {
+          "value": "improvePaymentInformation",
+          "label": "完善缴费信息页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        },
+        {
+          "value": "noPaymentType",
+          "label": "缴费项目不存在提示页"
+        }
+      ],
+      "label": "税银社保父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_REGULAR_TO_CURREN.html",
+      "value": "UI_REGULAR_TO_CURREN",
+      "children": [
+        {
+          "value": "warn",
+          "label": "活转定提示页"
+        },
+        {
+          "value": "accountList",
+          "label": "定期子账户列表页"
+        },
+        {
+          "value": "surePayInformate",
+          "label": "确认支取信息页"
+        },
+        {
+          "value": "confirmRegularWithdrawalInformation",
+          "label": "输入支取信息页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        }
+      ],
+      "label": "定转活父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_GAS_PAGE.html",
+      "value": "UI_GAS_PAGE",
+      "children": [
+        {
+          "value": "insertFreeNumber",
+          "label": "输入燃气用户号页"
+        },
+        {
+          "value": "userMessageSure",
+          "label": "用户信息确认页"
+        },
+        {
+          "value": "payMessageSure",
+          "label": "缴费信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        }
+      ],
+      "label": "燃气缴费父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_WATER_PAYMENT.html",
+      "value": "UI_WATER_PAYMENT",
+      "children": [
+        {
+          "value": "insertFreeNumber",
+          "label": "输入水费用户号页"
+        },
+        {
+          "value": "userMessageSure",
+          "label": "用户信息确认页"
+        },
+        {
+          "value": "payMessageSure",
+          "label": "缴费信息确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        }
+      ],
+      "label": "水费缴费父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_TRANSFER.html",
+      "value": "UI_TRANSFER",
+      "children": [
+        {
+          "value": "safetyTips",
+          "label": "安全提示页"
+        },
+        {
+          "value": "insertTransferAccounts",
+          "label": "转账账号输入页"
+        },
+        {
+          "value": "insertTransferAccountsAgain",
+          "label": "转账账号再次输入页"
+        },
+        {
+          "value": "insertTransferMoney",
+          "label": "转账金额输入页"
+        },
+        {
+          "value": "insertTransferMoneySure",
+          "label": "转账金额确认页"
+        },
+        {
+          "value": "payFinish",
+          "label": "交易成功页"
+        },
+        {
+          "value": "balanceLow",
+          "label": "银行卡余额不足提示页"
+        }
+      ],
+      "label": "祖农转账父组件页"
+    },
+    {
+      "flag": true,
+      "path": "/page/UI_DETAIL_PAGE.html",
+      "value": "UI_DETAIL_PAGE",
+      "children": [
+        {
+          "value": "detailEnquirySelect",
+          "label": "查询日期选择页"
+        },
+        {
+          "value": "detailResult",
+          "label": "明细结果页"
+        }
+      ],
+      "label": "交易明细父组件页"
+    }
+  ],
+  "printTemplate": [
+    {
+      "value": "pingtiao",
+      "label": "凭条模板"
+    }
+  ],
+  "componentTypeList": [
+    {
+      "id": "01",
+      "title": "硬件操作",
+      "background": "blue",
+      "color": "#ffffff",
+      "children": [
+        {
+          "id": "GetHardWareSNSync",
+          "text": "终端序列号获取组件 ",
+          "category": "step"
+        },
+        {
+          "id": "CheckCardStatus",
+          "text": "卡片状态检测组件",
+          "category": "step"
+        },
+        {
+          "id": "addCash",
+          "text": "加钞组件",
+          "category": "step"
+        },
+        {
+          "id": "InputPin",
+          "text": "键盘密文输入组件 ",
+          "category": "step"
+        },
+        {
+          "id": "DispenseAndPresent",
+          "text": "挖钞送钞组件",
+          "category": "step"
+        },
+        {
+          "id": "WaitQuitCard",
+          "text": "退卡组件 ",
+          "category": "step"
+        },
+        {
+          "id": "CheckPinPad",
+          "text": "密码键盘状态检查组件 ",
+          "category": "step"
+        },
+        {
+          "id": "GetCassetteInfoSync",
+          "text": "获取钞箱信息组件",
+          "category": "step"
+        },
+        {
+          "id": "CardCancelWait",
+          "text": "取消读卡组件 ",
+          "category": "step"
+        },
+        {
+          "id": "StartDevices",
+          "text": "硬件初始化组件 ",
+          "category": "step"
+        },
+        {
+          "id": "ResetDevices",
+          "text": "驱动复位组件",
+          "category": "step"
+        },
+        {
+          "id": "GetHardWareSNSync",
+          "text": "终端序列号获取组件 ",
+          "category": "step"
+        },
+        {
+          "id": "PrintDef",
+          "text": "凭条打印组件 ",
+          "category": "step"
+        },
+        {
+          "id": "WaitAcceptCard",
+          "text": "卡片数据读取组件 ",
+          "category": "step"
+        },
+        {
+          "id": "CheckReceipt",
+          "text": "凭条打印机状态检查组件 ",
+          "category": "step"
+        },
+        {
+          "id": "CheckCardReader",
+          "text": "读卡器状态检查组件 ",
+          "category": "step"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "通信处理",
+      "color": "blue",
+      "children": [
+        {
+          "id": "MessageResp",
+          "text": "接口响应处理组件",
+          "category": "step"
+        },
+        {
+          "id": "MessageComm",
+          "text": "后台通信组件",
+          "category": "step"
+        },
+        {
+          "id": "UploadTrans",
+          "text": "交易数据上送组件",
+          "category": "step"
+        },
+        {
+          "id": "StartTransFlow",
+          "text": "接口参数初始化组件",
+          "category": "step"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "PBOC流程",
+      "color": "blue",
+      "children": [
+        {
+          "id": "PBOCImportAmount",
+          "text": "POBC导入金额组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCImportOnlineResp",
+          "text": "导入联机响应数据组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCImportAidSelectRes",
+          "text": "PBOC应用选择组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCBegin",
+          "text": "POBC流程开始组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCEnd",
+          "text": "POBC结束组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCImportPin",
+          "text": "密文获取组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCBeforeOnline",
+          "text": "PBOC通信前置组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCImportUserAuthRes",
+          "text": "导入身份认证确认结果组件",
+          "category": "step"
+        },
+        {
+          "id": "PBOCReadKernelData",
+          "text": "读取内核数据 ",
+          "category": "step"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "页面展示",
+      "color": "blue",
+      "children": [
+        {
+          "id": "ShowMessage",
+          "text": "消息推送页面组件",
+          "category": "step"
+        },
+        {
+          "id": "ShowMessageWait",
+          "text": "消息推送页面等待组件",
+          "category": "step"
+        },
+        {
+          "id": "ShowPage",
+          "text": "页面展示组件",
+          "category": "step"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "流程跳转",
+      "color": "#ffffff",
+      "background": "#bc0b0b",
+      "height": 50,
+      "children": [
+        {
+          "id": "start",
+          "text": "start",
+          "category": "start"
+        },
+        {
+          "id": "jumpFlow",
+          "text": "end",
+          "category": "end"
+        },
+        {
+          "id": "flowReturn",
+          "text": "回跳组件",
+          "category": "end"
+        },
+        {
+          "id": "callFlow",
+          "text": "有返回跳转组件",
+          "category": "step"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": "业务组件",
+      "color": "blue",
+      "children": [
+        {
+          "id": "SettleMachine",
+          "text": "清机组件",
+          "category": "step"
+        },
+        {
+          "id": "EndTransFlow",
+          "text": "交易结束组件 ",
+          "category": "step"
+        },
+        {
+          "id": "ResetPasswd",
+          "text": "管理员密码重置组件",
+          "category": "step"
+        },
+        {
+          "id": "UploadSettleInfo",
+          "text": "钞箱信息上送组件 ",
+          "category": "step"
+        },
+        {
+          "id": "TermDetail",
+          "text": "终端明细查询组件",
+          "category": "step"
+        },
+        {
+          "id": "Reverse",
+          "text": "取款冲正组件 ",
+          "category": "step"
+        },
+        {
+          "id": "Pack59Field",
+          "text": "59域打包组件",
+          "category": "step"
+        },
+        {
+          "id": "HasPaymentType",
+          "text": "判断交易类型组件 ",
+          "category": "step"
+        },
+        {
+          "id": "ClearTempData",
+          "text": "清除临时数据组件 ",
+          "category": "step"
+        },
+        {
+          "id": "GetParameters",
+          "text": "获取下发参数组件",
+          "category": "step"
+        },
+        {
+          "id": "ShowStatus",
+          "text": "显示总体状态组件",
+          "category": "step"
+        },
+        {
+          "id": "InitParam",
+          "text": "业务交易参数初始化组件",
+          "category": "step"
+        },
+        {
+          "id": "ClearUserData",
+          "text": "清除用户数据组件 ",
+          "category": "step"
+        },
+        {
+          "id": "AdminLogin",
+          "text": "管理员登陆组件",
+          "category": "step"
+        },
+        {
+          "id": "TermCollect",
+          "text": "终端交易汇总组件",
+          "category": "step"
+        },
+        {
+          "id": "IsLzccbCard",
+          "text": "本行他行卡校验组件 ",
+          "category": "step"
+        }
+      ]
+    }
+  ],
+  "components": {
+    "start": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "start",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "start",
+      "properties": {},
+      "type": "03"
+    },
+    "end": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "end",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "end",
+      "properties": {},
+      "type": "03"
+    },
+    "PBOCReadKernelData": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCReadKernelData",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "读取内核数据 ",
+      "properties": {
+        "SaveData": {
+          "component": "eInput",
+          "description": "将事件返回的数据保存到SaveData传进来的属性值,命名规则应以temp_开头",
+          "name": "保存Key名称",
+          "rule": [
+            {
+              "pattern": "^temp_[a-zA-Z0-9]+$",
+              "message": "请以temp_开头输入保存Key名！"
+            }
+          ]
+        },
+        "Taglist": {
+          "component": "eInput",
+          "name": "Tag标签",
+          "options": [
+            {
+              "set": "",
+              "tag": "9F26"
+            },
+            {
+              "set": "",
+              "tag": "5C"
+            }
+          ],
+          "rule":[
+            {
+              "required": true,
+              "message": "该字段是必须的"
+            }
+          ]
+        }
+      },
+      "type": "03"
+    },
+    "GetHardWareSNSync": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "GetHardWareSNSync",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "终端序列号获取组件start ",
+      "properties": {},
+      "type": "01"
+    },
+    "PBOCBeforeOnline": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCBeforeOnline",
+      "outlines": [
+        {
+          "id": "onPBOCOnline",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "PBOC通信前置组件",
+      "properties": {},
+      "type": "03"
+    },
+    "Pack59Field": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "Pack59Field",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "59域打包组件",
+      "properties": {},
+      "type": "06"
+    },
+    "CheckCardStatus": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "CheckCardStatus",
+      "outlines": [
+        {
+          "id": "in",
+          "name": "卡插入"
+        },
+        {
+          "id": "out",
+          "name": "卡未插入"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "卡片状态检测组件",
+      "properties": {},
+      "type": "01"
+    },
+    "ShowMessageWait": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ShowMessageWait",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onTimeOver",
+          "name": "操作超时"
+        },
+        {
+          "id": "onCancel",
+          "name": "退出"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "消息推送页面等待组件",
+      "properties": {
+        "message ": {
+          "component": "eCascader",
+          "description": "提供给页面的消息",
+          "name": "消息",
+          "key": "uiChildren",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ]
+        }
+      },
+      "type": "04"
+    },
+    "PBOCImportUserAuthRes": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCImportUserAuthRes",
+      "outlines": [
+        {
+          "id": "onPBOCOnline",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "导入身份认证确认结果组件",
+      "properties": {
+        "Confirm": {
+          "component": "eRadio",
+          "description": "ture 确认，false 取消",
+          "name": "确认结果",
+          "options":[{"value":"true","label":"确认"},{"value":"false","label":"取消"}],
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ]
+        }
+      },
+      "type": "03"
+    },
+    "PBOCBegin": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "outlines": [
+        {
+          "id": "onPBOCOnline",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "onSelectAids",
+          "name": "返回多应用时选择应用"
+        }
+      ],
+      "id": "PBOCBegin",
+      "name": "POBC流程开始组件",
+      "properties": {
+        "IsTransTypeSimpleFlow": {
+          "component": "eRadio",
+          "description": "判断是否选择简易流程，仅IC卡有效果",
+          "options": [
+            {
+              "value": "false",
+              "label": "否"
+            },
+            {
+              "value": "true",
+              "label": "是"
+            }
+          ],
+          "name": "是否选择简易流程",
+          "required": false
+        },
+        "RequestAmtPosition": {
+          "component": "eSelect",
+          "name": "请求金额位置",
+          "options": [
+            {
+              "value": "0x01",
+              "label": "显示卡号前"
+            },
+            {
+              "value": "0x02",
+              "label": "显示卡号后"
+            }
+          ],
+          "required": false
+        },
+        "SlotType": {
+          "component": "eSelect",
+          "name": "交易界面类型",
+          "options": [
+            {
+              "value": "0x00",
+              "label": "接触式"
+            },
+            {
+              "value": "0x01",
+              "label": "非接触式"
+            }
+          ],
+          "required": false
+        },
+        "IsForceOnline": {
+          "component": "eRadio",
+          "name": "是否强制联机",
+          "options": [
+            {
+              "value": "false",
+              "label": "否"
+            },
+            {
+              "value": "true",
+              "label": "是"
+            }
+          ],
+          "required": false
+        },
+        "Transtype": {
+          "component": "eSelect",
+          "name": "交易类型",
+          "options": [
+            {
+              "value": "0x01",
+              "label": "消费"
+            },
+            {
+              "value": "0x02",
+              "label": "服务"
+            },
+            {
+              "value": "0x03",
+              "label": "现金"
+            },
+            {
+              "value": "0x04",
+              "label": "返现"
+            },
+            {
+              "value": "0x05",
+              "label": "查询"
+            },
+            {
+              "value": "0x06",
+              "label": "转账"
+            },
+            {
+              "value": "0x07",
+              "label": "管理"
+            },
+            {
+              "value": "0x08",
+              "label": "存款"
+            },
+            {
+              "value": "0x09",
+              "label": "支付"
+            },
+            {
+              "value": "0x0A",
+              "label": "电子现金日志"
+            },
+            {
+              "value": "0x0C",
+              "label": "预授权"
+            },
+            {
+              "value": "0x0E",
+              "label": "指定账户圈存"
+            },
+            {
+              "value": "0x0F",
+              "label": "非指定账户圈存"
+            },
+            {
+              "value": "0x10",
+              "label": "现金圈存"
+            }
+          ],
+          "rule": [
+            {
+              "required": true,
+              "message": "该字段是必须的"
+            }
+          ]
+        },
+        "IsSmEnable": {
+          "component": "eRadio",
+          "options": [
+            {
+              "value": "false",
+              "label": "否"
+            },
+            {
+              "value": "true",
+              "label": "是"
+            }
+          ],
+          "name": "是否支持国密算法",
+          "required": false
+        },
+        "IsEcashEnable": {
+          "component": "eRadio",
+          "name": "是否支持电子现金",
+          "options": [
+            {
+              "value": "false",
+              "label": "否"
+            },
+            {
+              "value": "true",
+              "label": "是"
+            }
+          ],
+          "required": false
+        },
+        "IsConfirmCardNo": {
+          "component": "eRadio",
+          "description": "判断是否更快速显示卡号，仅IC卡有效果，用于能快速的显示卡号",
+          "name": "是否更快速显示卡号",
+          "options": [
+            {
+              "value": "false",
+              "label": "否"
+            },
+            {
+              "value": "true",
+              "label": "是"
+            }
+          ],
+          "required": false
+        },
+        "EMVFlow": {
+          "component": "eSelect",
+          "name": "流程选择",
+          "options": [
+            {
+              "value": "0x01",
+              "label": "PBOC 流程 "
+            },
+            {
+              "value": "0x02",
+              "label": "BOC 流程 "
+            }
+          ],
+          "required": false
+        }
+      },
+      "type": "03"
+    },
+    "PBOCImportAmount": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCImportAmount",
+      "outlines": [
+        {
+          "id": "onPBOCOnline",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "POBC导入金额组件",
+      "properties": {
+        "amt": {
+          "component": "eInput",
+          "name": "金额",
+          "rule":[{"pattern":"^[1-9][0-9]*$","message":"请输入正确的金额格式！"}],
+          "required": false
+        }
+      },
+      "type": "03"
+    },
+    "ClearTempData": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ClearTempData",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "清除临时数据组件 ",
+      "properties": {},
+      "type": "06"
+    },
+    "TermCollect": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "TermCollect",
+      "outlines": [
+        {
+          "id": "collect",
+          "name": "汇总"
+        },
+        {
+          "id": "print",
+          "name": "打印"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "终端交易汇总组件",
+      "properties": {},
+      "type": "06",
+      "uiElement": true
+    },
+    "ShowPage": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ShowPage",
+      "outlines": [
+        {
+          "id": "getBalance",
+          "name": "余额查询出口"
+        },
+        {
+          "id": "intraBankTransfer",
+          "name": "转账出口"
+        },
+        {
+          "id": "getBalance",
+          "name": "余额查询出口"
+        },
+        {
+          "id": "getTransDetails",
+          "name": "明细查询出口"
+        },
+        {
+          "id": "withdralAmount",
+          "name": "取款出口"
+        },
+        {
+          "id": "waterFeePayment",
+          "name": "水费缴费出口"
+        },
+        {
+          "id": "waterFeePayment",
+          "name": "水费缴费出口"
+        },
+        {
+          "id": "gasFeePayment",
+          "name": "燃气缴费出口"
+        },
+        {
+          "id": "medicalInsurance",
+          "name": "医疗缴费出口"
+        },
+        {
+          "id": "taxSocialInsurance",
+          "name": "税银社保缴费出口"
+        },
+        {
+          "id": "socialInsurance",
+          "name": "社保缴费出口"
+        },
+        {
+          "id": "currentTransferPeriod",
+          "name": "活期转定期出口"
+        },
+        {
+          "id": "periodTransferCurrent",
+          "name": "定期转活期出口"
+        },
+        {
+          "id": "rqcode",
+          "name": "扫码业务出口"
+        },
+        {
+          "id": "admin",
+          "name": "后管出口"
+        },
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onCancel",
+          "name": "退出"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "onTimeOver",
+          "name": "超时"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "页面展示组件",
+      "properties": {},
+      "type": "04",
+      "uiElement": true
+    },
+    "addCash": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "addCash",
+      "outlines": [
+        {
+          "id": "addCash",
+          "name": "加钞"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "加钞组件",
+      "properties": {},
+      "type": "01"
+    },
+    "InitParam": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "InitParam",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onCancel",
+          "name": "退出"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "业务交易参数初始化组件",
+      "properties": {
+        "temp_trans_vtranscode": {
+          "component": "eSelect",
+          "description": "用来告诉V端的交易标识",
+          "options":[
+            {"value":"100033","label":"活转定"},
+            {"value":"100035","label":"定转活"},
+            {"value":"100011","label":"明细查询"},
+            {"value":"110011","label":"水费缴费查询"},
+            {"value":"110012","label":"水费缴费扣款"},
+            {"value":"110021","label":"煤气费缴费查询"},
+            {"value":"110022","label":"煤气费缴费扣款"},
+            {"value":"110401","label":"助农取款"},
+            {"value":"110402","label":"助农余额查询"},
+            {"value":"100021","label":"取款冲正"},
+            {"value":"110403","label":"助农转账"},
+            {"value":"110271","label":"税银缴费"},
+            {"value":"100010","label":"余额查询"}
+          ],
+          "name": "交易码",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ]
+        }
+      },
+      "type": "06"
+    },
+    "DispenseAndPresent": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "DispenseAndPresent",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "挖钞送钞组件",
+      "properties": {
+        "Amount": {
+          "unit": "元",
+          "component": "eNumber",
+          "description": "配钞金额",
+          "name":"配钞金额",
+          "step": 100
+        }
+      },
+      "type": "01"
+    },
+    "InputPin": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "InputPin",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onCancel",
+          "name": "退出"
+        },
+        {
+          "id": "onTimeout",
+          "name": "输入超时"
+        },
+        {
+          "id": "onTimeOver",
+          "name": "操作超时"
+        },
+        {
+          "id": "emptyPass",
+          "name": "密码为空"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "键盘密文输入组件 ",
+      "properties": {
+        "AutoEnd": {
+          "component": "eRadio",
+          "name": "结束方式",
+          "options": [
+            {
+              "value": true,
+              "label": "自动结束"
+            },
+            {
+              "value": false,
+              "label": "手动结束"
+            }
+          ]
+        },
+        "MaxKeys": {
+          "component": "eNumber",
+          "name": "最大长度"
+        },
+        "MinKeys": {
+          "component": "eNumber",
+          "name": "最小长度"
+        },
+        "TimeOut": {
+          "unit": "ms",
+          "component": "eNumber",
+          "name": "超时时间"
+        }
+      },
+      "type": "01"
+    },
+    "ResetPasswd": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ResetPasswd",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "changePasswd",
+          "name": "密码变更"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "管理员密码重置组件",
+      "properties": {},
+      "type": "06",
+      "uiElement": true
+    },
+    "PBOCImportPin": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCImportPin",
+      "outlines": [
+        {
+          "id": "onPBOCOnline",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "密文获取组件",
+      "properties": {},
+      "type": "03"
+    },
+    "MessageComm": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "MessageComm",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "onPackFail",
+          "name": "打包失败"
+        },
+        {
+          "id": "onUnpackFail",
+          "name": "解包失败"
+        },
+        {
+          "id": "onReceiveTimeout",
+          "name": "响应超时"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "后台通信组件",
+      "properties": {
+        "msgId": {
+          "component": "eSelect",
+          "name": "交易码",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ],
+          "deriveAttr":"url",
+          "prepend":"/tx/",
+          "options":[
+            {"label":"P端参数下载","value":"ZZ0003"},
+            {"label":"本转他转账","value":"ZZ010A"},
+            {"label":"定期转活期","value":"ZZ010D"},
+            {"label":"活期转定期","value":"ZZ010E"},
+            {"label":"账户号查询子账户号","value":"ZZ010F"},
+            {"label":"累计取款金额查询","value":"ZZ010G"},
+            {"label":"取款(借记卡、活期存折、无介质)","value":"ZZ010J"},
+            {"label":"取款冲正","value":"ZZ010K"},
+            {"label":"账户非柜面转账限额查询","value":"ZZ010N"},
+            {"label":"水费用户查询","value":"ZZ030A"},
+            {"label":"气费用户查询","value":"ZZ030B"},
+            {"label":"税银缴费查询","value":"ZZ050B"},
+            {"label":"税银缴费","value":"ZZ050C"},
+            {"label":"税银缴费档次信息查询","value":"ZZ050D"},
+            {"label":"查询电费客户信息","value":"ZZ050E"},
+            {"label":"税银缴费参保查询_新","value":"ZZ050J"},
+            {"label":"助农取款、转账单日限额查询","value":"ZZ080A"},
+            {"label":"定期利息预算接口","value":"ZZ080B"},
+            {"label":"余额查询（验密）","value":"ZZ0101"},
+            {"label":"账户查询(户名/户类/开户信息)","value":"ZZ0105"},
+            {"label":"明细查询","value":"ZZ0106"},
+            {"label":"本行转账","value":"ZZ0109"},
+            {"label":"黑名单查询","value":"ZZ0409"},
+            {"label":"燃气欠费查询","value":"ZZ0501"},
+            {"label":"燃气缴费","value":"ZZ0502"},
+            {"label":"水费欠费查询","value":"ZZ0503"},
+            {"label":"水费缴费","value":"ZZ0504"},
+            {"label":"医保查询缴费信息","value":"ZZ0506"},
+            {"label":"医保缴费","value":"ZZ0507"},
+            {"label":"社保缴费信息查询","value":"ZZ0508"},
+            {"label":"社保缴费","value":"ZZ0509"},
+            {"label":"助农余额查询","value":"ZZ0803"},
+            {"label":"助农取现","value":"ZZ0804"},
+            {"label":"助农取现冲正","value":"ZZ0805"},
+            {"label":"助农转账","value":"ZZ0806"},
+            {"label":"助农订单查询","value":"ZZ0808"},
+            {"label":"助农户名查询","value":"ZZ0809"}
+          ]
+        },
+        "timeout": {
+          "unit": "ms",
+          "component": "eNumber",
+          "name": "超时时间",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ]
+        }
+      },
+      "type": "02"
+    },
+    "MessageResp": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "MessageResp",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "reInput",
+          "name": "重新输入(验密接口适用)"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "接口响应处理组件",
+      "properties": {
+        "isOver": {
+          "default": 0,
+          "component": "eRadio",
+          "description": "交易结束标识（一次交易结束时需要标识结束，否则会影响数据上送）",
+          "name": "结束标识",
+          "options": [
+            {
+              "value": 1,
+              "label": "结束"
+            },
+            {
+              "value": 0,
+              "label": "不结束"
+            }
+          ]
+        }
+      },
+      "type": "02"
+    },
+    "WaitQuitCard": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "WaitQuitCard",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "default",
+          "name": ""
+        }
+      ],
+      "name": "退卡组件 ",
+      "properties": {},
+      "type": "01"
+    },
+    "TermDetail": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "TermDetail",
+      "outlines": [
+        {
+          "id": "detail",
+          "name": "明细查询"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "终端明细查询组件",
+      "properties": {},
+      "type": "06",
+      "uiElement": true
+    },
+    "UploadTrans": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "UploadTrans",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "交易数据上送组件",
+      "properties": {},
+      "type": "02"
+    },
+    "SettleMachine": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "SettleMachine",
+      "outlines": [
+        {
+          "id": "settle",
+          "name": "清机"
+        },
+        {
+          "id": "print",
+          "name": "打印"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "清机组件",
+      "properties": {},
+      "type": "06",
+      "uiElement": true
+    },
+    "CheckPinPad": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "CheckPinPad",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "密码键盘状态检查组件 ",
+      "properties": {},
+      "type": "01"
+    },
+    "GetCassetteInfoSync": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "GetCassetteInfoSync",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "获取钞箱信息组件",
+      "properties": {},
+      "type": "01"
+    },
+    "CardCancelWait": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "CardCancelWait",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "取消读卡组件 ",
+      "properties": {},
+      "type": "01"
+    },
+    "StartDevices": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "StartDevices",
+      "outlines": [
+        {
+          "id": "online",
+          "name": "在线"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "硬件初始化组件 ",
+      "properties": {},
+      "type": "01"
+    },
+    "PBOCImportOnlineResp": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCImportOnlineResp",
+      "outlines": [
+        {
+          "id": "onPBOCOnline",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "导入联机响应数据组件",
+      "properties": {
+        "RespCode": {
+          "component": "eSelect",
+          "name": "后台应答码",
+          "options": [{"value":"00","label":"联机批准"},{"value":"01","label":"发卡行语音参考"},
+            {"value":"05","label":"联机拒绝"}],
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ]
+        },
+        "Confirm": {
+          "component": "eRadio",
+          "description": "ture 联机失败，false 联机成功",
+          "options": [{"value":"false","label":"联机成功"},{"value":"true","label":"联机失败"}],
+          "name": "联机结果",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ]
+        },
+        "Icc55": {
+          "component": "eInput",
+          "name": "应答55域",
+          "required": false
+        }
+      },
+      "type": "03"
+    },
+    "ShowStatus": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ShowStatus",
+      "outlines": [
+        {
+          "id": "settle",
+          "name": "清机"
+        },
+        {
+          "id": "addCash",
+          "name": "加钞"
+        },
+        {
+          "id": "resetDevice",
+          "name": "一键复位"
+        },
+        {
+          "id": "changePasswd",
+          "name": "修改密码"
+        },
+        {
+          "id": "detail",
+          "name": "查询明细"
+        },
+        {
+          "id": "collect",
+          "name": "数据统计"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "显示总体状态组件",
+      "properties": {},
+      "type": "06",
+      "uiElement": true
+    },
+    "jumpFlow": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "jumpFlow",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "无返回跳转组件",
+      "properties": {
+        "flowNode": {
+          "component": "eCascader",
+          "description": "流程节点信息",
+          "name": "流程节点",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ],
+          "key": "jumpFlow"
+        }
+      },
+      "type": "05"
+    },
+    "ShowMessage": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ShowMessage",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "消息推送页面组件",
+      "properties": {
+        "message ": {
+          "component": "eCascader",
+          "description": "提供给页面的消息",
+          "name": "消息",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ],
+          "key": "uiChildren"
+        }
+      },
+      "type": "04"
+    },
+    "AdminLogin": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "AdminLogin",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "管理员登陆组件",
+      "properties": {},
+      "type": "06",
+      "uiElement": true
+    },
+    "GetParameters": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "GetParameters",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "获取下发参数组件",
+      "properties": {},
+      "type": "06"
+    },
+    "IsLzccbCard": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "IsLzccbCard",
+      "outlines": [
+        {
+          "id": "lzccb",
+          "name": "泸州银行"
+        },
+        {
+          "id": "unionPay",
+          "name": "银联"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "本行他行卡校验组件 ",
+      "properties": {},
+      "type": "06"
+    },
+    "PBOCImportAidSelectRes": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCImportAidSelectRes",
+      "outlines": [
+        {
+          "id": "onPBOCOnline",
+          "name": "成功"
+        },
+        {
+          "id": "onFail",
+          "name": "失败"
+        },
+        {
+          "id": "onSelectAids",
+          "name": "返回多应用时选择应用"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "PBOC应用选择组件",
+      "properties": {
+        "index": {
+          "component": "eInput",
+          "name": "索引",
+          "rule": [
+            {"pattern":"^[0-9]*$","message":"索引值只能为非负整数！"}
+          ],
+          "required": false
+        }
+      },
+      "type": "03"
+    },
+    "ResetDevices": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ResetDevices",
+      "outlines": [
+        {
+          "id": "resetDevice",
+          "name": "复位"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "驱动复位组件",
+      "properties": {},
+      "type": "01"
+    },
+    "UploadSettleInfo": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "UploadSettleInfo",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "钞箱信息上送组件 ",
+      "properties": {},
+      "type": "06"
+    },
+    "callFlow": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "callFlow",
+      "outlines": [],
+      "name": "有返回跳转组件",
+      "properties": {
+        "flowNode": {
+          "component": "eCascader",
+          "description": "流程节点信息",
+          "name": "流程节点信息",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ],
+          "key": "flowJump"
+        }
+      },
+      "type": "05"
+    },
+    "flowReturn": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "flowReturn",
+      "outlines": [],
+      "name": "回跳组件",
+      "properties": {
+        "return": {
+          "component": "eInput",
+          "description": "该参数对应着callFlow组件的出口",
+          "name": "出口名称",
+          "rule": [
+            {"required": true,
+              "message": "该字段是必须的"}
+          ]
+        }
+      },
+      "type": "05"
+    },
+    "PrintDef": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PrintDef",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "凭条打印组件 ",
+      "properties": {
+        "FromName": {
+          "component": "eSelect",
+          "name": "模板名称",
+          "description": "模板名称",
+          "rule":[
+            {"required":true,"message":"这是必填字段"}
+          ]
+        }
+      },
+      "type": "01"
+    },
+    "PBOCEnd": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "PBOCEnd",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "POBC结束组件",
+      "properties": {},
+      "type": "03"
+    },
+    "HasPaymentType": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "HasPaymentType",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "onCancel",
+          "name": "退出"
+        },
+        {
+          "id": "onBlanceLow",
+          "name": "余额不足"
+        },
+        {
+          "id": "onTimeOver",
+          "name": "操作超时"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "判断交易类型组件 ",
+      "properties": {},
+      "type": "06"
+    },
+    "StartTransFlow": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "StartTransFlow",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "接口参数初始化组件",
+      "properties": {},
+      "type": "02"
+    },
+    "WaitAcceptCard": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "WaitAcceptCard",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "magCard",
+          "name": "磁条卡交易"
+        },
+        {
+          "id": "downLevel",
+          "name": "降级卡交易"
+        },
+        {
+          "id": "onCancel",
+          "name": "退卡"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "onTimeOver",
+          "name": "操作超时"
+        },
+        {
+          "id": "onTimeout",
+          "name": "读卡超时"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "卡片数据读取组件 ",
+      "properties": {
+        "Timeout": {
+          "unit": "ms",
+          "component": "eInput",
+          "description": "为-1的时候，将永远等待，不会有超时事件",
+          "name": "超时时间",
+          "rule": [
+            {
+              "pattern": "^[-]?[1-9][0-9]*$",
+              "message": "请输入正确的时间格式！"
+            }
+          ]
+        },
+        "iccardEnable": {
+          "default": true,
+          "component": "eRadio",
+          "name": "插入式IC卡模块",
+          "options": [
+            {
+              "value": true,
+              "label": "开启"
+            },
+            {
+              "value": false,
+              "label": "不开启"
+            }
+          ]
+        },
+        "rfcardEnable": {
+          "default": false,
+          "component": "eRadio",
+          "name": "非接IC卡模块",
+          "options": [
+            {
+              "value": true,
+              "label": "开启"
+            },
+            {
+              "value": false,
+              "label": "不开启"
+            }
+          ]
+        },
+        "magcardEnable": {
+          "default": true,
+          "component": "eRadio",
+          "name": "磁条卡模块",
+          "options": [
+            {
+              "value": true,
+              "label": "开启"
+            },
+            {
+              "value": false,
+              "label": "不开启"
+            }
+          ]
+        }
+      },
+      "type": "01",
+      "uiElement": true
+    },
+    "ClearUserData": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "ClearUserData",
+      "outlines": [
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "清除用户数据组件 ",
+      "properties": {},
+      "type": "06"
+    },
+    "CheckReceipt": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "CheckReceipt",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "凭条打印机状态检查组件 ",
+      "properties": {},
+      "type": "01"
+    },
+    "CheckCardReader": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "CheckCardReader",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "读卡器状态检查组件 ",
+      "properties": {},
+      "type": "01"
+    },
+    "Reverse": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "Reverse",
+      "outlines": [
+        {
+          "id": "endTrans",
+          "name": "结束交易"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "取款冲正组件 ",
+      "properties": {},
+      "type": "06"
+    },
+    "EndTransFlow": {
+      "ui": {
+        "spanLabel": "30%",
+        "offsetControl": 0
+      },
+      "id": "EndTransFlow",
+      "outlines": [
+        {
+          "id": "onSuccess",
+          "name": "成功"
+        },
+        {
+          "id": "index",
+          "name": "首页"
+        },
+        {
+          "id": "default",
+          "name": "默认"
+        }
+      ],
+      "name": "交易结束组件 ",
+      "properties": {},
+      "type": "06"
+    }
+  },
+  "code": 0,
+  "types": [
+    {
+      "id": "01",
+      "title": "硬件操作",
+      "color": "blue"
+    },
+    {
+      "id": "02",
+      "title": "通信处理",
+      "color": "blue"
+    },
+    {
+      "id": "03",
+      "title": "PBOC流程",
+      "color": "blue"
+    },
+    {
+      "id": "04",
+      "title": "页面展示",
+      "color": "blue"
+    },
+    {
+      "id": "05",
+      "title": "流程跳转",
+      "color": "blue"
+    },
+    {
+      "id": "06",
+      "title": "业务组件",
+      "color": "blue"
+    }
+  ],
+  "flowJump": [
+    {
+      "value": "test-flowVersion-8b21cc4ece3a49a5bec74b7c590e185e",
+      "children": [
+        {
+          "value": "ND_Start",
+          "label": "初始化参数"
+        },
+        {
+          "value": "ND_WaitAcceptCard",
+          "label": "读取IC卡信息"
+        },
+        {
+          "value": "ND_ReadingCard",
+          "label": "ND_ReadingCard"
+        },
+        {
+          "value": "ND_PBOCBegin",
+          "label": "开始PBOC流程"
+        },
+        {
+          "value": "ND_ImportPin",
+          "label": ""
+        },
+        {
+          "value": "ND_ReaKernelData",
+          "label": "检查读卡器状态"
+        },
+        {
+          "value": "ND_ShowEnterPinPage",
+          "label": "展示密码输入界面"
+        },
+        {
+          "value": "ND_InputPassword",
+          "label": "密码键盘输入"
+        },
+        {
+          "value": "ND_Trading1",
+          "label": "交易中过度界面"
+        },
+        {
+          "value": "ND_GetHardWareSNSync",
+          "label": "交易中过度界面"
+        },
+        {
+          "value": "ND_Pack59Field",
+          "label": "打包59域组件"
+        },
+        {
+          "value": "ND_IslzccbCard",
+          "label": "判断是否是本行卡"
+        },
+        {
+          "value": "ND_QueryBlackListPre",
+          "label": "开始交易"
+        },
+        {
+          "value": "ND_QueryBlackList",
+          "label": "调用黑名单查询接口"
+        },
+        {
+          "value": "ND_QueryBlackListResp",
+          "label": "调用黑名单接口响应"
+        },
+        {
+          "value": "ND_ConnectPre",
+          "label": "开始交易"
+        },
+        {
+          "value": "ND_Connect",
+          "label": "调用后端余额查询接口"
+        },
+        {
+          "value": "ND_ConnectResp",
+          "label": "调用后端余额响应"
+        },
+        {
+          "value": "ND_PasssErrorPage",
+          "label": "ND_PasssErrorPage"
+        },
+        {
+          "value": "ND_showBalance",
+          "label": "展示余额页面"
+        },
+        {
+          "value": "ND_PBOCEnd",
+          "label": "进入退卡流程"
+        },
+        {
+          "value": "ND_CardOut",
+          "label": "进入退卡流程"
+        },
+        {
+          "value": "ND_ReadCardError",
+          "label": "ND_ReadCardError"
+        },
+        {
+          "value": "ND_SystemError",
+          "label": "ND_SystemError"
+        },
+        {
+          "value": "ND_CommonmessageError",
+          "label": "ND_CommonmessageError"
+        },
+        {
+          "value": "ND_InputError",
+          "label": "ND_InputError"
+        },
+        {
+          "value": "ND_OperateTimeOut",
+          "label": "ND_OperateTimeOut"
+        },
+        {
+          "value": "ND_TransactionReqTimeout",
+          "label": "ND_TransactionReqTimeout"
+        },
+        {
+          "value": "ND_InterfaceTimeOut",
+          "label": "ND_InterfaceTimeOut"
+        },
+        {
+          "value": "ND_DownLevelTip",
+          "label": "ND_DownLevelTip"
+        }
+      ],
+      "label": "FN_GetELBalnce"
+    }
+  ]
+}

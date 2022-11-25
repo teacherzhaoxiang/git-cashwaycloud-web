@@ -1,0 +1,11 @@
+{
+  "properties":{
+    "id":{ "name":"id","component":"eSelect","options":[],"description":"节点id"},
+    "linktext":{ "name":"节点名称","component":"eInput","type":"text","required":true,"readOnly":false,"description":"name","placeholder":"节点名称"},
+    "outline":{"name":"后台应答码","component":"eSelect","options":[{"value":"0", "label":"联机批准"},{"value":"1", "label":"发卡行语音参考"},{"value":"2", "label":"联机拒绝"}],"description":"RespCode","rule":[{ "required": true, "message": "请输选择应答码" }]}
+  },
+  "ui":{
+    "spanLabel":"30%",
+    "offsetControl":0
+  }
+}

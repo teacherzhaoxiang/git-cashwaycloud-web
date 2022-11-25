@@ -1,0 +1,21 @@
+<page-header [title]="'Page Name'"></page-header>
+<nz-card>
+    <!--<div nz-row style="height: 100%">-->
+        <!--<div nz-col nzSpan="12">-->
+            <st #st [data]="data" [columns]="columns"  [page]="page" style="width: 100px"></st>
+        <!--</div>-->
+        <div nz-col nzSpan="12">
+            <nz-tree
+                    [nzData]="nodes"
+                    nzCheckable="true"
+                    nzMultiple="true"
+                    [nzCheckedKeys]="defaultCheckedKeys"
+                    [nzExpandedKeys]="defaultExpandedKeys"
+                    [nzSelectedKeys]="defaultSelectedKeys"
+                    (nzClick)="nzEvent($event)"
+                    (nzExpandChange)="nzEvent($event)"
+                    (nzCheckBoxChange)="nzEvent($event)">
+            </nz-tree>
+        </div>
+    <!--</div>-->
+</nz-card>

@@ -1,0 +1,52 @@
+<page-header [title]="'屏幕监控'" *ngIf="pageHeader">
+
+</page-header>
+<nz-card style="height: 100%;" class="split-container">
+    <sf #sf mode="search" [schema]="searchSchema" button="none">
+        <div style="display: flex;align-items: center;justify-content: flex-end;">
+            <button nz-button (click)="buttonGetData()" class="ant-btn ant-btn-primary" >查询</button>
+            <button nz-button (click)="refresh()" class="ant-btn ant-btn-primary" [nzLoading]="isLoadingOne" >更新截图</button>
+            <button nz-button (click)="reset()" class="ant-btn" >重置</button>
+        </div>
+    </sf>
+
+
+    <nz-list   #listView
+              [nzLoading]="loading"
+              [nzDataSource]="list"
+              [nzRenderItem]="item"
+              [nzGrid]="{gutter: 24,xxl:4,xl:6, lg: 6, md: 6, sm: 12, xs: 24 }"
+              style="padding-top: 20px">
+        <ng-template #item let-item>
+            <nz-list-item >
+                <nz-card nzHoverable *ngIf="item !== null"
+                         style="width:100%"
+                         (click)="openStatusDetail($event,item)"
+                          >
+
+                    <nz-card-meta [nzAvatar]="nzAvatar" [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+                        <ng-template #nzAvatar>
+                            <img [src]= this.filePath+item.src style="width: 100px;height: 100px;">
+                        </ng-template>
+                        <ng-template #nzTitle>
+                           <div *ngFor="let field of item.displayFields">
+                               <div nz-row style="font-size: 14px;font-weight: normal;margin-bottom:15px;"><span  nz-col nzSpan="10" style="text-align: justify;text-align-last: justify;">{{field.key}}：</span><span nz-col nzSpan="14">{{field.value}}</span></div>
+                           </div>
+                            <!--<div>{{item.term_no}}</div>-->
+                            <!--<div>{{item.term_no}}</div>-->
+                            <!--<a (click)="msg.success('标题：' + item.id);">{{item.title}}</a>-->
+                        </ng-template>
+                        <!--<ng-template #nzDescription>-->
+                            <!--<div  *ngFor="let module of modules;" [style.background-color]="module.enum[item[module.id]].color" style="width: 24px;height: 24px;list-style:none;float: left;margin-left: 2px;margin-right: 1px">-->
+                                <!--<img src="{{ module.src }}" style="width: 100%;height: 100%" >-->
+                            <!--</div>-->
+                        <!--</ng-template>-->
+                    </nz-card-meta>
+                </nz-card>
+            </nz-list-item>
+        </ng-template>
+    </nz-list>
+
+
+    <nz-pagination [(nzPageIndex)]="page.index" [(nzTotal)]="total" nzShowSizeChanger [(nzPageSize)]="page.size" style="float: right" (nzPageIndexChange)="getData(false)" (nzPageSizeChange)="getData(false)"></nz-pagination>
+</nz-card>

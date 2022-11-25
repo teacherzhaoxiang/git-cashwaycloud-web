@@ -1,0 +1,48 @@
+
+<nz-button-group  [nzSize]="'large'" style="padding-bottom: 30px">
+
+
+
+  <button nz-button (click)="add(null)" class="ant-btn ant-btn-primary">新增</button>
+  <button nz-button (click)="save()" class="ant-btn ">保存</button>
+</nz-button-group>
+<!--<nz-list #nzlist [(nzDataSource)]="data" [nzRenderItem]="item">-->
+  <!--<ng-template #item let-item>-->
+    <!--<nz-list-item [nzContent]="nzContent" [(style.left)]="item.style.left" [(style.top)]="item.style.top" [(style.width)]="item.style.width" [(style.height)]="item.style.height"  style="background-color: #84bebe;position: absolute;">-->
+      <!--<ng-template #nzContent>-->
+        <!--<nz-card (mouseenter)="mouseEnter($event,item)" (mouseleave)="mouseLeave(item)">-->
+            <!--<div style="z-index: 1000;opacity:0.5;position: absolute" [(style.width)]="item.style.width" *ngIf="show(item)">-->
+                <!--<div style="float: right;padding-right: 10px;padding-top: 5px">-->
+                    <!--<div class="anticon anticon-edit ant-btn-primary" style="padding-top: 5px;width: 30px;height: 30px;border-radius: 15px"></div>-->
+                    <!--<div class="anticon anticon-delete ant-btn-danger" (click)="deleteItem(item)" style="padding-top: 5px;width: 30px;height: 30px;border-radius: 15px"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+          <!--<sf mode="edit" [(schema)]="schema[item.key]" button="none"></sf>-->
+        <!--</nz-card>-->
+      <!--</ng-template>-->
+    <!--</nz-list-item>-->
+  <!--</ng-template>-->
+<!--</nz-list>-->
+
+<div style="overflow-x: scroll;height: 1000px;">
+    <div *ngFor="let item of data" style="position: relative;">
+        <div  (mouseenter)="mouseEnter($event,item)"  (mouseleave)="mouseLeave(item)" [(style.left)]="item.style.left" [(style.top)]="item.style.top" style="position: absolute" >
+            <div style="z-index: 1000;opacity:0.5;position: absolute" [(style.width)]="item.style.width" *ngIf="show(item)">
+                <div style="float: left;padding-left: 10px;padding-top: 5px">
+                    <div class="anticon anticon-edit ant-btn-primary" (click)="editItem(item.key)" style="padding-top: 5px;width: 30px;height: 30px;border-radius: 15px"></div>
+                    <div class="anticon anticon-delete ant-btn-danger" (click)="deleteItem(item.key)" style="padding-top: 5px;width: 30px;height: 30px;border-radius: 15px"></div>
+                </div>
+            </div>
+                <sf  style="position:relative;"   mode="edit" [(schema)]="schema[item.key]" button="none"></sf>
+        </div>
+    </div>
+</div>
+<!--<div *ngFor="let item of data" style="position: relative">-->
+    <!--<div  [(style.left)]="item.style.left" [(style.top)]="item.style.top" style="position: absolute" >-->
+        <!--<div style="z-index: 1000;opacity:0.5;position: absolute" [(style.width)]="item.style.width" >-->
+            <!--<div style="float: right;padding-right: 10px;padding-top: 5px">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<sf style="position:relative;"  mode="edit" [(schema)]="schema[item.key]" button="none"></sf>-->
+    <!--</div>-->
+<!--</div>-->

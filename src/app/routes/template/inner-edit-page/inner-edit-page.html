@@ -1,0 +1,13 @@
+<page-header [title]="this.title"></page-header>
+<nz-card class="split-container card_container">
+    <div class="back">
+        <button nz-button nzType="primary" (click)="back()">返回</button>
+    </div>
+    <sf #sf mode="edit" [schema]="editSchema" [formData]="record" button="none">
+    </sf>
+    <div style="text-align: center">
+        <button [nzLoading]="loading" nz-button type="submit" [ngStyle]="{'display':saveButtonHidden}" (click)="save(sf.value)"  >保存</button>
+
+        <!--<button [nzLoading]="loading" nz-button type="submit" [ngStyle]="{'display':saveButtonHidden}" (click)="save(sf.value)" [disabled]="!sf.valid" >保存</button>-->
+    </div>
+</nz-card>

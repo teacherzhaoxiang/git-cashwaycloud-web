@@ -1,0 +1,87 @@
+<page-header [title]="this.title"></page-header>
+<nz-card class="split-container card_container">
+    <div class="back">
+        <button nz-button nzType="primary" (click)="back()">返回</button>
+    </div>
+    <nz-transfer
+            [nzDataSource]="list"
+            [nzDisabled]="disabled"
+            [nzShowSelectAll]="false"
+            [nzRenderList]="[renderList, renderList]"
+            [nzTitles]="['未选择', '已选择']"
+            (nzSelectChange)="select($event)"
+            (nzChange)="change($event)"
+    >
+        <ng-template
+                #renderList
+                let-items
+                let-direction="direction"
+                let-stat="stat"
+                let-disabled="disabled"
+                let-onItemSelectAll="onItemSelectAll"
+                let-onItemSelect="onItemSelect"
+        >
+            <ng-container *ngIf="direction=='left'">
+                <nz-input-group [nzSuffix]="suffixIconSearch"  class="search">
+                    <input type="text" nz-input placeholder="搜索" [(ngModel)]="searchName" (ngModelChange)="leftSearch($event)"/>
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                    <i nz-icon type="search"></i>
+                </ng-template>
+            </ng-container>
+            <ng-container *ngIf="direction=='right'">
+                <div class="keep">
+                    <button nz-button nzType="primary" (click)="save()">保存</button>
+                </div>
+
+            </ng-container>
+            <nz-table #t [nzData]="items" nzSize="small" [nzTotal]="total" [nzPageIndex]="pageNumber" [nzPageSize]="pageSize" >
+                <thead>
+                <tr>
+                    <th
+                            [nzShowCheckbox]="true"
+                            [nzDisabled]="disabled"
+                            [nzChecked]="stat.checkAll"
+                            [nzIndeterminate]="stat.checkHalf"
+                            (nzCheckedChange)="onItemSelectAll($event)"
+                    ></th>
+                    <th>图片</th>
+                    <th nzShowFilter
+                        [nzFilterMultiple]="listOfColumns.filterMultiple"
+                        [nzFilters]="listOfColumns.listOfFilter"
+                        (nzFilterChange)="filter($event,searchName)">类型</th>
+                    <th>名称</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of t.data;let key = index">
+                <tr *ngIf="direction!='left' || data.filterFlag != 'true'" (click)="trClick(data,key)" >
+                    <td [nzShowCheckbox]="true" [nzChecked]="data.checked" [nzDisabled]="disabled || data.disabled" (nzCheckedChange)="onItemSelect(data)"></td>
+
+                    <td>
+                        <div class="imgBox">
+                            <img [src]="data.thumbnail_url?file_path+data.thumbnail_url:'../../../../assets/noBg.png'" />
+                        </div>
+                    </td>
+                    <td>{{ data.type }}</td>
+                    <td>{{ data.name }}</td>
+                    <td>
+                        <a *ngIf="direction=='left' && data.type!='document'" (click)="showView($event,data)">预览</a>
+                        <div *ngIf="direction=='right'" (click)="$event.stopPropagation()">
+                            <a class="up"  (click)="moveUp($event,data)">上移</a>
+                            <a  class="down" (click)="moveDown($event,data)">下移</a>
+                                <label *ngIf="direction=='right' && data.type =='video'">切换时间（秒）：默认</label>
+
+                                <label *ngIf="direction=='right' && data.type!='video'">切换时间（秒）：</label>
+                                <input type="number" min="1" [(ngModel)]="data.intervalTime"   style="width: 70px;" class="intervalTime" *ngIf="direction=='right' && data.type!='video'" />
+
+                        </div>
+                    </td>
+                </tr>
+                </ng-container>
+                </tbody>
+            </nz-table>
+        </ng-template>
+    </nz-transfer>
+</nz-card>

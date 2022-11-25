@@ -1,0 +1,43 @@
+{
+  "buttons":[{
+    "type":"add",
+    "label":"新增",
+    "icon":"add",
+    "click":"add",
+    "class":"ant-btn ant-btn-primary"
+  },
+    {
+      "type":"deletes",
+      "label":"删除",
+      "icon":"delete",
+      "click":"deletes",
+      "class":"ant-btn ant-btn-danger"
+    },
+    {
+      "type":"download",
+      "label":"下载模板",
+      "icon":"download",
+      "click":"download",
+      "url":"http://192.168.10.188:8098/file/download?filename=hall/3266246f-ae59-4d30-976f-dc641ca6baa5.xls",
+      "class":"ant-btn ant-btn-primary"
+    },
+    {
+      "type":"import",
+      "label":"导入",
+      "icon":"upload",
+      "click":"import",
+      "importType":"tree",
+      "importColumns":["no","name","parentId"],
+      "parentColumn":"parentId",
+      "pathColumn":"orgPath",
+      "class":"ant-btn ant-btn-primary"
+    },
+    {
+      "type":"export",
+      "label":"导出",
+      "icon":"export",
+      "click":"export",
+      "exportColumns":["name","term_no","resolution","start_point"],
+      "class":"ant-btn ant-btn-primary"
+    }]
+}

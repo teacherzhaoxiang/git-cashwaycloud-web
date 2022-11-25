@@ -1,0 +1,48 @@
+
+<!--<div class="container" *ngIf="this.router.url=='/passport/login-operation-platform'" id="web_bg" style="background-image: url('/src/assets/images/login-background-operation-platform.gif')">-->
+  <!--<div class="wrap">-->
+    <!--&lt;!&ndash;<div class="top">&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="head">&ndash;&gt;-->
+        <!--&lt;!&ndash;<img class="logo" src="./assets/logo-color.svg">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="title">ng-alain</span>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="desc">武林中最有影响力的《葵花宝典》；欲练神功，挥刀自宫</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--<router-outlet></router-outlet>-->
+
+
+    <!--&lt;!&ndash;<global-footer [links]="links">&ndash;&gt;-->
+      <!--&lt;!&ndash;Copyright&ndash;&gt;-->
+      <!--&lt;!&ndash;<i class="anticon anticon-copyright"></i> 2017&ndash;&gt;-->
+      <!--&lt;!&ndash;<a href="//github.com/cipchk" target="_blank">卡色</a>出品&ndash;&gt;-->
+    <!--&lt;!&ndash;</global-footer>&ndash;&gt;-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<div class="container" *ngIf="this.router.url=='/passport/login'" id="web_bg">
+    <div class="loginLogo" [ngStyle]="{'padding':showLogo?'2% 0px 0px 2%':'30px'}">
+        <img [src]="logoFullImage"  *ngIf="showLogo"/>
+    </div>
+    <div class="titleImg">
+        <img [src]="titleImg" />
+    </div>
+  <div class="wrap">
+    <!--<div class="top">-->
+    <!--<div class="head">-->
+    <!--<img class="logo" src="./assets/logo-color.svg">-->
+    <!--<span class="title">ng-alain</span>-->
+    <!--</div>-->
+    <!--<div class="desc">武林中最有影响力的《葵花宝典》；欲练神功，挥刀自宫</div>-->
+    <!--</div>-->
+    <router-outlet></router-outlet>
+
+
+    <!--<global-footer [links]="links">-->
+    <!--Copyright-->
+    <!--<i class="anticon anticon-copyright"></i> 2017-->
+    <!--<a href="//github.com/cipchk" target="_blank">卡色</a>出品-->
+    <!--</global-footer>-->
+  </div>
+</div>
+

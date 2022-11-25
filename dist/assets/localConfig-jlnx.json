@@ -1,0 +1,20 @@
+{
+  "__url":"http://192.168.1.46:8090",
+  "orgEdit":false,
+  "userEdit":true,
+  "orgTree":false,
+  "orgLeafCheckable":true,
+  "roleOrgFlag":false,
+  "termTeamSelectConditions":"jlnx",
+  "password":{
+    "minLength":8,
+    "maxLength":16,
+    "uppercase":false,
+    "alphabet":true,
+    "number":true,
+    "specialCha":false
+  },
+  "treeDisplay": false,
+  "listType":"simple"
+}
+

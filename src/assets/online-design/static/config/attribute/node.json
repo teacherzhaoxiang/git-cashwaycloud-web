@@ -1,0 +1,73 @@
+{
+  "components":{
+    "start":{
+      "properties":{
+        "id":{ "name":"id","component":"eText","default":"123","description":"节点id"},
+        "text":{ "name":"节点名称","component":"eInput","type":"text","required":true,"readOnly":false,"description":"name","placeholder":"节点名称"},
+        "confirm":{"name":"联机结果","component":"eRadio","options":[{"value":0, "label":"失败"},{"value":1, "label":"成功"}],"description":"confirm"},
+        "respCode":{"name":"后台应答码","component":"eSelect","options":[{"value":"0", "label":"联机批准"},{"value":"1", "label":"发卡行语音参考"},{"value":"2", "label":"联机拒绝"}],"description":"RespCode"},
+        "Icc55":{"name":"应答55域","component":"eInput","type":"text","required":true,"readOnly":false,"description":"Icc55","placeholder":"应答55域"}
+      },
+      "ui":{
+        "spanLabel":8,
+        "spanControl":16,
+        "offsetControl":0
+      }
+    },
+    "end":{
+      "properties":{
+        "id":{ "name":"id","component":"eText","default":"123","description":"节点id"},
+        "text":{ "name":"节点名称","component":"eInput","type":"text","required":true,"readOnly":false,"description":"name","placeholder":"节点名称"},
+        "confirm":{"name":"联机结果","component":"eRadio","options":[{"value":0, "label":"失败"},{"value":1, "label":"成功"}],"description":"confirm"},
+        "respCode":{"name":"后台应答码","component":"eSelect","options":[{"value":"0", "label":"联机批准"},{"value":"1", "label":"发卡行语音参考"},{"value":"2", "label":"联机拒绝"}],"description":"RespCode"},
+        "Icc55":{"name":"应答55域","component":"eInput","type":"text","required":true,"readOnly":false,"description":"Icc55","placeholder":"应答55域"}
+      },
+      "ui":{
+        "spanLabel":8,
+        "spanControl":16,
+        "offsetControl":0
+      }
+    },
+    "step":{
+      "properties":{
+        "text":{ "name":"节点名称","component":"eInput","type":"text","required":true,"pattern":"/^\\d+$/","readOnly":false,"description":"name","placeholder":"节点名称"},
+        "name":{ "name":"节点名称","component":"eInput","type":"text","required":true,"pattern":"/^\\d+$/","readOnly":false,"description":"name","placeholder":"节点名称"}
+      },
+      "ui":{
+        "spanLabel":8,
+        "spanControl":16,
+        "offsetControl":0
+      }
+    },
+    "lane":{
+      "properties":{
+        "text":{ "name":"节点名称","component":"eInput","type":"text","required":true,"pattern":"/^\\d+$/","readOnly":false,"description":"name","placeholder":"节点名称"},
+        "name":{ "name":"节点名称","component":"eInput","type":"text","required":true,"pattern":"/^\\d+$/","readOnly":false,"description":"name","placeholder":"节点名称"}
+      },
+      "ui":{
+        "spanLabel":8,
+        "spanControl":16,
+        "offsetControl":0
+      }
+    },
+    "main":{
+      "properties":{
+        "id":{ "name":"id","component":"eText","default":"123","description":"节点id"},
+        "text":{ "name":"节点名称","component":"eInput","type":"text","required":true,"readOnly":false,"description":"name","placeholder":"节点名称"},
+        "confirm":{"name":"联机结果","component":"eRadio","options":[{"value":0, "label":"失败"},{"value":1, "label":"成功"}],"description":"confirm"},
+        "respCode":{"name":"后台应答码","component":"eSelect","options":[{"value":"0", "label":"联机批准"},{"value":"1", "label":"发卡行语音参考"},{"value":"2", "label":"联机拒绝"}],"description":"RespCode"},
+        "Icc55":{"name":"应答55域","component":"eInput","type":"text","required":true,"readOnly":false,"description":"Icc55","placeholder":"应答55域"}
+      },
+      "ui":{
+        "spanLabel":8,
+        "spanControl":16,
+        "offsetControl":0
+      }
+    }
+  },
+  "ui":{
+    "spanLabel":8,
+    "spanControl":16,
+    "offsetControl":0
+  }
+}

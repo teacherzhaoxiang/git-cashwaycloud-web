@@ -1,0 +1,92 @@
+@import '~@delon/theme/styles/default';
+:host {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 18%;
+  width: 100%;
+  height:100%;
+  padding: 0 40px;
+  ::ng-deep {
+    .ant-tabs .ant-tabs-bar {
+      border-bottom: 0;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .ant-tabs-tab {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .ant-input-affix-wrapper .ant-input:not(:first-child) {
+      padding-left: 34px;
+    }
+    .icon {
+      font-size: 24px;
+      color: rgba(0, 0, 0, 0.2);
+      margin-left: 16px;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:hover {
+        color: @primary-color;
+      }
+    }
+    .other {
+      text-align: left;
+      margin-top: 24px;
+      line-height: 22px;
+      nz-tooltip {
+        vertical-align: middle;
+      }
+      .register {
+        float: right;
+      }
+    }
+    input::-webkit-input-placeholder{color:#e1e1e1; font-weight: lighter;font-size: 10px}
+    .input {
+      border-top: 1px !important;
+      padding-left:30px !important;
+      /* border-bottom: 1px; */
+      border-radius: 0 !important;
+      border-left: 1px !important;
+      margin-right: 30px !important;
+      color: #ffffff !important;
+      border-right: 1px !important;
+      background: rgba(0, 0, 0, 0) !important;
+      outline: none !important;
+    }
+    .icon{
+      width: 16px;
+      height: 16px;
+      margin: 10px 4px 6px 0px;
+      display: inline-block;
+      position: absolute;
+    }
+    .icon-user{
+      background-image: url('/assets/images/user.png');
+    }
+    .icon-password{
+      background-image: url("/assets/images/password.png");
+    }
+
+    .ant-alert-error{
+      border: 0px;
+      text-align:center;
+      background-color:transparent;
+      color: red;
+    }
+    .remember{
+      color:#ffffff;
+      font-weight: normal;
+      font-size: 10px;
+    }
+    :-webkit-autofill {
+      -webkit-text-fill-color: #fff !important;
+      transition: background-color 5000s ease-in-out 0s;
+      color: #ffffff !important;
+      caret-color: #ffffff;
+      margin-bottom: .5em;
+    }
+  }
+}

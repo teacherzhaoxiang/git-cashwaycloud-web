@@ -1,0 +1,26 @@
+
+
+<div nz-row *ngIf="formColumns==1">
+    <nz-col nzSpan="24" >
+        <sf #sf1  mode="edit" [schema]="editSchema1" (formChange)="formChange()" [formData]="record1" button="none">
+        </sf>
+    </nz-col>
+</div>
+
+<div nz-row nzGutter="32" *ngIf="formColumns==2">
+    <nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" >
+        <sf #sf1 mode="edit" [schema]="editSchema1" [formData]="record1" button="none" >
+
+        </sf>
+    </nz-col>
+    <nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" >
+        <sf #sf2 mode="edit" [schema]="editSchema2" [formData]="record2" button="none" >
+
+        </sf>
+    </nz-col>
+
+</div>
+
+  <!--<search-table [data]="this.data.params[this.data.currentStep]['tableData']"  [entity]="this.data.entity" [transferServiceData]="this.data" [serverData]="this.data.childrens[this.data.currentStep]" *ngIf="this.data.childrens[this.data.currentStep]['formType']==4"></search-table>-->
+  <!--<base-form [record1]="this.data.params[this.data.currentStep]['record1']" [transferServiceData]="this.data" [entity]="this.data.entity" [serverData]="this.data.childrens[this.data.currentStep]"  *ngIf="this.data.childrens[this.data.currentStep]['formType']==1"></base-form>-->
+

@@ -1,0 +1,106 @@
+<div style="width: 1920px;height: 1080px;background: url('/assets/images/show-background6.png') no-repeat ;background-size:cover;">
+
+<div style="height: 75px;width: 100%;padding: 10px;padding-top: 50px">
+    <span style="color: white;font-size: 42px;font-family: -webkit-body;padding-left: 693px;font-weight: bold">自助设备综合运营管理平台</span>
+    <div style="height:50px;vertical-align: center;text-align: center;float: right">
+        <span class="tradeLabel">今日交易：</span>
+        <app-show-home-labels [(nums)]="nums"></app-show-home-labels>
+        <span class="tradeLabel2">笔</span>
+    </div>
+</div>
+<div  nz-row>
+  <nz-col [nzSpan]="24" style="height: 65px;" >
+
+
+  </nz-col>
+  <nz-col [nzSpan]="9" style="height: 490px;padding-right: 15px;padding-left: 15px;padding-bottom: 20px" >
+    <div class="title-div">
+      <span class="title-span">开机率</span>
+    </div>
+    <div class="chart-div">
+      <app-map></app-map>
+    </div>
+
+  </nz-col>
+  <nz-col [nzSpan]="7" style="height: 490px;padding-right: 15px;padding-left: 15px;padding-bottom: 20px">
+    <div class="title-div">
+      <span class="title-span">交易统计</span>
+    </div>
+    <div id="trans" class="chart-div">
+
+    </div>
+
+  </nz-col>
+  <nz-col [nzSpan]="8" style="height: 490px;padding-right: 15px;padding-left: 15px;padding-bottom: 20px">
+    <div class="title-div">
+      <span  class="title-span">故障统计</span>
+    </div>
+    <div id="openTrend" class="chart-div">
+
+    </div>
+
+  </nz-col>
+  <nz-col [nzSpan]="14" style="height: 390px;padding-right: 15px;padding-left: 15px">
+    <div class="title-div">
+        <span  class="title-span">设备状态</span>
+    </div>
+    <div class="chart-div">
+        <div nz-row>
+            <nz-col [nzSpan]="6">
+                <div style="height: 30px;padding-top: 20px;">
+                    <span class="sub-title-span">服务状态</span>
+                </div>
+                <div id="termStatus"></div>
+            </nz-col>
+            <nz-col [nzSpan]="6">
+                <div style="height: 30px;padding-top: 20px;">
+                    <span class="sub-title-span">硬件状态</span>
+                </div>
+                <div id="moduleStatus"></div>
+            </nz-col>
+            <nz-col [nzSpan]="6">
+                <div style="height: 30px;padding-top: 20px;">
+                    <span class="sub-title-span">资源状态</span>
+                </div>
+                <div id="cashBoxStatus"></div>
+            </nz-col>
+            <nz-col [nzSpan]="6">
+                <div style="height: 30px;padding-top: 20px;">
+                    <span class="sub-title-span">网络状态</span>
+                </div>
+                <div id="communicationStatus"></div>
+            </nz-col>
+        </div>
+    </div>
+
+  </nz-col>
+  <nz-col [nzSpan]="10" style="height: 390px;padding-right: 15px;padding-left: 15px">
+    <div class="title-div">
+        <span  class="title-span">设备投放分布</span>
+    </div>
+    <div class="chart-div">
+        <div nz-row>
+            <nz-col [nzSpan]="8">
+                <div style="height: 30px;padding-top: 20px;">
+                    <span class="sub-title-span2">设备类型</span>
+                </div>
+                <div id="termType"></div>
+            </nz-col>
+            <nz-col [nzSpan]="8">
+                <div style="height: 30px;padding-top: 20px;">
+                    <span class="sub-title-span2">设备安装</span>
+                </div>
+                <div id="termInstall"></div>
+            </nz-col>
+            <nz-col [nzSpan]="8">
+                <div style="height: 30px;padding-top: 20px;">
+                    <span class="sub-title-span2">设备区域</span>
+                </div>
+                <div id="termArea"></div>
+            </nz-col>
+        </div>
+    </div>
+
+  </nz-col>
+</div>
+</div>

@@ -1,0 +1,466 @@
+<div *ngIf="from">
+  <div class="animation" *ngIf="animation">
+    <div class="spin">
+      <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+    </div>
+  </div>
+  <div class="container" *ngIf="!animation">
+    <div class="search" *ngIf="from == 'search'" >
+      <!-- 查询区配置 -->
+      <div>   <!-- 属性配置 -->
+          <div style="margin-top:10px;margin-left:10px;"><h2>表单设置</h2></div>
+          <nz-divider></nz-divider>
+          <div class="content contentRequired">
+            标题
+            <div class="input-row">
+              <input nz-input placeholder="title" [(ngModel)]="record.title"  />
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="content contentRequired">
+            字段名
+            <div class="input-row">
+              <input nz-input placeholder="key" [(ngModel)]="record.key" />
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="content contentRequired">
+            名字
+            <div class="input-row">
+              <nz-radio-group [(ngModel)]="nameData.type" style="margin-bottom:10px">
+                <label nz-radio-button nzValue="local">静态数据</label>
+                <!-- <label nz-radio-button nzValue="async">远端数据</label> -->
+              </nz-radio-group>
+            </div>
+            <div class="input-row" *ngIf="nameData.type == 'local'">
+              <input nz-input placeholder="name" [(ngModel)]="record.name" />
+            </div>
+            <div class="select-row" *ngIf="nameData.type == 'async'">
+              <nz-select [(ngModel)]="record.firstName" style="width: 100%;">
+                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+              </nz-select>
+            </div>
+            <div class="select-row" *ngIf="nameData.type == 'async'">
+              <nz-select [(ngModel)]="record.secondName" [disabled]="!record.firstName" style="width: 100%;">
+                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="content contentRequired">
+            匹配方式
+            <div class="input-row">
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="匹配方式" style="width:100%;" [(ngModel)]="record.option">
+                <nz-option *ngFor="let item of option" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="content contentRequired">
+            组件
+            <div class="input-row">
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="选择组件" style="width:100%;" [(ngModel)]="record.widget">
+                <nz-option *ngFor="let item of widgetEnum" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="content">
+            宽度
+            <div class="input-row">
+              <input nz-input placeholder="width" [(ngModel)]="record.width" />
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="content">
+            最大长度
+            <div class="input-row">
+              <input nz-input placeholder="maxLength" [(ngModel)]="record.maxLength" />
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+      </div>
+      <div>   <!-- 组件配置 -->
+        <span *ngIf="record.widget == 'text'">  <!-- 文本框 -->
+          <div class="content">
+            占位内容
+            <div class="input-row">
+              <input nz-input placeholder="placeholder" [(ngModel)]="record.placeholder" />
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+        </span>
+        <span *ngIf="record.widget == 'textarea'">  <!-- 多行文本框 -->
+          <div class="content">
+            占位内容
+            <div class="input-row">
+              <input nz-input placeholder="placeholder" [(ngModel)]="record.placeholder" />
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+          <div class="content">
+            <div class="switch-row">自适应内容高度:<nz-switch [(ngModel)]="textarea.autoSize"></nz-switch>
+            </div>
+            <div *ngIf="textarea.autoSize">
+              最小行数:
+              <div class="input-row">
+                <input nz-input placeholder="minRows" [(ngModel)]="textarea.minRows" />
+              </div>
+              最大行数:
+              <div class="input-row">
+                <input nz-input placeholder="maxRows" [(ngModel)]="textarea.maxRows" />
+              </div>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+        </span>
+        <span *ngIf="record.widget == 'radio' "> <!-- 单选 -->
+          <div class="content contentRequired">
+            单选框数据
+            <div class="input-row">
+              <nz-radio-group [(ngModel)]="radio.type" style="margin-bottom:10px">
+                <label nz-radio-button nzValue="A">静态数据</label>
+                <label nz-radio-button nzValue="B">远端数据</label>
+              </nz-radio-group>
+              <div *ngIf="radio.type == 'A'">
+                <div class="widget-enum" *ngFor="let item of radio.enum;let i = index">
+                  <span style="flex:1;margin-right: 10px;">label:<input style="padding: 5px 0;height: 30px;" nz-input
+                      placeholder="label" [(ngModel)]="item.label" /></span>
+                  <span style="flex: 1;">value:<input style="padding: 5px 0;" nz-input placeholder="value" nzSize="small"
+                      [(ngModel)]="item.value" /></span>
+                  <span class="widget-delete" (click)="delRow('radio',i)"><i nz-icon nzType="delete"
+                      nzTheme="outline"></i></span>
+                </div>
+                <div class="widget-add" (click)="addRow('radio')">添加选项</div>
+              </div>
+              <div class="input-row" *ngIf="radio.type == 'B'">
+                URL:<input nz-input [(ngModel)]="radio.URL" />
+              </div>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+        </span>
+        <span *ngIf="record.widget == 'checkbox'">  <!-- 多选 -->
+
+          <div class="content contentRequired">
+            多选框数据
+            <div class="input-row">
+              <nz-radio-group [(ngModel)]="checkbox.type" style="margin-bottom:10px">
+                <label nz-radio-button nzValue="A">静态数据</label>
+                <label nz-radio-button nzValue="B">远端数据</label>
+              </nz-radio-group>
+              <div *ngIf="checkbox.type == 'A'">
+                <div class="widget-enum" *ngFor="let item of checkbox.enum;let i = index">
+                  <span style="flex:1;margin-right: 10px;">label:<input style="padding: 5px 0;height: 30px;" nz-input
+                      placeholder="label" [(ngModel)]="item.label" /></span>
+                  <span style="flex: 1;">value:<input style="padding: 5px 0;" nz-input placeholder="value" nzSize="small"
+                      [(ngModel)]="item.value" /></span>
+                  <span class="widget-delete" (click)="delRow('checkbox',i)"><i nz-icon nzType="delete"
+                      nzTheme="outline"></i></span>
+                </div>
+                <div class="widget-add" (click)="addRow('checkbox')">添加选项</div>
+              </div>
+              <div class="input-row" *ngIf="checkbox.type == 'B'">
+                URL:<input nz-input [(ngModel)]="checkbox.URL" />
+              </div>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+        </span>
+        <span *ngIf="record.widget=='select'"> <!-- 下拉 -->
+
+          <div class="content contentRequired">
+            下拉框数据
+            <div class="input-row">
+              <nz-radio-group [(ngModel)]="select.type" style="margin-bottom:10px">
+                <label nz-radio-button nzValue="A">静态数据</label>
+                <label nz-radio-button nzValue="B">远端数据</label>
+              </nz-radio-group>
+              <div *ngIf="select.type == 'A'">
+                <div class="widget-enum" *ngFor="let item of select.enum;let i = index">
+                  <span style="flex:1;margin-right: 10px;">label:<input style="padding: 5px 0;height: 30px;" nz-input
+                      placeholder="label" [(ngModel)]="item.label" /></span>
+                  <span style="flex: 1;">value:<input style="padding: 5px 0;" nz-input placeholder="value" nzSize="small"
+                      [(ngModel)]="item.value" /></span>
+                  <span class="widget-delete" (click)="delRow('select',i)"><i nz-icon nzType="delete"
+                      nzTheme="outline"></i></span>
+                </div>
+                <div class="widget-add" (click)="addRow('select')">添加选项</div>
+              </div>
+              <div class="input-row" *ngIf="select.type == 'B'">
+                URL:<input nz-input [(ngModel)]="select.URL" />
+              </div>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+        </span>
+        <span *ngIf="record.widget == 'date'">  <!-- 日期 -->
+          <div class="content contentRequired">
+            日期设置
+            <div class="right-date">
+              <div class="input-row">模式:<input nz-input placeholder="mode" [(ngModel)]="date.config.mode" /></div>
+              <div class="switch-row">显示清除按钮:<nz-switch [(ngModel)]="date.config.allowClear"></nz-switch>
+              </div>
+              <div class="switch-row">显示时间选择:<nz-switch [(ngModel)]="date.config.showTime"></nz-switch>
+              </div>
+              <div class="switch-row">显示今天:<nz-switch [(ngModel)]="date.config.showToday"></nz-switch>
+              </div>
+              <div class="input-row">日期数据格式:<input nz-input placeholder="format" [(ngModel)]="date.config.format" /></div>
+              <div class="input-row">日期显示格式:<input nz-input placeholder="displayFormat"
+                  [(ngModel)]="date.config.displayFormat" /></div>
+            </div>
+          </div>
+          <nz-divider></nz-divider>
+        </span>
+        <span *ngIf="record.widget == 'org-tree-cashway'">
+          <!-- 机构树 -->
+          <div class="content contentRequired">
+            机构树
+            <div class="input-row">
+              展示级别数
+              <input nz-input placeholder="layer" [(ngModel)]="tree.layer" />
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div class="sf-edit" *ngIf="from == 'sf-edit-public' || from == 'sf-edit-relate'||from == 'sf-edit-new'">  <!-- sf-edit区配置 -->
+      <nz-tabset [(nzSelectedIndex)]="tabIndex">
+        <nz-tab nzTitle="公共配置" >
+          <div class="content">
+            <div class="input-group-row">
+              <div>属性设置</div>
+              <nz-input-group nzCompact *ngFor="let object of editPublic.enum;let i = index"
+                style="width: 100%;display: flex;align-items: center;margin: 15px 0;">
+                <span class="widget-delete" (click)="delRow('editPublic',i)"><i nz-icon nzType="delete"
+                    nzTheme="outline"></i></span>
+                <nz-select [(ngModel)]="editPublic.enum[i].label" nzSize="small" style="margin-left: 20px;width: 30%;"
+                  (ngModelChange)="editPublicChange()" [nzDisabled]="object.disabled">
+                  <nz-option [nzLabel]="item.title" [nzValue]="item.title" [hidden]="item.hide"
+                    *ngFor="let item of editPublic.label"></nz-option>
+                </nz-select>
+                <span style="margin:0 5px;">:</span>
+                <input type="text" nz-input [(ngModel)]="editPublic.enum[i].value" style="width: 50%;">
+              </nz-input-group>
+              <div class="widget-add" (click)="addRow('sfedit-public')" style="font-size: 16px;">添加</div>
+              <nz-divider></nz-divider>
+            </div>
+            <div class="width-control-row">
+              <div class="widget-width">
+                <span class="title">宽度:</span>
+                <nz-select nzSize="small" style="margin-left: 20px;width: 50%;" [(ngModel)]="record.span">
+                  <nz-option [nzLabel]="item.percent" [nzValue]="item.value"
+                    *ngFor="let item of [{percent:'50%',value:12},{percent:'100%',value:24}]"></nz-option>
+                </nz-select>
+              </div>
+              <div class="span-width">
+                <div class="label-width">
+                  <span class="title">字段宽度:</span>
+                  <nz-input-number [nzMin]="1" [nzMax]="23" [(ngModel)]="record.spanLabel"></nz-input-number>
+                </div>
+                <div class="control-width">
+                  <span class="title">组件宽度:</span>
+                  <nz-input-number [nzMin]="1" [nzMax]="23" [(ngModel)]="record.spanControl"></nz-input-number>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nz-tab>
+        <nz-tab nzTitle="字段配置" *ngIf="from != 'sf-edit-public'">
+          <div class="content">
+            字段名:
+            <div class="input-row" nz-dropdown [nzDropdownMenu]="menu" [nzTrigger]="'click'" [nzDisabled]="record.key||from == 'sf-edit-new'">
+              <input nz-input placeholder="relate" [(ngModel)]="record.key" />
+            </div>
+            <nz-dropdown-menu #menu="nzDropdownMenu" >
+              <ul nz-menu nzSelectable style="width: 280px;">
+                <li nz-menu-item *ngFor="let item of editField;let i = index" (click)="selectRelate(item,i)">{{item.key}}</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+          <span *ngIf="record.key || from == 'sf-edit-new'">
+            <div class="content">
+              标题:
+              <div class="input-row">
+                <input nz-input placeholder="title" [(ngModel)]="record.config.title" />
+              </div>
+            </div>
+            <div class="content">
+              默认值:
+              <div class="input-row">
+                <input nz-input placeholder="default" [(ngModel)]="record.config.default" />
+              </div>
+            </div>
+            <div class="content">
+              最大长度:
+              <div class="input-row">
+                <input nz-input placeholder="maxLength" [(ngModel)]="record.config.maxLength" />
+              </div>
+            </div>
+            <div class="content">
+              <div style="margin-bottom: 10px;">操作属性:</div>
+              <div class="checkbox-row">
+                <label nz-checkbox [(ngModel)]="record.required">必填</label>
+                <label nz-checkbox [(ngModel)]="record.display">显示</label>
+                <label nz-checkbox [(ngModel)]="record.disabled">禁用</label>
+              </div>
+            </div>
+          </span>
+          <nz-divider></nz-divider>
+          <div>
+            <!-- 组件配置 -->
+            <div class="content" *ngIf="record.key || from != 'sf-edit-public'">
+              组件
+              <div class="input-row">
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="选择组件" style="width:100%;" [(ngModel)]="record.config.ui.widget">
+                  <nz-option *ngFor="let item of widgetEnum" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+                </nz-select>
+              </div>
+            </div>
+            <span *ngIf="record.config.ui.widget == 'text'">  <!-- 文本框 -->
+              <div class="content">
+                占位内容
+                <div class="input-row">
+                  <input nz-input placeholder="placeholder" [(ngModel)]="record.placeholder" />
+                </div>
+              </div>
+            </span>
+            <span *ngIf="record.config.ui.widget == 'textarea'">    <!-- 多行文本框 -->
+              <div class="content">
+                <div class="switch-row">自适应内容高度:<nz-switch [(ngModel)]="textarea.autoSize"></nz-switch>
+                </div>
+                <div *ngIf="textarea.autoSize">
+                  最小行数:
+                  <div class="input-row">
+                    <input nz-input placeholder="minRows" [(ngModel)]="textarea.minRows" />
+                  </div>
+                  最大行数:
+                  <div class="input-row">
+                    <input nz-input placeholder="maxRows" [(ngModel)]="textarea.maxRows" />
+                  </div>
+                </div>
+              </div>
+              <nz-divider></nz-divider>
+            </span>
+            <span *ngIf="record.config.ui.widget == 'radio' ">  <!-- 单选 -->
+              <div class="content">
+                单选框数据
+                <div class="input-row">
+                  <nz-radio-group [(ngModel)]="radio.type" style="margin-bottom:10px">
+                    <label nz-radio-button nzValue="A">静态数据</label>
+                    <label nz-radio-button nzValue="B">远端数据</label>
+                  </nz-radio-group>
+                  <div *ngIf="radio.type == 'A'">
+                    <div class="widget-enum" *ngFor="let item of radio.enum;let i = index">
+                      <span style="flex:1;margin-right: 10px;">label:<input style="padding: 5px 0;height: 30px;" nz-input
+                          placeholder="label" [(ngModel)]="item.label" /></span>
+                      <span style="flex: 1;">value:<input style="padding: 5px 0;" nz-input placeholder="value" nzSize="small"
+                          [(ngModel)]="item.value" /></span>
+                      <span class="widget-delete" (click)="delRow('radio',i)"><i nz-icon nzType="delete"
+                          nzTheme="outline"></i></span>
+                    </div>
+                    <div class="widget-add" (click)="addRow('radio')">添加选项</div>
+                  </div>
+                  <div class="input-row" *ngIf="radio.type == 'B'">
+                    URL:<input nz-input [(ngModel)]="radio.URL" />
+                  </div>
+                </div>
+              </div>
+              <nz-divider></nz-divider>
+            </span>
+            <span *ngIf="record.config.ui.widget == 'checkbox'">  <!-- 多选 -->
+              <div class="content">
+                多选框数据
+                <div class="input-row">
+                  <nz-radio-group [(ngModel)]="checkbox.type" style="margin-bottom:10px">
+                    <label nz-radio-button nzValue="A">静态数据</label>
+                    <label nz-radio-button nzValue="B">远端数据</label>
+                  </nz-radio-group>
+                  <div *ngIf="checkbox.type == 'A'">
+                    <div class="widget-enum" *ngFor="let item of checkbox.enum;let i = index">
+                      <span style="flex:1;margin-right: 10px;">label:<input style="padding: 5px 0;height: 30px;" nz-input
+                          placeholder="label" [(ngModel)]="item.label" /></span>
+                      <span style="flex: 1;">value:<input style="padding: 5px 0;" nz-input placeholder="value" nzSize="small"
+                          [(ngModel)]="item.value" /></span>
+                      <span class="widget-delete" (click)="delRow('checkbox',i)"><i nz-icon nzType="delete"
+                          nzTheme="outline"></i></span>
+                    </div>
+                    <div class="widget-add" (click)="addRow('checkbox')">添加选项</div>
+                  </div>
+                  <div class="input-row" *ngIf="checkbox.type == 'B'">
+                    URL:<input nz-input [(ngModel)]="checkbox.URL" />
+                  </div>
+                </div>
+              </div>
+              <nz-divider></nz-divider>
+            </span>
+            <span *ngIf="record.config.ui.widget=='select'">    <!-- 下拉 -->
+              <div class="content">
+                下拉框数据
+                <div class="input-row">
+                  <nz-radio-group [(ngModel)]="select.type" style="margin-bottom:10px">
+                    <label nz-radio-button nzValue="A">静态数据</label>
+                    <label nz-radio-button nzValue="B">远端数据</label>
+                  </nz-radio-group>
+                  <div *ngIf="select.type == 'A'">
+                    <div class="widget-enum" *ngFor="let item of select.enum;let i = index">
+                      <span style="flex:1;margin-right: 10px;">label:<input style="padding: 5px 0;height: 30px;" nz-input
+                          placeholder="label" [(ngModel)]="item.label" /></span>
+                      <span style="flex: 1;">value:<input style="padding: 5px 0;" nz-input placeholder="value" nzSize="small"
+                          [(ngModel)]="item.value" /></span>
+                      <span class="widget-delete" (click)="delRow('select',i)"><i nz-icon nzType="delete"
+                          nzTheme="outline"></i></span>
+                    </div>
+                    <div class="widget-add" (click)="addRow('select')">添加选项</div>
+                  </div>
+                  <div class="input-row" *ngIf="select.type == 'B'">
+                    URL:<input nz-input [(ngModel)]="select.URL" />
+                  </div>
+                </div>
+              </div>
+              <nz-divider></nz-divider>
+            </span>
+            <span *ngIf="record.config.ui.widget == 'date'">  <!-- 日期 -->
+              <div class="content">
+                日期设置
+                <div class="right-date">
+                  <div class="input-row">模式:<input nz-input placeholder="mode" [(ngModel)]="date.mode" /></div>
+                  <div class="switch-row">显示清除按钮:<nz-switch [(ngModel)]="date.allowClear"></nz-switch>
+                  </div>
+                  <div class="switch-row">显示时间选择:<nz-switch [(ngModel)]="date.showTime"></nz-switch>
+                  </div>
+                  <div class="switch-row">显示今天:<nz-switch [(ngModel)]="date.showToday"></nz-switch>
+                  </div>
+                  <div class="input-row">日期数据格式:<input nz-input placeholder="format" [(ngModel)]="date.format" /></div>
+                  <div class="input-row">日期显示格式:<input nz-input placeholder="displayFormat"
+                      [(ngModel)]="date.displayFormat" /></div>
+                </div>
+              </div>
+              <nz-divider></nz-divider>
+            </span>
+            <span *ngIf="record.config.ui.widget == 'org-tree-cashway'">  <!-- 机构树 -->
+              <div class="content">
+                机构树
+                <div class="input-row">
+                  展示级别数
+                  <input nz-input placeholder="layer" [(ngModel)]="tree.layer" />
+                </div>
+              </div>
+            </span>
+          </div>
+        </nz-tab>
+      </nz-tabset>
+      <nz-divider></nz-divider>
+    </div>
+    <div style="display:flex;justify-content: space-around;padding-bottom: 18px;">
+      <button nz-button nzType="default" (click)="close()">
+        <span>放弃</span>
+      </button>
+      <button nz-button nzType="primary" (click)="save()">
+        <span>保存</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>images</title>
+		<link rel="icon" type="image/x-icon" href="../cashway-logo.png" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.my-message.1.1.css" />
+		<script src="js/html2canvas.min.js"></script>
+
+		<script src="js/canvas2image.js"></script>
+		<script src="js/base64.js"></script>
+		<style>
+			html,body{
+				height: 100%;
+			}
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			input{
+				padding: 0 8px;
+			}
+			.container{
+				display: flex;z-index: 9999;position: relative;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+				overflow-x: scroll;
+			}
+			.container .right{
+				padding-left: 100px;
+			}
+			.container .right .options{
+				display: flex;
+				justify-content: center;
+				padding-top: 20px;
+			}
+			.container .right .options .btn{
+				width: 94px;
+				height: 38px;
+				outline: none;
+				border: none;
+				line-height: 38px;
+				margin: 0 20px;
+				background: linear-gradient(to bottom,#eeeeee,#ffffff);
+				border-radius: 2px;
+				border: 1px solid #929292;
+				cursor: pointer;
+			}
+			.container .right .options .btn:active{
+				outline: 1px solid #ececec;
+			}
+			.box{
+				width: 1200px;
+				height: 1920px;
+				position: relative;
+				padding: 0;
+				margin: 0;
+			}
+			.box .bg{
+				width: 100%;
+				height: 100%;
+			}
+			.box #file{
+				position: absolute;
+				width: 210px;
+				height: 321px;
+				top: 400px;
+				left: 245px;
+				opacity: 0;
+				z-index: 99;
+			}
+			.box .logoBox{
+				position: absolute;
+				width: 210px;
+				height: 321px;
+				top: 400px;
+				left: 245px;
+				display: flex;
+				justify-content: center;
+			}
+			.box .logoBox img{
+				width: auto;
+				height: 100%;
+			}
+			.box .normalInp{
+				position: absolute;
+				right: 40px;
+				width: 400px;
+				height: 48px;
+				line-height: 48px;
+				font-family: serif;
+				font-size: 32px;
+			}
+			.box .position{
+				top: 475px;
+				height: 70px;
+				line-height: 79px;
+				font-size: 52px;
+				font-weight: bold;
+			}
+			.box .name{
+				top: 564px;
+
+			}
+			.box .card_num{
+				top: 628px;
+			}
+			.box .normal{
+				position: absolute;
+				left: 345px;
+				width: 674px;
+				height: 80px;
+				font-family: serif;
+				font-size: 70px;
+				background: #FFFFFF;
+				padding: 20px;
+				display: flex;
+				align-items: center;
+				font-size: 32px;
+			}
+			.box .nobgColor{
+				background: none;
+			}
+			.box .certificate{
+				top: 820px;
+			}
+			.box .rang{
+				top: 956px;
+			}
+			.box .work{
+				top: 1094px
+			}
+			.box .tips{
+				top: 1232px
+			}
+			.box .inp{
+				font-size: 26px;
+				width: 100%;
+				border: none;
+				outline: none;
+			}
+			.box#canvas{
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: -99;
+				zoom: 0.1;
+				/* opacity: 0; */
+
+			}
+			#temp{
+				zoom: 0.32;
+			}
+			.box#canvas .name{
+				top: 573px;
+				font-size: 50px;
+				font-weight: bold;
+			}
+			.box#canvas .card_num{
+				font-size: 50px;
+				font-weight: bold;
+			}
+			.shade{
+				background: #b5b5b5;
+				position: fixed;
+				z-index: 999;
+				width: 100%;
+				height: 100%;
+			}
+			#btnSave{
+				visibility: hidden;
+				position: relative;
+			}
+			#btnSave #shape{
+				display: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 999;
+			}
+			.imageGroup{
+				display: flex;
+			}
+			.imageGroup .item{
+				margin: 60px;
+				zoom: 0.15;
+
+			}
+			#temp .title{
+				position: absolute;
+				top: 156px;
+				left: 0;
+				width: 100%;
+				text-align: center;
+			}
+			#temp #positionName{
+				font-size: 60px;
+				text-align: center;
+			}
+			#temp #ens{
+				font-size: 40px;
+				text-align: center;
+			}
+			#canvas .title{
+				position: absolute;
+				top: 148px;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				color: #FFFFFF;
+			}
+
+			#canvas .title .positionName{
+				font-size: 80px;
+				letter-spacing: 12px;
+			}
+			#canvas .title .ens{
+				font-size: 40px;
+			}
+			#loading{
+				display: none;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="shade"></div>
+		<!--编辑模板-->
+		<div class="container">
+			<div class="box" id="temp">
+				<img class="bg" id="abby" src="./images/editImage/img1.jpg" />
+				<div class="title">
+					<div style="padding-bottom: 10px;">
+						<input id="positionName" placeholder="部门" />
+					</div>
+					<div>
+						<input id="ens" placeholder="部门英语名称" />
+					</div>
+				</div>
+				<div class="logoBox">
+					<img class="logo" id="logo" src="./images/editImage/add.png" />
+				</div>
+				<input type="file" id="file" multiple="multiple" onchange="handleFile()"/>
+				<input  class="normalInp position" id="position" placeholder="职位"  />
+				<input  class="normalInp name" id="name" placeholder="姓名"  />
+				<input  class="normalInp card_num" id="card_num" placeholder="工号"  />
+				<div class="normal certificate">
+					<textarea autoHeight="true" class="inp" id="certificate" placeholder="资格证书"></textarea>
+				</div>
+				<div class="normal rang">
+					<textarea autoHeight="true" class="inp" id="rang" placeholder="销售范围"></textarea>
+				</div>
+				<div class="normal work">
+					<textarea autoHeight="true" class="inp" id="work" placeholder="工作信条"></textarea>
+				</div>
+				<div class="normal tips">
+					<textarea autoHeight="true" class="inp" id="tips" placeholder="温馨提示"></textarea>
+				</div>
+			</div>
+			<div class="right">
+				<div class="imageGroup">
+
+				</div>
+				<div class="options">
+					<button class="btn" onclick="completion()">转换成图片</button>
+					<div class="btn" id="btnSave" onclick="submit()" style="display: flex;align-items: center;justify-content: center;font-size: 12px;">
+						<img id="loading" style="width: 20px;height: 20px;margin-right: 4px;" src="images/loading.gif" />
+						<span>保存图片</span>
+						<div id="shape" onclick="event.stopPropagation()"></div>
+					</div>
+					<!-- <button class="btn" id="btnSave" onclick="submit()">保存图片</button> -->
+				</div>
+			</div>
+		</div>
+
+
+		<!--正式生成图片的模板-->
+		<div class="box" id="canvas">
+			<img class="bg" src="./images/editImage/img1.jpg" />
+			<div class="title">
+				<div class="positionName"></div>
+				<div class="ens"></div>
+			</div>
+			<div class="logoBox">
+				<img class="logo" src="./images/editImage/add.png" />
+			</div>
+
+			<div class="normalInp position">职位</div>
+			<div class="normalInp name">姓名</div>
+			<div class="normalInp card_num">工号</div>
+
+			<div class="normal nobgColor certificate">
+				<!-- AFP金融理财规划师、证券投资基金从业资格、保险业务代理销售资格、总行私人银行客户经理认证、财富管理A级资格 -->
+			</div>
+			<div class="normal nobgColor rang">
+				<!-- 理财、保险、基金、信托、私募产品等家庭综合资产配置 -->
+			</div>
+			<div class="normal nobgColor work">
+				<!-- 用专业的服务，做您可信赖的理财管家。 -->
+			</div>
+			<div class="normal nobgColor tips">
+				<!-- 您所购买的产品可通过我行网站产品名录进行查询
+				<br />
+				产品有风险，投资需谨慎 -->
+			</div>
+		</div>
+		<script src="js/jquery.my-message.1.1.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/config.js"></script>
+		<script>
+			var message = new MyMessage.message({
+				/*默认参数，下面为默认项*/
+				iconFontSize: "20px", //图标大小,默认为f20px
+				messageFontSize: "12px", //信息字体大小,默认为12px
+				showTime: 3000, //消失时间,默认为3000
+				align: "center", //显示的位置类型center,right,left
+				positions: { //放置信息距离周边的距离,默认为10px
+					top: "10px",
+					bottom: "10px",
+					right: "10px",
+					left: "10px",
+					"z-index":9999,
+					position: "fixed"
+				},
+				message: "提示消息", //消息内容,默认为"这是一条消息"
+				type: "normal", //消息的类型，还有success,error,warning等，默认为normal
+			});
+			var token = JSON.parse(localStorage.getItem('_token')).token;
+			 /* 说明
+			 * html2canvas，目前该插件还在开发中，暂不支持带有图片的div转换。图片会被忽略
+			 * 对一些的默认样式的支持可能不那么尽如人意，建议自己定义样式,
+			 * 不支持iframe
+			 * 不支持跨域图片
+			 * 不能在浏览器插件中使用
+			 * 部分浏览器上不支持SVG图片
+			 * 不支持Flash
+			 * 不支持古代浏览器和IE，如果你想确认是否支持某个浏览器，可以用它访问 http://deerface.sinaapp.com/ 试试
+			 */
+			// 获取内容id
+
+			// 进行canvas生成
+			var index = 0;
+			var IMGLIST = [];
+			var FILE_SOURCE = [];
+			function completion() {   //把信息补全
+				$("#canvas .logo").attr('src',$("#logo")[0].src);
+				$("#canvas .position").text($('#position').val());
+				$("#canvas .name").text($('#name').val());
+				$("#canvas .positionName").text($('#positionName').val());
+				$("#canvas .ens").text($('#ens').val());
+				$("#canvas .card_num").text($('#card_num').val());
+				$("#canvas .certificate").text($('#certificate').val());
+				$("#canvas .rang").text($('#rang').val());
+				$("#canvas .work").text($('#work').val());
+				$("#canvas .tips").text($('#tips').val());
+				$('.imageGroup').empty();
+				FILE_SOURCE = [];
+				index = 0;
+				createCanvas();  //生成图片
+			}
+			function createCanvas() {  //生成图片
+				++index;
+				$('#canvas .bg').attr('src','./images/editImage/img'+index+'.jpg');
+				var content = document.getElementById("canvas");
+                html2canvas(content).then(canvas => {
+                    //添加属性
+                    var base64Data = Canvas2Image.saveAsPNG(canvas, true).getAttribute('src');
+                //saveFile(base64Data, FName);  //保存图片到本地
+                var blob = dataURLtoBlob(base64Data); //将base64转换为blob
+                var file = blobToFile(blob, 'staffImage'); //将blob转换为file
+                FILE_SOURCE.push(file);
+                canvas.setAttribute('class', 'item');
+                $('.imageGroup').append(canvas);
+                //uploadFiles(file);
+                if(index<=3){
+                    createCanvas();
+                }else {
+                    $('#btnSave').css('visibility','visible');
+                    index = 0;
+                }
+            });
+			}
+
+
+			var FName = '';
+			function handleFile() {
+				var files = $('#file')[0].files;
+				FName = files[0].name;
+				var img = window.URL.createObjectURL(files[0]) // 将文件生成url
+				$('#logo').attr('src',img);
+			}
+
+			function dataURLtoBlob(dataurl){ //将base64转换为blob
+				var arr = dataurl.split(','),
+					mime = arr[0].match(/:(.*?);/)[1],
+					bstr = atob(arr[1]),
+					n = bstr.length,
+					u8arr = new Uint8Array(n);
+				while (n--) {
+					u8arr[n] = bstr.charCodeAt(n);
+				}
+				return new Blob([u8arr], { type: mime });
+			}
+
+			function blobToFile(theBlob,fileName){ //将blob转换为file
+				theBlob.lastModifiedDate = new Date();
+			    theBlob.name = fileName;
+			    return theBlob;
+			}
+			var timmer = null;
+			function submit(){   //调用文件上传方法
+				IMGLIST = [];
+				timmer = null;
+				$('#shape').css('display','block');
+				$('#loading').css('display','block');
+				timmer = setTimeout(function(){
+					for(var i=0;i<FILE_SOURCE.length;i++){
+						uploadFiles(FILE_SOURCE[i]);
+					}
+				})
+
+			}
+			function uploadFiles(file) {   //文件上传
+				var imgFile = new File([file], file.name+'.png' , { type: file.type });
+				var param = new FormData(); //创建form对象
+				param.append('file', imgFile); //通过append向form对象添加数据
+				$.ajax({
+					type:"post",
+					data:param,
+					url:URL + "/zuul/file/file/upload?typeName=hall&thumbnail=1",
+					beforeSend:function(req){
+						req.setRequestHeader("token", token);
+					},
+					async: false,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(data){
+						if(!!data){
+							data = JSON.parse(data);
+							var picData = {
+								data:[{
+									name:data.fileName,
+									url:data.path,
+									md5:data.md5,
+									thumbnail_url:data.thumbnailUrl,
+									type: 'image',
+									addBeforeSaveFunctionResult:true
+								}],
+								mateRule:'',
+								multiple:true
+							}
+							IMGLIST.push(picData);
+							if(IMGLIST.length>=FILE_SOURCE.length){ //图片上传完调用保存的接口
+								saveData();
+							}
+							//message.add("保存成功！", "success");
+						}else{
+							message.add("保存失败！", "error");
+							IMGLIST = [];
+						}
+					},
+					fail(err){
+						console.log(err);
+					}
+				});
+			}
+			function saveData(){   //保存图片数据
+				$.ajax({
+					type:"put",
+					data:JSON.stringify(IMGLIST),
+					url:URL + "/manage/rest/approve/createPicture?objectIds=&perms=engine:rest:common:publish_release_resource&method=POST&approveType=2&uri=http://114.116.120.8:8090/engine/rest/common/hall%7Cpublish_release_resource&params=",
+					beforeSend:function(req){
+						req.setRequestHeader("token", token);
+						req.setRequestHeader("content-type", "application/json");
+					},
+					success:function(data){
+						$('#shape').css('display','none');
+						$('#loading').css('display','none');
+						if(data.code==0){
+							message.add("保存成功！", "success");
+						}
+					},
+					fail(err){
+						$('#shape').css('display','none');
+						$('#loading').css('display','none');
+						message.add("保存失败！", "error");
+						IMGLIST = [];
+					}
+				});
+			}
+			// 保存文件函数
+			var saveFile = function(data, filename){   //保存图片到本地
+			    var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+			    save_link.href = data;
+			    save_link.download = filename;
+			    var event = document.createEvent('MouseEvents');
+			    event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+			    save_link.dispatchEvent(event);
+			};
+		</script>
+	</body>
+</html>

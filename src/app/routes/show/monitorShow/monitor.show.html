@@ -1,0 +1,186 @@
+    <!--<div nz-row style="width:3840px;height: 1280px ">-->
+        <!--<nz-col nzSpan="12">-->
+    <div style="width: 1920px;height: 1080px;background: url('/assets/images/show-monitor3.png') no-repeat ;background-size:cover;">
+        <div style="padding-top: 40px;padding-left:20px;padding-right: 20px;">
+            <div style="height: 75px;width: 100%;padding-bottom: 90px;padding-top: 10px">
+                <span style="color: white;font-size: 36px;font-weight:bold;font-family: -webkit-body;padding-left: 832px;">设备状态监控</span>
+            </div>
+            <div nz-row>
+                <nz-col nzSpan="18" style="padding-top: 10px">
+                    <span style="color: white;font-size: 24px;font-weight: bold;padding-left:150px">设备状态列表</span>
+                </nz-col>
+                <nz-col nzSpan="6" style="padding-top: 10px">
+                    <span style="color: white;font-size: 24px;font-weight: bold;padding-left:160px">设备状态详情</span>
+                </nz-col>
+                <nz-col nzSpan="18">
+                    <div nz-row style="padding-bottom: 3px;padding-top: 20px">
+                        <nz-col nzSpan="24">
+                            <div style="float: right">
+                                <label style="padding-right: 20px;color: white;font-size:18px; ">自动刷新:</label>
+                                <nz-radio-group [(ngModel)]="interval" (ngModelChange) = "changeInterval()">
+                                    <label nz-radio-button nzValue=0><span>0</span></label>
+                                    <label nz-radio-button nzValue=10><span>10s</span></label>
+                                    <label nz-radio-button nzValue=30><span>30s</span></label>
+                                    <label nz-radio-button nzValue=60><span>60s</span></label>
+                                    <label nz-radio-button nzValue=300><span>300s</span></label>
+                                </nz-radio-group>
+                            </div>
+                        </nz-col>
+                    </div>
+
+                    <nz-list #listView [nzLoading]="loading" [nzDataSource]="list" [nzRenderItem]="item" [nzGrid]="{gutter: 24,xxl:4,xl:4, lg: 6, md: 6, sm: 12, xs: 24 }" style="padding-top: 20px">
+                        <ng-template #item let-item>
+                            <nz-list-item>
+                                <nz-card nzHoverable *ngIf="item !== null" style="width:100%" [ngClass]="{'my-card-active':item.index===index-1}" >
+                                    <nz-card-meta [nzAvatar]="nzAvatar" [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+                                        <ng-template #nzAvatar>
+                                            <img src="{{item.icon}}" style="width: 60px;height: 66px;">
+                                        </ng-template>
+                                        <ng-template #nzTitle>
+                                            <div><a style="color: white">{{item.term_no}}</a><nz-tag [nzColor]="'blue'" style="padding-left: 5px;">{{item.type_name}}</nz-tag></div>
+                                            <!--<a (click)="msg.success('标题：' + item.id);">{{item.title}}</a>-->
+                                        </ng-template>
+                                        <ng-template #nzDescription>
+                                            <div  *ngFor="let module of modules;" [style.background-color]="module.enum[item[module.id]].color" style="width: 24px;height: 24px;list-style:none;float: left;margin-left: 2px;margin-right: 1px">
+                                                <img src="{{ module.src }}" style="width: 100%;height: 100%;vertical-align:baseline" >
+                                            </div>
+                                        </ng-template>
+                                    </nz-card-meta>
+                                </nz-card>
+                            </nz-list-item>
+                        </ng-template>
+                    </nz-list>
+                    <nz-pagination [(nzPageIndex)]="page.index" [(nzTotal)]="total" nzShowSizeChanger [(nzPageSize)]="page.size" style="float: right" (nzPageIndexChange)="getData()" (nzPageSizeChange)="getData()"></nz-pagination>
+                </nz-col>
+                <nz-col nzSpan="6">
+                    <div style="width: 450px;padding-left: 30px;padding-top: 82px">
+                        <div style="border-style: groove;border-width: 1px;    margin-right: 20px;margin-left: 40px;">
+                            <!--<sf #sf mode="default" [schema]="editSchema" [formData]="detailData" button="none" ></sf>-->
+                            <sv-container [labelWidth]="100" [col]="1">
+                                <sv label="终端编号">{{detailData["term_no"]}}</sv>
+                                <sv label="所属部门">{{detailData["orgName"]}}</sv>
+                                <sv label="安装地点">{{detailData["address"]}}</sv>
+                            </sv-container>
+                            <sv-container [labelWidth]="100" [col]="1">
+                                <sv label="设备状态">
+                                    <div>
+                                        <!--<input  [ngModel]="value" (ngModelChange)="change($event)"/>-->
+                                        <img src="{{config.term_status.src}}" style="width: 32px;height: 32px;margin-right: 32px;margin-left: 32px" [style.background-color]="config.term_status.enum[detailData['term_status']?detailData['term_status']:'5']['color']"/>
+                                        <label>{{config.term_status.enum[detailData['term_status']?detailData['term_status']:'5']['text']}}</label>
+                                    </div>
+                                </sv>
+                                <sv label="模块状态">
+                                    <div>
+                                        <!--<input  [ngModel]="value" (ngModelChange)="change($event)"/>-->
+                                        <img src="{{config.modules_status.src}}" style="width: 32px;height: 32px;margin-right: 32px;margin-left: 32px" [style.background-color]="config.modules_status.enum[detailData['modules_status']?detailData['modules_status']:'5']['color']"/>
+                                        <label>{{config.modules_status.enum[detailData['modules_status']?detailData['modules_status']:'5']['text']}}</label>
+                                    </div></sv>
+                                <sv label="钞/卡箱状态">
+                                    <div>
+                                        <!--<input  [ngModel]="value" (ngModelChange)="change($event)"/>-->
+                                        <img src="{{config.resource_status.src}}" style="width: 32px;height: 32px;margin-right: 32px;margin-left: 32px" [style.background-color]="config.resource_status.enum[detailData['resource_status']?detailData['resource_status']:'5']['color']"/>
+                                        <label>{{config.resource_status.enum[detailData['resource_status']?detailData['resource_status']:'5']['text']}}</label>
+                                    </div></sv>
+                                <sv label="通讯状态">
+                                    <div>
+                                        <!--<input  [ngModel]="value" (ngModelChange)="change($event)"/>-->
+                                        <img src="{{config.communication_status.src}}" style="width: 32px;height: 32px;margin-right: 32px;margin-left: 32px" [style.background-color]="config.communication_status.enum[detailData['communication_status']?detailData['communication_status']:'0']['color']"/>
+                                        <label>{{config.communication_status.enum[detailData['communication_status']?detailData['communication_status']:'0']['text']}}</label>
+                                    </div></sv>
+                            </sv-container>
+                            <sv-container [labelWidth]="100" [col]="1">
+                                <sv label="状态时间">{{detailData["status_time"]}}</sv>
+                                <sv label="处理时间">{{detailData["process_time"]}}</sv>
+                                <sv label="吞卡数量">{{detailData["swallow_card_count"]}}</sv>
+                            </sv-container>
+                            <div style="height: 30px; margin-left: 20px;margin-right: -12px;margin-bottom: 20px;margin-top: 20px;">
+                                <div *ngFor="let option of options;" style="width: 24px;height: 24px;border-radius: 12px;list-style:none;float: left;margin-left: 4px;margin-right:4px">
+                                    <img src="{{ option.src }}" style="width: 100%;height: 100%" title="{{option.title}}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </nz-col>
+            </div>
+        </div>
+    </div>
+    <!--</nz-col>-->
+        <!--<nz-col nzSpan="12">-->
+            <!--&lt;!&ndash;<nz-tabset>&ndash;&gt;-->
+                <!--&lt;!&ndash;<nz-tab nzTitle="基础信息">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Content of Tab Pane 1&ndash;&gt;-->
+                <!--&lt;!&ndash;</nz-tab>&ndash;&gt;-->
+                <!--&lt;!&ndash;<nz-tab nzTitle="模块详情">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Content of Tab Pane 2&ndash;&gt;-->
+                <!--&lt;!&ndash;</nz-tab>&ndash;&gt;-->
+                <!--&lt;!&ndash;<nz-tab nzTitle="Tab 3">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Content of Tab Pane 3&ndash;&gt;-->
+                <!--&lt;!&ndash;</nz-tab>&ndash;&gt;-->
+            <!--&lt;!&ndash;</nz-tabset>&ndash;&gt;-->
+            <!--<div class="split-container">-->
+
+                <!--<as-split direction="horizontal" class="as-split-back"-->
+                          <!--(dragEnd)="resize('dragEnd', $event)"-->
+                          <!--(gutterClick)="resize('gutterClick', $event)">-->
+                    <!--<as-split-area [size]="treeSize">-->
+                        <!--<as-split direction="vertical">-->
+                            <!--<as-split-area [size]="100">-->
+                                <!--<nz-card nzTitle="机构目录">-->
+                                    <!--<nz-input-group [nzSuffix]="suffixIcon" style="padding-top:4px;padding-bottom: 5px">-->
+                                        <!--<input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue">-->
+                                    <!--</nz-input-group>-->
+                                    <!--<ng-template #suffixIcon>-->
+                                        <!--<i nz-icon class="anticon anticon-search ng-star-inserted"></i>-->
+                                    <!--</ng-template>-->
+                                    <!--<nz-tree style="overflow-y: auto;"-->
+                                             <!--[nzData]="nodes"-->
+                                             <!--nzCheckable="false"-->
+                                             <!--nzMultiple="false"-->
+                                             <!--nzShowIcon="true"-->
+                                             <!--[nzSearchValue]="searchValue"-->
+                                             <!--[nzCheckedKeys]="defaultCheckedKeys"-->
+                                             <!--[nzExpandedKeys]="defaultExpandedKeys"-->
+                                             <!--[nzSelectedKeys]="defaultSelectedKeys"-->
+                                             <!--(nzClick)="nzEvent($event)"-->
+                                             <!--nzExpandAll = "true"-->
+                                             <!--(nzExpandChange)="nzEvent($event)"-->
+                                             <!--(nzCheckBoxChange)="nzEvent($event)">-->
+                                        <!--<ng-template #nzTreeTemplate let-node>-->
+                <!--<span class="custom-node" >-->
+                  <!--<span [class.active]="treeId===node.key">-->
+                    <!--<img *ngIf="checkNodeType(node) == 'home'" style="width: 20px;height: 20px;margin-bottom: 2px;margin-right: 2px;" src="/assets/tree-icon/tree-home.png">-->
+                    <!--<img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'leaf'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px;" src="/assets/tree-icon/tree-leaf.png">-->
+                    <!--<img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'open'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px" src="/assets/tree-icon/tree-open.png">-->
+                    <!--<img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'close'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px" src="/assets/tree-icon/tree-close.png">-->
+                    <!--<span class="file-name">{{node.title}}</span>-->
+                  <!--</span>-->
+                <!--</span>-->
+                                        <!--</ng-template>-->
+                                    <!--</nz-tree>-->
+                                <!--</nz-card>-->
+                            <!--</as-split-area>-->
+                        <!--</as-split>-->
+                    <!--</as-split-area>-->
+                    <!--<as-split-area  [size]="tableSize">-->
+                        <!--<as-split direction="vertical">-->
+                            <!--<as-split-area [size]="100">-->
+                                <!--<nz-card [nzTitle]="name">-->
+                                    <!--<sf #sf1 mode="search" [schema]="searchSchema1" [formData]="params" (formReset)="st.reset(params)" button="none"></sf>-->
+                                    <!--<nz-row  style="padding: 10px">-->
+                                        <!--<nz-col [nzSpan]="12">-->
+                                            <!--<div style="float: right" >-->
+                                                <!--<button nz-button (click)="getData()" class="ant-btn ant-btn-primary" >查询</button>-->
+                                                <!--<button nz-button (click)="sf.reset(params)" class="ant-btn" >重置</button>-->
+                                            <!--</div>-->
+                                        <!--</nz-col>-->
+                                    <!--</nz-row>-->
+                                    <!--<st #st [data]="list" [columns]="columns" [req]="{params: params}" ></st>-->
+                                <!--</nz-card>-->
+                            <!--</as-split-area>-->
+                        <!--</as-split>-->
+                    <!--</as-split-area>-->
+                <!--</as-split>-->
+            <!--</div>-->
+        <!--</nz-col>-->
+    <!--</div>-->

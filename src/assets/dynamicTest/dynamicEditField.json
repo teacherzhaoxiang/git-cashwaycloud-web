@@ -1,0 +1,57 @@
+{
+  "contact":{
+    "type":"string",
+    "title":"姓名",
+    "maxLength":20
+  },
+  "orgId":{
+      "type":"string",
+      "title":"机构",
+      "ui":{
+        "widget": "tree-select",
+        "asyncData":"http://127.0.0.1:8080/atmv/system/org/tree",
+        "defaultExpandAll":false,
+        "displayWith":"title"
+      }
+  },
+  "roleId":{
+    "type":"string",
+    "title":"角色",
+    "ui":{
+      "widget": "select",
+      "asyncData":"http://127.0.0.1:8080/atmv/system/role"
+    }
+  },
+  "avatar":{
+    "type":"string",
+    "title":"头像",
+    "ui":{
+      "widget": "upload",
+      "action": "http://127.0.0.1:8080/atmv/system/upload",
+      "name":"upload_file",
+      "resReName": "url",
+      "listType":"picture"
+    }
+  },
+  "gender":{
+    "type":"string",
+    "title":"性别",
+    "enum":[{"label":"男","value":"1"},{"label":"女","value":"0"}],
+    "ui":{
+      "widget": "select"
+    }
+  },
+  "isManager":{
+    "type": "boolean",
+    "title": "是否管理员"
+  },
+  "status":{
+    "type":"string",
+    "title":"状态",
+    "enum":[{"label":"正常","value":"0"},{"label":"失效","value":"1"}],
+    "default":"00",
+    "ui":{
+      "widget": "select"
+    }
+  }
+}

@@ -1,0 +1,2910 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="icon" type="image/x-icon" href="../cashway-logo.png" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/pager.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.my-message.1.1.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style>
+			#getVoice{
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				z-index: 999999;
+				background: #007AFF;
+				color: #FFFFFF;
+				width: 200px;
+				height: 60px;
+				border-radius: 60px;
+				outline: none;
+			}
+			.view .box[data-type='video']{
+				background: black;
+			}
+			#htmlToImage .coor{
+				background: transparent !important;
+			}
+			.btn_content{
+				display: flex;
+				flex-direction: column;
+				margin-left: 5px;
+			}
+			.btn_content .btn:first-child{
+				margin-bottom: 3px;
+			}
+			.btn_content .btn{
+				width: 15px;
+				height: 15px;
+				background-color: #7A7A7A;
+			}
+			.btn_content .btn img{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="hidden" id="actDomId" />
+		<!-- 顶部工具栏 -->
+		<div id="app">
+			<!-- 预览 -->
+			<div class="view flex" id="view_box">
+				<button id="getVoice" onclick="getVoice()">开启声音</button>
+				<div class="view_shadow" onclick="displayView(false)"></div>
+				<div class="swiper-container flex check_out">
+					<div class="swiper-wrapper swiper-no-swiping" id="swiper-wrapper">
+						<!-- <div class="swiper-slide">slider1</div>
+						<div class="swiper-slide">slider2</div>
+						<div class="swiper-slide">slider3</div> -->
+
+					</div>
+
+				</div>
+				<div class="back" onclick="displayView(false)">退出</div>
+			</div>
+			<!-- 预览 end -->
+
+			<!-- 顶部工具栏 -->
+			<div id="tools" class="flex">
+				<div class="left flex">
+					<span>节目名称:</span>
+					<span id="proName">节目-201910290852</span>
+					<div class="program_name" id="proEditor"><input id="setName" type="text" /></div>
+					<span class="icon" onclick="setProgramName()"><img src="images/edit.png" /></span>
+				</div>
+				<div class="center flex">
+					<div class="item br" onclick="keep()">
+						<div class="icon"><img src="images/save.png" /></div>
+						<div>保存</div>
+					</div>
+					<div class="line"></div>
+					<div class="item" onclick="delete_page(event)">
+						<div class="icon"><img src="images/delete.png" /></div>
+						<div>删除</div>
+					</div>
+				</div>
+				<div class="slider flex">
+					<div class="slider-range-package slider3">
+					</div>
+				</div>
+				<div class="right flex">
+					<!-- <div class="item publish" onclick="htmlToImage()">保存成图片</div> -->
+					<div class="item publish" onclick="preview()">预览</div>
+					<!-- <div class="item view">一键发布</div> -->
+				</div>
+			</div>
+			<!-- 顶部工具栏 end -->
+
+			<!-- 画布工作区 -->
+			<div class="canvas flex">
+				<!-- 左侧工具栏 -->
+				<div class="tools flex">
+					<div class="disabledTools"></div>
+					<div class="left">
+						<!-- 场景 -->
+						<div class="title">节目场景（1个)</div>
+						<div class="scene_body">
+							<!-- <div class="scene">
+								<div>
+									<div class="Preview">
+										<div class="mark">1</div>
+									</div>
+									<div class="sign">场景1</div>
+								</div>
+								<div class="tips">
+									<div class="item" title="编辑">
+										<img src="images/edit.png" />
+									</div>
+									<div class="item" title="复制">
+										<img src="images/copy.png" />
+									</div>
+									<div class="item" title="删除">
+										<img src="images/delete.png" />
+									</div>
+								</div>
+							</div> -->
+						</div>
+						<div class="addBtn" onclick="add_scene()">
+							<div class="img"><img src="images/Add.png" /></div>
+						</div>
+					</div>
+					<div class="right">
+						<div class="item" title="添加字体" onclick="addHTML('<textarea placeholder=\'编辑文字\'  onInput=\'getval(this)\' class=\'textarea\' />','font');">
+							<div class="img">
+								<img src="images/font.png" />
+							</div>
+							<div class="text">
+								字体
+							</div>
+						</div>
+						<div class="item" title="添加图片" onclick="addHTML('添加图片','image');">
+							<div class="img">
+								<img src="images/pic.png" />
+							</div>
+							<div class="text">
+								图片
+							</div>
+						</div>
+						<div class="item" title="添加轮播" onclick="addHTML('添加轮播','Carousel');">
+							<div class="img">
+								<img src="images/swiper.png" />
+							</div>
+							<div class="text">
+								轮播
+							</div>
+						</div>
+						<div class="item" title="添加模板" onclick="addHTML('添加模板','model');">
+							<div class="img">
+								<img src="images/model.png" />
+							</div>
+							<div class="text">
+								模板
+							</div>
+						</div>
+						<!-- <div class="item" onclick="copyHTML();">复制</div> -->
+						<div class="item" title="添加视频" onclick="addHTML('添加视频','video');">
+							<div class="img">
+								<img src="images/video.png" />
+							</div>
+							<div class="text">
+								视频
+							</div>
+						</div>
+						<div class="item" title="添加网页" onclick="addHTML('添加网页','iframe');">
+							<div class="img">
+								<img src="images/webPage.png" />
+							</div>
+							<div class="text">
+								网页
+							</div>
+						</div>
+						<div class="item" style="position: relative;z-index: 100;" title="添加文档" onclick="addHTML('添加文档','document');">
+							<div class="img">
+								<img src="images/document.png" />
+							</div>
+							<div class="text">
+								文档
+							</div>
+						</div>
+						<div class="item" title="添加时间" onclick="addHTML('添加时间','time');">
+							<div class="img">
+								<img src="images/timer.png" />
+							</div>
+							<div class="text">
+								时间
+							</div>
+						</div>
+						<!-- <div id="addWeather" class="item" title="添加天气" onclick="addHTML('添加天气','weather');"><img src="images/weather.png" /></div> -->
+						<!-- <div class="item" title="添加音频" onclick="addHTML('添加音频','music');"><img
+							 src="images/music.png" /></div> -->
+					</div>
+				</div>
+				<!-- 左侧工具栏 end -->
+
+				<!-- 画布 -->
+				<div class="content-box flex">
+					<div class="right">
+						<div class="edit_box" onclick="actDomId=''">
+							<div class="cb_content" id="content" onclick="showBgOpt(1)"></div>
+						</div>
+					</div>
+				</div>
+				<!-- 画布 end -->
+
+				<!-- 右侧工具栏 -->
+				<div class="tool_box">
+					<div class="topper flex">
+						<div class="type" id="tmenu1" onclick="changeTab(0)">场景设置</div>
+						<div id="tmenu2" class="type" onclick="changeTab(1)">播放设置</div>
+					</div>
+					<div class="center">
+						<div class="tab_one" id='font_tab'>
+							<div class="item" id="dateFormat">
+								<div class="opt">日期时间格式</div>
+								<div class="opt">
+									<select id="date_type" onchange="setFont(this,'date_type')">
+										<option value="1">类型一</option>
+										<option value="2">类型二</option>
+										<option value="3">类型三</option>
+									</select>
+								</div>
+							</div>
+							<div class="fontStyle">
+								<div class="item">
+									<div class="opt">文字颜色</div>
+									<div class="opt">
+										<input data-val="#ff0000" style="color: #007AFF;" value="" type="color" id="font_color" onchange="setFont(this,'font-color')" />
+									</div>
+								</div>
+								<div class="item">
+									<div class="opt">背景颜色</div>
+									<div class="opt"><input type="color" id="font_bg" onchange="setFont(this,'bg-color')" /></div>
+								</div>
+								<div class="item">
+									<div class="opt">文字大小</div>
+									<div class="opt">
+										<select id="font_size" onchange="setFont(this,'font-size')">
+											<option value="40px">10px</option>
+											<option value="40px">20px</option>
+											<option value="40px">30px</option>
+											<option value="40px">40px</option>
+											<option value="50px">50px</option>
+											<option value="60px">60px</option>
+											<option value="70px">70px</option>
+											<option value="80px">80px</option>
+											<option value="90px">90px</option>
+											<option value="100px">100px</option>
+										</select>
+									</div>
+								</div>
+								<div class="item">
+									<div class="opt">文字类型</div>
+									<div class="opt">
+										<select id="font_type" onchange="setFont(this,'font-type')">
+											<option value="SimSun">宋体</option>
+											<option value="FangSong">仿宋</option>
+											<option value="SimHei">黑体</option>
+											<option value="Microsoft Yahei">微软雅黑</option>
+											<option value="KaiTi">楷体</option>
+										</select>
+									</div>
+								</div>
+								<div class="item">
+									<div class="opt">行高</div>
+									<div class="opt">
+										<input id="font_lineHg" type="text" onchange="setFont(this,'line-height')" />
+									</div>
+								</div>
+								<div class="item">
+									<div class="opt">字体方向</div>
+									<div class="opt">
+										<select id="font_direction" onchange="setFont(this,'text-align')">
+											<option value="left">left</option>
+											<option value="right">right</option>
+											<option value="center">center</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="item pz flex">
+								<div class="opt flex">
+									<span class="lable">宽(px): </span>
+									<div><input id="box_w" type="text" onchange="setFont(this,'width')" /></div>
+								</div>
+								<div class="opt flex">
+									<span class="lable">高(px): </span>
+									<div><input id="box_h" type="text" onchange="setFont(this,'height')" /></div>
+								</div>
+							</div>
+							<div class="item pz flex">
+								<div class="opt flex">
+									<span class="lable">x: </span>
+									<div><input id="box_x" type="text" onchange="setFont(this,'x')" /></div>
+								</div>
+								<div class="opt flex">
+									<span class="lable">y: </span>
+									<div><input id="box_y" type="text" onchange="setFont(this,'y')" /></div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="fullScreen" onclick="setFullScreen()" style="background: #2d8cf0;height: 30px;line-height: 30px;color: #FFFFFF;text-align: center;border-radius: 2px;margin-bottom: 10px;">
+									全屏展示
+								</div>
+							</div>
+							<div class="item flex" style="justify-content: space-between;margin-bottom: 10px;">
+								<div class="opt">边框(px)：</div>
+								<div class="border">
+									<input type="text" id="border_size" onchange="setFont(this,'border_size')" />
+								</div>
+								<div class="border">
+									<select id="border_type" onchange="setFont(this,'border_type')">
+										<option value="solid">solid</option>
+										<option value="dotted">dotted</option>
+										<option value="double">double</option>
+										<option value="dashed">dashed</option>
+									</select>
+								</div>
+								<div class="border">
+									<input type="color" id="border_color" onchange="setFont(this,'border_color')" />
+								</div>
+							</div>
+							<div class="item">
+								<div class="opt font_opt flex">
+									<div class="icon" title="左对齐" onclick="setPosition(this,'left')"><img src="images/left-align.png" /></div>
+									<div class="icon" title="水平对齐" onclick="setPosition(this,'horizontal')"><img src="images/vertical-align.png" /></div>
+									<div class="icon" title="右对齐" onclick="setPosition(this,'right')"><img src="images/right-align.png" /></div>
+									<div class="icon" title="上对齐" onclick="setPosition(this,'top')"><img src="images/top-align.png" /></div>
+									<div class="icon" title="垂直居中" onclick="setPosition(this,'vertical')"><img src="images/center-align.png" /></div>
+									<div class="icon" title="下对齐" onclick="setPosition(this,'bottom')"><img src="images/bottom-align.png" /></div>
+								</div>
+							</div>
+							<div class="item" id="displayStyle">
+								<div class="opt">显示方式</div>
+								<div class="opt font_display flex">
+									<div class="direction" onclick="fontDisplayType(0)">向上滚动</div>
+									<div class="direction" onclick="fontDisplayType(1)">向下滚动</div>
+									<div class="direction" onclick="fontDisplayType(2)">向左滚动</div>
+									<div class="direction" onclick="fontDisplayType(3)">向右滚动</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab_one" id="bg_tab" onclick=" changeTab(0)">
+							<div class="c_item">
+								<!-- <div class="title">背景</div> -->
+								<!-- <div class="background_image" onclick="editor_status('background')">
+									<img src="images/Add1.png" />
+								</div> -->
+								<div class="backgroundImg flex">
+									<div onclick="editor_status('background')" class="addBtn">添加背景图片</div>
+									<div class="addBtn" onclick="removeBackground()">移除背景图片</div>
+								</div>
+							</div>
+
+							<div class="c_item">
+								<div class="title">背景颜色</div>
+								<div id="color" style="margin: 10px 0;"><button class="paigusu" style="display: none;">调色板</button></div>
+							</div>
+						</div>
+						<div class="tab_two" onclick="changeTab(1)">
+							<div class="opt flex">
+								<div class="timeLable">单页播放时长（秒）：</div>
+								<div class="inputTime"><input type="text" value="0.1" onkeyup="clearNoNum(this);" class="timmer" onchange="setPageTime(event)" /></div>
+							</div>
+							<div class="opt" style="margin: 10px 0;">背景音乐：</div>
+							<div class="opt music_box flex" onclick="editor_status('music')">
+								<div class="music"><img src="images/Add1.png" /></div>
+							</div>
+							<div class="opt player flex">
+								<audio src="" controls="controls">
+									您的浏览器暂不支持该音频
+								</audio>
+								<div class="remove_music" onclick="removeMusic()">移除</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 右侧工具栏 end -->
+			</div>
+			<div id="copyHTML"></div>
+			<!-- 图片编辑弹出框 -->
+			<div class="shadow_box">
+				<div class="shadow" onclick="editor_status()"></div>
+				<div class="shadow_editor">
+					<div class="top flex">
+						<div>编辑</div>
+						<i onclick="editor_status()" class="fa fa-times-circle-o close_icon">
+							x
+						</i>
+					</div>
+					<div class="content flex" id="editor_content" style="overflow: hidden;">
+						<div class="left">
+							<div class="l_top flex">
+								<div class="search">
+									<input type="text" placeholder="search..." />
+									<div class="search_icon"><img src="images/search.png" /></div>
+								</div>
+								<div class="flex" style="visibility: hidden;">
+									<div class="delete" id="delResource" data-status="0" onclick="deleteResource(this)">
+										操作
+									</div>
+									<div class="upload" id="cancelDel" style="display: none;" onclick="cancelDel()">
+										取消
+									</div>
+									<div class="upload" id="upload">
+										上传
+									</div>
+								</div>
+							</div>
+							<div class="image_box flex" id="img_box">
+								<!-- <div class="img_item" v-for="(item,index) in picList">
+									<img :src="url+item.url" />
+									<div class="img_shadow"></div>
+									<div class="detail">
+										{{item.name}}
+									</div>
+									<div class="checked"><input type="checkbox" onchange="changeChecked(this)" /></div>
+								</div> -->
+							</div>
+							<div class="paging flex">
+								<ul class="pagination" id="page2">
+								</ul>
+								<div class="pageJump">
+									<span>跳转到</span>
+									<input type="text" />
+									<span>页</span>
+									<button type="button" class="button">确定</button>
+								</div>
+							</div>
+						</div>
+						<div class="right" id="carouselOpt">
+							<div class="title">轮播设置</div>
+							<div class="r_bottom" id="carouselTime">
+								<!-- <div class="item flex">
+									<label>宽 (px)：</label>
+									<div class="input"><input type="text" /></div>
+								</div>
+								<div class="item flex">
+									<label>高 (px)：</label>
+									<div class="input"><input type="text" /></div>
+								</div> -->
+								
+								<!-- <div class="item flex">
+									<div><img src="images/document.png" /></div>
+									<label>切换时间（秒）：</label>
+									<div class="input"><input type="text" onkeyup="clearNoNum(this);" id="changeTime" /></div>
+								</div> -->
+							</div>
+							<div class="item flex" style="border-top: 1px solid #ECECEC;padding: 10px 12px;">
+								<label>切换效果：</label>
+								<div class="input">
+									<select id="swiperType" onchange="carouselChange(value)">
+										<option value="slide-horizontal">普通位移(默认)</option>
+										<option value="slide-vertical">普通位移(垂直)</option>
+										<option value="fade-horizontal">淡入</option>
+										<option value="fade-vertical">淡入(垂直)</option>
+										<option value="cube-horizontal">方块</option>
+										<option value="cube-vertical">方块(垂直)</option>
+										<option value="coverflow-horizontal">3d流</option>
+										<option value="coverflow-vertical">3d流(垂直)</option>
+										<option value="flip-horizontal">3d翻转</option>
+										<option value="flip-vertical">3d翻转(垂直)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="bottom flex">
+						<div onclick="editor_status()" class="opt" style="background: #ececec;color: #2d8cf0;">关闭</div>
+						<div onclick="save_editor()" id="keep_opt" class="opt" style="background: #2d8cf0;color: #fff;">保存</div>
+					</div>
+				</div>
+			</div>
+			<div class="pro">
+				<div class="pro_shadow"></div>
+				<div class="pop-up">
+					<div class="top flex">
+						<div class="title">网页</div>
+						<div class="close" onclick="close_pro('cancel')">x</div>
+					</div>
+					<div class="content flex">
+						<div class="lable">网页地址：</div>
+						<div>
+							<input type="url" id="url" value="" />
+							<div id="erro_url">请输入正确的网址</div>
+						</div>
+
+					</div>
+					<div class="bottom flex">
+						<div class="btn" onclick="close_pro('cancel')">取消</div>
+						<div class="btn confirm" onclick="close_pro('confirm')">确定</div>
+					</div>
+				</div>
+			</div>
+			<!-- 图片编辑弹出框 end -->
+		</div>
+		<div class="tips_box">
+			<div class="tips_mode"></div>
+			<div class="tips">
+				<div class="content">添加文档后当前制作的节目内容将会清空。</div>
+				<div class="tips_btn flex">
+					<div class="btn" id="tips_confirm" onclick="confirmTIPS()">确认</div>
+					<div class="btn" id="tips_cancel" onclick="cancelTIPS()">取消</div>
+				</div>
+			</div>
+		</div>
+		<audio id="play_music" src="" controls="controls" loop="loop" style="visibility: hidden;"></audio>
+	</body>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/paigusu.min.js"></script>
+	<script src="js/pager.js"></script>
+	<script type="text/javascript" src="js/drag.js"></script>
+	<script src="js/slider.js"></script>
+	<script src="js/swiper.js"></script>
+	<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+	<script src="js/jquery.my-message.1.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/html2canvas.min.js"></script>
+	<script src="js/canvas2image.js"></script>
+	<script src="js/base64.js"></script>
+	<script>
+		// import {environment} from "@env/environment";
+		var WEATHER = {}; //天气
+		var HTML = []; //全局html-用来放每一屏的html
+		var HTMLINDEX = 0; //全局html的索引
+		var ThumbnailScale = 0; //缩略图缩放倍数
+		var canvasScale = 1;
+		var transform_origin = ''; //缩略图显示位置
+		var programEdit = false;
+		var tab_type = 1; //0:字体;1:背景
+		var tab_index = 0; //tab菜单切换:0:左;1:右
+		var MODELTYPE = 1; //0:制作模板;1:制作节目;前一页面跳转获取;
+		var SELECTPIC = {}; //当前操作选择的资源数据,需要展示到当前编辑框
+		var PICLIST = []; //后端获取的资源数据
+		var RESOURCES = {}; //整个节目的资源文件数据
+		var mySwiper; //控制页面滚动的swiper
+		var backgroundImg = ''; //当前页面背景图
+		var backgroundId = '';	//当前背景图id
+		var maxZIndex = 0; //新增场景的层级在最顶层或者设置编辑内容在最顶层的时候z-index都是maxZIndex+1
+		var minZIndex = 0; //设置编辑内容在最顶层的时候z-index都是minZIndex-1
+		var Request = {}; //保存url传递过来的参数
+		var type_url; //根据url传来的type值请求不同的url
+		var proName = ''; //节目名称
+		var imgBoxHTML = [] //资源列表的渲染用HTML
+		var rows = []
+		var mousePosition = {}
+		var swiperType = {}
+		//操作状态提示:成功或失败
+		var message = new MyMessage.message({
+			/*默认参数，下面为默认项*/
+			iconFontSize: "20px", //图标大小,默认为f20px
+			messageFontSize: "12px", //信息字体大小,默认为12px
+			showTime: 3000, //消失时间,默认为3000
+			align: "center", //显示的位置类型center,right,left
+			positions: { //放置信息距离周边的距离,默认为10px
+				top: "10px",
+				bottom: "10px",
+				right: "10px",
+				left: "10px"
+			},
+			message: "提示消息", //消息内容,默认为"这是一条消息"
+			type: "normal", //消息的类型，还有success,error,warning等，默认为normal
+		});
+		if (!showWeather) {
+			$('#addWeather').css({
+				'display': 'none'
+			});
+		}
+		function istype(obj,type){	//判断包装类型的原型
+    		return Object.prototype.toString.call(obj).indexOf(type)!=-1
+		}
+		function deepClone (initalObj) {	//深拷贝
+			if (typeof initalObj !== 'object') {//如果是基本类型直接返回值
+				return initalObj
+			}
+			if(istype(initalObj,'String')||istype(initalObj,'Number')||istype(initalObj,'Boolean'))
+				return initalObj.valueOf();
+			if(istype(initalObj,'Date'))
+				return new Date(initalObj.valueOf());
+			if(istype(initalObj,'RegExp')){
+				let pattern = initalObj.valueOf();
+				let flags = '';
+				flags += pattern.global ? 'g' : '';
+				flags += pattern.ignoreCase ? 'i' : '';
+				flags += pattern.multiline ? 'm' : '';
+				return new RegExp(pattern, flags);
+			}
+			const obj = Array.isArray(initalObj)?[]:{};//可能是对象或者数组
+			for (const key in initalObj) {
+				if (typeof initalObj[key] === 'object') {//对于对象元素，deepclone
+					//递归返回新的对象
+					obj[key] = deepClone(initalObj[key]);
+				} else if (typeof initalObj[key] === 'function') {//对于函数,用bind拷贝
+					//返回新函数
+					obj[key] = initalObj[key].bind(obj);
+				} else {
+					//基本类型直接返回
+					obj[key] = initalObj[key];
+				}
+			}
+			return obj;
+		}
+		function GetRequest() {
+			//获取url传递的参数
+			var url = location.search; //获取url中"?"符后的字串
+			var theRequest = new Object();
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				strs = str.split("&");
+				for (var i = 0; i < strs.length; i++) {
+					theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+				}
+			}
+			return theRequest;
+		}
+		$(function() {
+			Request = GetRequest(); //Request.type:1模板,2是节目
+			if (typeof(token) == "undefined") {
+				let tokenStr = localStorage._token; //正式版token的获取方式
+				token = JSON.parse(tokenStr).token;
+			}
+			let heightWidth = Request.resolutionValue.split('*');
+			Request.width = heightWidth[0];
+			Request.height = heightWidth[1];
+			if (Request.type == 1) {
+				$('.tools .left .addBtn').css({
+					'display': 'none'
+				});
+			}
+			type_url = Request.type == 1 ? "publish_program_template" : "publish_page_manage";
+			popMenu();
+			setCanvasSize();
+			//初始化计算到画布的宽高是画布缩放比为100%时的宽高;
+			max_h = $('#content').height();
+			max_w = $('#content').width();
+			//$('#content').css({'min-width':max_w,'min-height':max_h});
+			// 设置初始值
+
+			//浏览器窗口改变时重新计算画布大小
+			$(window).resize(function() {
+				setCanvasSize();
+			})
+			//调色板
+			$('.paigusu').paigusu({
+				color: '#1926dc', //初始色  支持两种配置方案
+				// recommend : '25,38,220,1|25,38,220,1|46,49,104,1|25,38,220,1|46,49,104,1|25,38,220,1|46,49,104,1|25,38,220,1|46,49,104,1|25,38,220,1|46,49,104,1'
+				//		,color : '42,0,255'
+			}, function(event, obj) {
+				//debugger
+				console.log(event);
+				console.log(obj);
+				let color = '#' + obj.hex;
+				HTML[HTMLINDEX].backgroundColor = color;
+				$('#content').css({
+					'background': color
+				});
+				$(event).css('color', color);
+			});
+			//画标尺
+			// let ruler_w = '';
+			// let ruler_h = '';
+			// for (let i = 0; i < 18; i++) {
+			// 	ruler_w += '<span class="one_cm" style="left: ' + (i * 50 + 2) + 'px;">' + i * 50 + '</span>';
+			// 	ruler_h += '<span class="one_cm" style="transform: rotate(-90deg);top: ' + (i * 50 + 5) + 'px;">' + i * 50 +
+			// 		'</span>';
+			// }
+			// $('#ruler_w').append(ruler_w);
+			// $('#ruler_h').append(ruler_h);
+			//创建节目选择的分辨率
+			//初始化计算缩略图的缩放值
+			if (Request.width / Request.height > 1) {
+				ThumbnailScale = 100 / Request.width;
+				let top = (100 - Request.height * ThumbnailScale) / 2;
+				transform_origin = 'left ' + top + 'px';
+			} else {
+				ThumbnailScale = 100 / Request.height;
+				let left = (100 - Request.width * ThumbnailScale) / 2;
+				transform_origin = left + 'px' + ' top';
+			}
+			//$('.check_out').css({'width':origin_w,'height':origin_h});
+			//初始化缩略图和第一屏的数据
+			initCanvas();
+			if (showWeather && $('.textarea.weather').length > 0) {
+				getWeather();
+				var weatherStr = '<div class="weather">' + (WEATHER.cityName || '') + '</div><div class="weather">' + (
+					WEATHER.temp2 || '') + '/' + (WEATHER.temp1 || '') + '</div><div>' + (WEATHER.wea || '') + (WEATHER
+					.airLevel ? ' 空气' + WEATHER.airLevel : '') + '</div>';
+				$('.textarea.weather').html(weatherStr);
+			} else {
+				$('.textarea.weather').css({
+					'display': 'none'
+				});
+			}
+
+		});
+
+		function getWeather() {
+			// if (JSON.stringify(WEATHER) == "{}") {
+			// 	$.ajax({
+			// 		type: "get",
+			// 		async: false,
+			// 		dataType: "json",
+			// 		url: URL + "/hall-manage/hall_service_weather/getWeather",
+			// 		success: function(res) {
+			// 			console.log(res);
+			// 			if (res.code == 0) {
+			// 				WEATHER = res.msg;
+			// 			}
+			// 		}
+			// 	});
+			// }
+		}
+
+		//画布在浏览器中显示的最大宽高
+		var max_h;
+		var max_w;
+		//初始化画布大小以及当浏览器窗口改变时重新计算画布的大小及缩放比
+		function setCanvasSize() {
+			let wd = $('.content-box .right').width() - 40;
+			let hg = $('.content-box .right').height() - 40;
+			$('.edit_box').width(wd + 'px');
+			$('.edit_box').height(hg + 'px');
+
+			//实际画布大小
+			let content_x = Request.width;
+			let content_y = Request.height;
+
+			let rate1 = wd / hg;
+			let rate2 = content_x / content_y;
+			let rate3 = content_y / content_x;
+
+			let num;
+			if (rate1 > rate2) {
+				console.log(rate2);
+				canvasScale = hg / content_y;
+				max_w = hg * max_w / max_h;
+				max_h = hg;
+			} else {
+				canvasScale = wd / content_x;
+				max_h = wd * max_h / max_w;
+				max_w = wd;
+			}
+			$('#content').css({
+				'height': content_y + 'px',
+				'width': content_x,
+				'transform': 'scale(' + canvasScale + ')'
+			});
+			$('.slider3').slider({
+				minValue: 25,
+				maxValue: 100,
+				initValue: canvasScale * 100
+			});
+		}
+		//加载资源文件
+		function loadResource(type) {
+			console.log(type,'loadResource')
+			$('#img_box').html('');
+			if (type == 'background') {
+				getImageBg(); //获取页面背景图片列表
+			} else {
+				getPicList(type);
+			}
+
+		}
+		//获取模板
+		function getModel() {
+			let param = {
+				"resolutionId": Request.resolutionId,
+				"pageSize": 10,
+				"pageNumber": 1
+			};
+			$.ajax({
+				type: "get",
+				data: {
+					param: JSON.stringify(param)
+				},
+				contentType: "application/json",
+				url: URL + "/engine/rest/common/hall|publish_program_template",
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				success: function(res) {
+					console.log(res)
+					if (res.code == 0) {
+						let rows = res.rows;
+						let module_data = [];
+						let html = '';
+						if (ALLPAGE <= 0) {
+							ALLPAGE = ++res.totalPages;
+							//分页器
+							Page({
+								num: ALLPAGE, //页码数
+								startnum: pageNumber, //指定页码
+								elem: $('#page2'), //指定的元素
+								callback: function(n) { //回调函数
+									pageNumber = n;
+									getModel();
+								}
+							});
+						}
+						for (let i = 0; i < rows.length; i++) {
+							if (rows[i].module_data) {
+								module_data = JSON.parse(decodeURIComponent(rows[i].module_data));
+								console.log(module_data)
+								html += '<div class="img_item" onclick="imgClick(this)">' +
+									module_data[0].scalehtml +
+									'<div class="img_shadow"></div>' +
+									'<div class="detail">' +
+									rows[i].name +
+									'</div>' +
+									'<div class="checked"><input type="checkbox" onclick="changeModelChecked(this,\'' + encodeURIComponent(JSON
+										.stringify(rows[i])) + '\')" /></div>' +
+									'</div>';
+							}
+						}
+						$('#img_box').html(html);
+						console.log(rows);
+					}
+				},
+			});
+		}
+		var selectModel = [];
+		var selectResource = {};
+		let drag = false
+		let position = {}
+		let father = document.querySelector('.image_box')
+		function imgClick(dom){
+			console.log(dom)
+		}
+		function carouselChange(value){
+			let actDomId = $("#actDomId").attr("actDomId")
+			let obj = {
+				type:value.split('-')[0],
+				direction:value.split('-')[1]
+			}
+			console.log(obj)
+			swiperType[actDomId] = obj
+
+		}
+		// function replaceImg(from,to){
+		// 	// 拖曳结束后交换位置
+		// 	let newImgBoxHTML= deepClone(imgBoxHTML)
+		// 	newImgBoxHTML[to] = imgBoxHTML[from]
+		// 	newImgBoxHTML[from] = imgBoxHTML[to]
+		// 	imgBoxHTML = newImgBoxHTML
+		// 	$('#img_box').html(newImgBoxHTML);
+		// }
+		// function joinImg(index){
+		// 	// 拖曳结束后插入位置
+		// 	let newImgBoxHTML=deepClone(imgBoxHTML)
+		// 	newImgBoxHTML.splice(index,0,imgBoxHTML[position['target'].index])
+		// 	if(index>position['target'].index){
+		// 		newImgBoxHTML = newImgBoxHTML.filter((ele,index)=>index!=position['target'].index)
+		// 	}else{
+		// 		newImgBoxHTML = newImgBoxHTML.filter((ele,index)=>index!=Number(position['target'].index)+1)
+		// 	}
+		// 	imgBoxHTML = newImgBoxHTML
+		// 	$('#img_box').html(newImgBoxHTML); 
+		// }
+		// function imgMousedown(dom){
+		// 	drag = true
+		// 	let a = dom.innerHTML.indexOf(`<img src=">`)+`<img src=">`.length
+		// 	let b = a+dom.innerHTML.slice(a,dom.length).indexOf(`">`)//截取图片src地址以用于获得index
+		// 	let index = imgBoxHTML.findIndex(ele=>ele.indexOf(dom.innerHTML.slice(a,b))>0)
+		// 	let e = event
+		// 	let domRect = dom.getBoundingClientRect()
+		// 	position['target'] = {
+		// 		offsetLeft:parseInt(domRect.left) ,
+		// 		offsetTop:parseInt(domRect.top) ,
+		// 		startX:event.pageX ,
+		// 		startY:event.pageY ,
+		// 		height:dom.offsetHeight ,
+		// 		width:dom.offsetWidth ,
+		// 		index:index
+		// 	}
+		// 	typeof dom.setCapture !== 'undefined'&&dom.setCapture();
+		// 	//x毫秒后鼠标还没松开开始拖曳
+		// 	setTimeout(()=>{
+		// 		if(drag){
+		// 			console.log('开始拖曳')
+		// 			let dom = document.querySelector('.image_box').children[index].cloneNode(true)
+		// 			dom.classList.add('drag_item')
+		// 			dom.style.position = 'absolute'
+		// 			dom.style.opacity = 0
+		// 			document.querySelector('.image_box').appendChild(dom)
+		// 			for(let key in document.querySelector('.image_box').children){
+		// 				let element = document.querySelector('.image_box').children[key]
+		// 				if(typeof(element) == 'object'&&key!=document.querySelector('.image_box').children.length-1){
+		// 					key = Number(key)
+		// 					position[key] = {}
+		// 					position[key].left = parseInt(element.getBoundingClientRect().left)
+		// 					position[key].top = parseInt(element.getBoundingClientRect().top)
+		// 					position[key].right = parseInt(position[key].left + dom.offsetWidth)
+		// 					position[key].bottom = parseInt(position[key].top + dom.offsetHeight)
+		// 				}
+		// 			}
+		// 		}
+		// 	},300)
+		// }
+		// father.addEventListener('mousemove',()=>{
+		// 	if(drag){
+		// 		let dom = document.querySelector('.drag_item')
+		// 		dom.style.top = parseInt(window.event.y - dom.offsetHeight +10 ) + "px";
+  		// 		dom.style.left = parseInt(window.event.x - dom.offsetWidth +10 ) + "px";
+		// 		dom.style.opacity = '100%'
+		// 	}
+		// })
+		// father.addEventListener('mouseup',()=>{
+		// 	drag = false
+		// 	if(document.querySelector('.drag_item')){
+		// 		father.removeChild(father.childNodes[father.childNodes.length-1])
+		// 		for(let key in position){
+		// 			if(key=='target'){
+		// 				continue
+		// 			}
+		// 			key = Number(key)
+		// 			if(event.pageX>=position[key].left&&event.pageX<=position[key].right&&event.pageY>=position[key].top&&event.pageY<=position[key].bottom){
+		// 				//说明是置换
+		// 				replaceImg(position['target'].index,key)
+		// 				continue
+		// 			}
+		// 			if(event.pageY>=position[key].top&&event.pageY<=position[key].bottom){
+		// 				if(key>0&&key<father.childNodes.length-1){
+		// 					if(event.pageX>=position[key].left&&event.pageX<=position[key+1].left){
+		// 						//说明是插入
+		// 						joinImg(key)
+		// 					}
+		// 			}
+		// 		}
+		// 	}
+		// })
+
+		function changeModelChecked(_this, rows) {
+			rows = JSON.parse(decodeURIComponent(rows));
+			console.log(rows);
+			html = JSON.parse(decodeURIComponent(rows.module_data));
+			console.log(html)
+			let all = $(".checked input");
+			let checkable = $(_this).is(':checked');
+			if (checkable) {
+				all.prop('checked', false);
+				$(_this).prop('checked', true);
+				selectModel = html[0];
+				selectResource = JSON.parse(rows.resource_data)[0];
+			} else {
+				all.prop('checked', false);
+				selectModel = [];
+				selectResource = {};
+			}
+		}
+
+		function saveModel() {
+			HTML[HTMLINDEX].html = selectModel.html;
+			HTML[HTMLINDEX].scalehtml = selectModel.scalehtml;
+			HTML[HTMLINDEX].backgroundColor = selectModel.backgroundColor;
+			HTML[HTMLINDEX].backgroundImage = '';
+			console.log(RESOURCES[HTMLINDEX]);
+			RESOURCES[HTMLINDEX] = selectResource;
+			//backgroundImage = HTML[HTMLINDEX].backgroundImage?HTML[HTMLINDEX].backgroundImage:''
+			displayHtml();
+			selectModel = [];
+			selectResource = {};
+			editor_status();
+		}
+
+		function sceneUpward(e, index){	//场景向上移动
+			e.stopPropagation();
+			if(index>0){
+				console.log(e,index,'向上移动');
+				let newHTML = deepClone(HTML)
+				newHTML[index-1] = HTML[index]
+				newHTML[index] = HTML[index -1]
+				HTML = newHTML
+				displayHtml();
+			}
+		}
+		function sceneBackward(e, index){	//场景向下移动
+			e.stopPropagation();
+			if(index < HTML.length-1){
+				console.log(e,index,'向下移动')
+				let newHTML = deepClone(HTML)
+				newHTML[index+1] = HTML[index]
+				newHTML[index] = HTML[index+1]
+				HTML = newHTML
+				displayHtml()
+			}
+		}
+		function sceneCopy(e,index){
+			console.log('复制')
+			e.stopPropagation();
+			let newHTML = deepClone(HTML)
+			newHTML.push(HTML[index])
+			HTML = newHTML
+			RESOURCES.push(deepClone(RESOURCES[index]))
+			displayHtml()
+		}
+		function initCanvas() {			//初始化
+			let dom = '<div class="scene" data-index="0" onclick="changeScene(this)">' +
+				'<div>' +
+				'<div class="Preview">' +
+				'<div style="width:' + Request.width + 'px;height:' + Request.height + 'px;transform:scale(' + ThumbnailScale +
+				');transform-origin:' + transform_origin + '" class="cb_content"></div>' +
+				'<div class="mark">1</div>' +
+				'</div>' +
+				'<div class="sign">场景1</div>' +
+				'</div>' +
+				'<div class="tips">' +
+				'<div class="item" title="上移" onclick="sceneUpward(event,' + i + ')"><img src="images/upward.png" /></div>' +
+				'<div class="item" title="下移" onclick="sceneBackward(event,' + i + ')"><img src="images/backward.png" /></div>' +
+				'<div class="item" title="复制" onclick="sceneCopy(event,' + i + ')"><img src="images/copy.png" /></div>' +
+				'<div class="item" title="删除"><img src="images/delete.png" /></div>' +
+				'</div>' +
+				'</div>';
+			$('.tools .scene_body').append(dom);
+			$.ajax({
+				type: "get",
+				contentType: "application/json",
+				url: URL + "/engine/rest/common/hall|" + type_url + "/" + Request.id,
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				success: function(res) {
+					console.log(res,'数据')
+					proName = res.name;
+					RESOURCES = JSON.parse(res.resource_data);
+					HTML = JSON.parse(decodeURIComponent(res.module_data));
+					if (!HTML || HTML.length <= 0) {
+						HTML = [];
+						RESOURCES = [{}];
+						HTML.push({
+							index: 0,
+							html: "",
+							scalehtml: '<div style="width:' + Request.width + 'px;height:' + Request.height + 'px;transform:scale(' +
+								ThumbnailScale + ');transform-origin:' + transform_origin + '" class="cb_content"></div>',
+							backgroundColor: "",
+							delay: 10,
+							maxZIndex: 0,
+							minZIndex: 0,
+							business_type: 1, //1图片和视频，并且没有url和文件  2表示只包含文档 3表示只包含url
+							music: ''
+						})
+					}
+					if (HTML[0].business_type == 2) {
+						$('.disabledTools').css({
+							'display': 'block'
+						}); //选择了文档则不可使用左侧操作栏
+					}
+					if (HTML[0].music) {
+						$('.player audio').prop('src', HTML[0].music);
+						let loadPlay = $('.player audio').load();
+						if (!loadPlay) {
+							$('.player').css({
+								'display': 'flex'
+							});
+						}
+					} else {
+						$('.player').css({
+							'display': 'none'
+						});
+					}
+					maxZIndex = HTML[0].maxZIndex ? HTML[0].maxZIndex : 0;
+					minZIndex = HTML[0].minZIndex ? HTML[0].minZIndex : 0;
+					displayHtml();
+					$('#proName').text(proName);
+				}
+			});
+		}
+
+		function getval(dom) {
+			//console.log($(dom).scrollTop())
+			//if($(dom).scrollTop()>0) return;
+			var strContent = $(dom).val();
+			//strContent = strContent.replace(/\r\n/g,'<br/>').replace(/\n/g,'<br/>').replace(/\s/g,' ');
+			strContent = strContent.replace(/\r\n/g, '<br/>'); //IE9、FF、chrome
+			strContent = strContent.replace(/\n/g, '<br/>'); //IE7-8
+			strContent = strContent.replace(/\s/g, ' '); //空格处理
+			$(dom).attr('data-val', strContent);
+		}
+
+		function setPageTime(e) {
+			//设置单页播放时间
+			HTML[HTMLINDEX].delay = e.target.value;
+		}
+
+		function setFont(dom, type) {
+			//debugger
+			console.log(type);
+			switch (type) {
+				case 'date_type':
+					if ($(dom).val() == '1') {
+						$('#' + actDomId + ' .textarea').removeClass('cDate');
+						$('#' + actDomId + ' .textarea').removeClass('lunaDate');
+					} else if($(dom).val() == '2'){
+						$('#' + actDomId + ' .textarea').removeClass('lunaDate');
+						$('#' + actDomId + ' .textarea').addClass('cDate');
+					} else if($(dom).val() == '3'){
+						$('#' + actDomId + ' .textarea').removeClass('cDate');
+						$('#' + actDomId + ' .textarea').addClass('lunaDate');
+					}
+					break;
+				case 'font-size':
+					$('#' + actDomId + ' .textarea').css({
+						"font-size": $(dom).val()
+					});
+					break;
+				case 'line-height':
+					$('#' + actDomId + ' .textarea').css({
+						"line-height": $(dom).val()
+					});
+					break;
+				case 'text-align':
+					$('#' + actDomId + ' .textarea').css({
+						"text-align": $(dom).val()
+					});
+					break;
+				case 'font-color':
+					$('#' + actDomId + ' .textarea').css({
+						'color': $(dom).val()
+					});
+					break;
+				case 'font-type':
+					$('#' + actDomId + ' .textarea').css({
+						'font-family': $(dom).val()
+					});
+					break;
+				case 'bg-color':
+					$('#' + actDomId + ' .textarea').css({
+						'background': $(dom).val()
+					});
+					break;
+				case 'width':
+					let width = parseFloat($(dom).val()); //设置当前元素宽度的输入值
+					let canvase_w = $('#content').width(); //画布的宽度
+					if (width > canvase_w) {
+						$('#' + actDomId).width(canvase_w);
+					} else {
+						$('#' + actDomId).width(width);
+					}
+					break;
+				case 'height':
+					let height = parseFloat($(dom).val()); //设置当前元素宽度的输入值
+					let canvase_h = $('#content').height(); //画布的宽度
+					if (height > canvase_h) {
+						$('#' + actDomId).height(canvase_h);
+					} else {
+						$('#' + actDomId).height(height);
+					}
+					break;
+				case 'border_size':
+					$('#' + actDomId).css({
+						'border-width': parseInt($(dom).val())
+					});
+					break;
+				case 'border_type':
+					$('#' + actDomId).css({
+						'border-style': $(dom).val()
+					});
+					break;
+				case 'border_color':
+					$('#' + actDomId).css({
+						'border-color': $(dom).val()
+					});
+					break;
+				case 'x':
+					let x = parseFloat($(dom).val()); //设置的x坐标值
+					let wd = parseFloat($('#' + actDomId).width()); //选择的当前元素的宽度
+					let box_w = $('#content').width(); //画布的宽度
+					let setX = 0;
+					if ((x + wd) > box_w) {
+						setX = box_w - wd
+					} else if (x < 0) {
+						setX = 0;
+					} else {
+						setX = $(dom).val();
+					}
+					$('#' + actDomId).css({
+						'left': setX + 'px'
+					});
+					break;
+				case 'y':
+					let y = parseFloat($(dom).val()); //设置的x坐标值
+					let hg = parseFloat($('#' + actDomId).height()); //选择的当前元素的宽度
+					let box_h = $('#content').height(); //画布的宽度
+					let setY = 0;
+					if ((y + hg) > box_h) {
+						setY = box_h - hg;
+					} else if (y < 0) {
+						setY = 0;
+					} else {
+						setY = $(dom).val();
+					}
+					$('#' + actDomId).css({
+						'top': setY + 'px'
+					});
+					break;
+				default:
+					break;
+			}
+			//console.log($(dom).val(),type)
+		}
+
+		function changeTab(index) {
+			tab_index = index; //当前显示的tab的位置
+			if (tab_index == 0) {
+				$('#tmenu1').text('文字');
+				$('#tmenu1').addClass('active');
+				$('#tmenu2').removeClass('active');
+			} else {
+				$('#tmenu1').text('场景设置');
+				$('#tmenu1').removeClass('active');
+				$('#tmenu2').addClass('active');
+			}
+			//tab_type:0(第一个显示左侧拖拽元素的tab);1(第一个tab显示背景的操作)
+			if (tab_type == 0) {
+				//左侧栏拖拽元素点击后右侧显示的操作栏
+				$('#tmenu1').text('文字');
+				if (tab_index == 0) {
+					$('#font_tab').css({
+						'display': 'block'
+					});
+					$('#bg_tab').css({
+						'display': 'none'
+					});
+					$('.tab_two').css({
+						'display': 'none'
+					});
+				} else {
+					$('#font_tab').css({
+						'display': 'none'
+					});
+					$('#bg_tab').css({
+						'display': 'none'
+					});
+					$('.tab_two').css({
+						'display': 'block'
+					});
+				}
+			} else {
+				//点击页面背景显示的右侧操作栏
+				$('#tmenu1').text('场景设置');
+				if (tab_index == 0) {
+					$('#font_tab').css({
+						'display': 'none'
+					});
+					$('#bg_tab').css({
+						'display': 'block'
+					});
+					$('.tab_two').css({
+						'display': 'none'
+					});
+				} else {
+					$('#font_tab').css({
+						'display': 'none'
+					});
+					$('#bg_tab').css({
+						'display': 'none'
+					});
+					$('.tab_two').css({
+						'display': 'block'
+					});
+				}
+			}
+
+		}
+		//切换右侧工具栏类型
+		function showBgOpt(type) {
+			tab_type = type;
+			$('#tmenu1').addClass('active');
+			$('#tmenu2').removeClass('active');
+			if (tab_type == 0) {
+				$('#bg_tab').css({
+					'display': 'none'
+				});
+				$('#font_tab').css({
+					'display': 'block'
+				});
+				$('#font_tab .tab_one').css({
+					'display': 'block'
+				});
+				$('#font_tab .tab_two').css({
+					'display': 'none'
+				});
+			} else {
+				$('#bg_tab').css({
+					'display': 'block'
+				});
+				$('#font_tab').css({
+					'display': 'none'
+				});
+				$('#bg_tab .tab_one').css({
+					'display': 'block'
+				});
+				$('#bg_tab .tab_two').css({
+					'display': 'none'
+				});
+			}
+		}
+		showBgOpt(1);
+		//设置节目名称
+		function setProgramName() {
+			programEdit = !programEdit;
+			if (programEdit) {
+				$('#setName').val($('#proName').text())
+				$('#proName').css({
+					'display': 'none'
+				});
+				$('#proEditor').css({
+					'display': 'block'
+				});
+				$('#tools .left .icon img').attr('src', 'images/confirm.png');
+			} else {
+
+				$('#proName').text($('#setName').val());
+				$('#proName').css({
+					'display': 'block'
+				});
+				$('#proEditor').css({
+					'display': 'none'
+				});
+				proName = $('#setName').val();
+				$('#tools .left .icon img').attr('src', 'images/edit.png');
+			}
+		}
+
+		function delete_page(e, index) {
+			//index = parseInt(index);
+			e.stopPropagation();
+			index = index ? index : HTMLINDEX;
+			if (HTML.length <= 1) {
+				HTMLINDEX = 0;
+				HTML[0] = {
+					index: 0,
+					html: "",
+					scalehtml: '<div style="width:' + Request.width + 'px;height:' + Request.height + 'px;transform:scale(' +
+						ThumbnailScale + ');transform-origin:' + transform_origin + '" class="cb_content"></div>',
+					backgroundColor: "",
+					delay: 10,
+					maxZIndex: 0,
+					minZIndex: 0,
+					business_type: 1 //1图片和视频，并且没有url和文件  2表示只包含文档 3表示只包含url
+				}
+				displayHtml();
+				RESOURCES = [{}];
+				$('.disabledTools').css({
+					'display': 'none'
+				}); //选择了文档左侧操作栏不可编辑,删除文档也左侧操作栏恢复原状态
+			} else {
+				HTML.splice(index, 1);
+				RESOURCES.splice(index, 1);
+				HTMLINDEX = index != 0 ? index - 1 : 0;
+				console.log(HTML, HTMLINDEX);
+				console.log(HTML[HTMLINDEX].business_type);
+				var display = HTML[HTMLINDEX].business_type!=2?'none':'block';
+				$('.disabledTools').css({
+					'display': display
+				}); //选择了文档左侧操作栏不可编辑,删除文档也左侧操作栏恢复原状态
+				displayHtml();
+			}
+
+		}
+		//设置当前选中元素在canvas中的位置
+		function setPosition(dom, type) {
+			actDomId = $("#actDomId").attr("actDomId");
+			let box_wd = $('#' + actDomId).width();
+			let box_hg = $('#' + actDomId).height();
+			let content_wd = $('#content').width();
+			let content_hg = $('#content').height();
+			console.log($('#' + actDomId)[0].clientWidth);
+			switch (type) {
+				case 'left': //左对齐
+					$('#' + actDomId).css({
+						'left': '0px'
+					});
+					break;
+				case 'horizontal': //水平对齐
+					$('#' + actDomId).css({
+						'left': (content_wd - box_wd) / 2 + 'px'
+					});
+					break;
+				case 'right': //右对齐
+					$('#' + actDomId).css({
+						'right': '0px',
+						'left': 'initial',
+					});
+					break;
+				case 'top': //上对齐
+					$('#' + actDomId).css({
+						'top': '0px',
+						'bottom': 'initial'
+					});
+					break;
+				case 'vertical': //垂直居中
+					$('#' + actDomId).css({
+						'top': (content_hg - box_hg) / 2 + 'px',
+						'bottom': 'initial'
+					});
+					break;
+				case 'bottom': //下对齐
+					$('#' + actDomId).css({
+						'bottom': '0px',
+						'top': 'initial'
+					});
+					break;
+				default:
+					break;
+			}
+		}
+
+		function getColor(e) {
+			console.log(e.value, $('#color').val())
+		}
+		//右键弹出菜单
+		function popMenu() {
+			console.log(actDomId)
+			var rcm = window.RMenu;
+			rcm.init({
+				area: '.edit_box',
+				items: {
+					"edit": {
+						name: "编辑",
+						icon: 'edit'
+					},
+					"del": {
+						name: "删除",
+						icon: 'trash-o'
+					},
+					"upper": {
+						name: "上移一层",
+						icon: 'plus',
+					},
+					"lower": {
+						name: "下移一层",
+						icon: 'refresh'
+					},
+					"bottom": {
+						name: "最底层",
+						icon: 'cloud-download'
+					},
+					"top": {
+						name: "最顶层",
+						icon: 'file',
+					}
+				},
+				callback: function(res) {
+					console.log(actDomId)
+					var index = $('#' + actDomId).css('z-index');
+					if (res.data == 'edit') {
+						$("#actDomId").attr("actDomId", actDomId);
+						let type = $('#' + actDomId)[0].dataset.type;
+						if (type == 'iframe') {
+							setUrl();
+						} else {
+							editor_status(type);
+						}
+					} else if (res.data == 'del') {
+						console.log(HTML[HTMLINDEX])
+						if(HTML[HTMLINDEX].business_type==2) {
+							HTML[HTMLINDEX].business_type = 1;
+						}
+						console.log(HTML[HTMLINDEX])
+						console.log(RESOURCES[HTMLINDEX])
+						HTML[HTMLINDEX]['swiperType']&&HTML[HTMLINDEX]['swiperType'][actDomId]&&delete HTML[HTMLINDEX]['swiperType'][actDomId]
+						RESOURCES[HTMLINDEX][actDomId]&&delete RESOURCES[HTMLINDEX][actDomId]
+						//--maxZIndex;
+						if ($('#' + actDomId).attr('data-type') == 'document') {
+							$('.disabledTools').css({
+								'display': 'none'
+							}); //选择文档左侧操作栏回复可选状态
+						}
+						$('#' + actDomId).remove();
+						if ($('.timmer').length - 1 <= 0) {
+							timeInterval = '';
+						}
+					} else if (res.data == 'upper') {
+						$('#' + actDomId).css({
+							'z-index': ++index
+						});
+						if (index > maxZIndex) maxZIndex = index;
+					} else if (res.data == 'lower') {
+						$('#' + actDomId).css({
+							'z-index': --index
+						});
+						if (index < minZIndex) minZIndex = index;
+					} else if (res.data == 'bottom') {
+						$('#' + actDomId).css({
+							'z-index': --minZIndex
+						});
+					} else if (res.data == 'top') {
+						$('#' + actDomId).css({
+							'z-index': ++maxZIndex
+						});
+					}
+					// else if (res.data == 'add') {
+					// 	console.log('点击了add');
+					// } else if (res.data == 'refresh') {
+					// 	window.location.reload();
+					// } else if (res.data == 'down') {
+					// 	console.log('点击了download');
+					// }
+				}
+			})
+		}
+		var displayPro = false;
+
+		function setUrl() {
+			displayPro = !displayPro;
+			if (displayPro) {
+				$('.pro').css({
+					'display': 'flex'
+				})
+			} else {
+				$('.pro').css({
+					'display': 'none'
+				})
+			}
+		}
+
+		function close_pro(type) {
+			actDomId = $("#actDomId").attr("actDomId");
+			if (type == 'confirm') {
+				var url = $('#url').val();
+				var reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+				if (!reg.test(url)) {
+					$('#erro_url').css({
+						'display': 'block'
+					});
+				} else {
+					$('#' + actDomId + ' iframe').prop('src', url);
+					console.log(RESOURCES[HTMLINDEX]);
+					RESOURCES[HTMLINDEX][actDomId] = [{
+						id: '',
+						md5: '',
+						type: 'url',
+						path: url
+					}];
+
+					console.log(RESOURCES);
+					$('#' + actDomId + ' .box_modal').text('');
+					$('.pro').css({
+						'display': 'none'
+					});
+				}
+			} else {
+				$('.pro').css({
+					'display': 'none'
+				});
+			}
+
+		}
+		var displayV = false;
+		function htmlToImage(){
+			console.log(HTMLINDEX,HTML[HTMLINDEX]);
+			$('<div style="position:fixed;left:0;top:0;overflow:scroll;z-index:-100000;opacity:0;"><div id="htmlToImage" style="width:'+Request.width+'px;height:'+Request.height+'px;">'+HTML[HTMLINDEX].html+'</div></div>').appendTo("body");
+			saveCanvas();
+			/* console.log(HTMLINDEX,HTML[HTMLINDEX].html);
+			var canvas = document.createElement('div');
+			canvas.setAttribute('id','htmlToImage');
+			canvas.innerHTML = HTML[HTMLINDEX].html;
+			document.body.appendChild(canvas); */
+		}
+		function getQueryVariable(variable){
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+					var pair = vars[i].split("=");
+					if(pair[0] == variable){return pair[1];}
+			}
+			return(false);
+		}
+		function preview(){
+			//先执行保存 内容同keep()
+			let business_type = 1; //1图片和视频，并且没有url和文件  2表示只包含文档(清空当前节目的所有内容)  3:包含url的都是3
+			var next = save_canvas();
+			if (!next) {
+				return;
+			}
+			if (HTML.length > 1) {
+				for (let i = 0; i < HTML.length; i++) {
+					if (HTML[i].business_type == 3) {
+						business_type = 3;
+					}
+					if (!HTML[i].delay || parseFloat(HTML[i].delay) <= 0) {
+						alert('请设置场景' + (++i) + '的播放时间并且播放时间必须大于0');
+						return
+					}
+				}
+				if(business_type!=3){
+					business_type = HTML[HTMLINDEX].business_type;
+				}
+			} else {
+				business_type = HTML[0].business_type;
+			}
+			for (let i = 0; i < HTML.length; i++) {
+				if (HTML[i].backgroundImage != '') {
+					RESOURCES[i].backgroundImage = [{
+						id: HTML[i].backgroundId,
+						md5: '',
+						path: HTML[i].backgroundImage,
+						type: ''
+					}];
+				}
+			}
+			let data = {
+				"data": [{
+					"name": proName,
+					"business_type": business_type,
+					"module_data": encodeURI(JSON.stringify(HTML)),
+					"resource_data": JSON.stringify(RESOURCES),
+					"resolution": Request.resolutionId,
+					"id": Request.id
+				}],
+				"mateRule": {}
+			};
+			console.log(data)
+			console.log(HTML,'html')
+			$.ajax({
+				type: "put",
+				data: JSON.stringify(data),
+				contentType: "application/json",
+				url: URL + "/engine/rest/common/hall|" + type_url + "/" + Request.id,
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				success: function(res) {
+					if (res.code !== 0) {
+						message.add("保存失败", "error");
+					} else {
+						message.add("保存成功！", "success");
+						let id =  getQueryVariable('id')
+						let type =  getQueryVariable('type')
+						let resolutionValue = getQueryVariable('resolutionValue')
+						let url = `./showPage.html?id=${id}&resolutionValue=${resolutionValue}&type=${type}`
+						window.open(url)
+					}
+				}
+			});
+		}
+		function displayView(e) {
+			if (HTML.length > 1) { //如果场景数大于1必须设置场景播放时间
+				for (let i = 0; i < HTML.length; i++) {
+					if (!HTML[i].delay || parseFloat(HTML[i].delay) <= 0) {
+						message.add('请设置场景' + (++i) + '的播放时间并且播放时间必须大于0', "error");
+						return
+					}
+				}
+			}
+			save_canvas();
+			var boxSwiper;
+			if (e) {
+				$('#getVoice').css({
+					'display': 'block'
+				});
+				$('.disabledTools').css({
+					"display": "none"
+				});
+				$('#view_box').css({
+					'display': 'flex',
+					'align-items': 'flex-end',
+					'justify-content': 'center'
+				});
+				let html = '';
+				let audio = '';
+				for (let i = 0; i < HTML.length; i++) {
+					html += '<div class="swiper-slide swiper-slide' + i + '" data-swiper-autoplay="' + (HTML[i].delay * 1000) +
+						'">' + HTML[i].scalehtml + '</div>';
+				}
+				$('#swiper-wrapper').html(html);
+				var winW = window.innerWidth;
+				var winH = window.innerHeight;
+				var wScale = winW / Request.width;
+				var hScale = winH / Request.height;
+				/* var winWH = winW / winH;
+				var WH = Request.width / Request.height;
+				var scale;
+				var marginL = 0;
+				var marginT = 0;
+				if (winWH > WH) {
+					scale = winH / Request.height;
+					marginL = (winW - Request.width * scale) / 2 ;
+				} else {
+					scale = winW / Request.width;
+					marginT = (winH - Request.height * scale) / 2 ;
+				} */
+
+				$('#swiper-wrapper .cb_content').css({
+					'width': Request.width,
+					'height': Request.height,
+					'transform': 'scale(' + wScale + ',' + hScale + ')',
+					'transform-origin': '0px 0px',
+				});
+				// $('.box').css({'margin-top':'50px'});
+				$('#view_box .box').removeClass('boxBg');
+				$('#view_box .coor').css({
+					'background-color': 'transparent'
+				});
+				//更换textarea标签并重新赋值
+				$("#view_box .box[data-type='font']").each(function(i) {
+					if ($(this).find('.cDate').length <= 0 && $(this).find('.weather').length <= 0) {
+						var str = '<div class="textarea" style="width:100%;height:100%;' + $(this).find('.textarea').attr('style') +
+							'">' + ($(this).find('textarea').attr('data-val') || "") + '</div>';
+					}
+					$(this).html(str);
+					//$(this).css({width:($(this).width()+20)/scale,height:($(this).height()+20)/scale})
+				});
+				$("#view_box .box[data-fType]").each(function(i) {
+					var direction = "";
+					switch ($(this).attr("data-fType")) {
+						case "0":
+							direction = "up";
+							break;
+						case "1":
+							direction = "down";
+							break;
+						case "2":
+							direction = "left";
+							break;
+						case "3":
+							direction = "right";
+							break;
+						default:
+							"left";
+							break;
+					}
+					var fontSize = $(this).find('textarea').css('font-size');
+					var marqWidth = $("#view_box .box[data-fType]").eq(i).width();
+					var marquee = '<marquee behavior="scroll" direction="' + direction + '" style="font-size:' + fontSize +
+						';width:' + marqWidth + 'px !important;' + $(this).find('textarea').attr('style') + '">' +
+						($(this).find('textarea').attr("data-val") || "") +
+						'</marquee>';
+					$(this).html(marquee);
+				})
+				//getTime();
+				displayV = e;
+				// $('#view_box .swiper-slide0 .video-js').trigger('play');
+				if (HTML.length > 1) {
+					if (!!mySwiper) {
+						mySwiper.destroy();
+					}
+					mySwiper = new Swiper('#view_box .check_out', {
+						loop: true,
+						effect: 'cube',
+						slidesPerview: 'auto',
+						autoplay: {
+							delay: 0,
+							stopOnLastSlide: false,
+							disableOnInteraction: false,
+						},
+						freeMode: true,
+						speed: 1000,
+						observer: true, //修改swiper自己或子元素时，自动初始化swiper
+						observeParents: true, //修改swiper的父元素时，自动初始化swiper
+						disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+						on: {
+							slideChangeTransitionStart: function() {
+								//console.log(this.previousIndex);
+								var activeIndex = this.activeIndex;
+								var previousIndex = this.previousIndex;
+								$('#play_music').trigger('pause');
+								if (previousIndex == 0 && HTML[previousIndex] && HTML[previousIndex].music) {
+									$('#play_music').attr('src', HTML[previousIndex].music);
+								} else if (previousIndex > HTML.length - 1 && HTML[0].music) {
+									$('#play_music').attr('src', HTML[0].music);
+								} else {
+									if (HTML[previousIndex]) {
+										$('#play_music').attr('src', HTML[previousIndex].music);
+									}
+								}
+								if (HTML[previousIndex]) {
+									if (!HTML[previousIndex].music) {
+										$('#play_music').attr('src', '');
+									} else {
+										$('#play_music')[0].play();
+									}
+								}
+								if ($('#view_box .player audio').length > 0) {
+									$('#view_box .player audio')[0].play();
+								}
+								// $('#view_box .swiper-slide[data-swiper-slide-index] .video-js').trigger('pause');
+								// let playNow = $("#swiper-wrapper").children().eq(activeIndex).find("video");
+								// if(playNow.length>0){
+								// 	playNow = playNow[0];
+								// 	let loadPlay = playNow.load();
+								// 	if(!loadPlay){
+								// 		playNow.play();
+								// 		playNow.muted = false;
+								// 	}
+								// }
+								$('#view_box .swiper-slide[data-swiper-slide-index] .video-js').trigger('pause');
+								$("#swiper-wrapper").children().eq(activeIndex).find("video").each(function() {
+									if ($(this)[0].readyState == 4) {
+										$(this)[0].play();
+									} else {
+										if (!$(this)[0].load()) {
+											$(this)[0].play();
+										}
+									}
+								});
+
+								if (!!boxSwiper) {
+									try {
+										if (Array.isArray(boxSwiper)) {
+											for (let i = 0; i < boxSwiper.length; i++) {
+												boxSwiper[i].destroy();
+											}
+										} else {
+											boxSwiper.destroy();
+										}
+									} catch (e) {}
+								}
+								boxSwiper = new Swiper('#view_box .swiper-slide-active .swiper-container', {
+									loop: true,
+									autoplay: {
+										delay: 0,
+										stopOnLastSlide: false,
+										disableOnInteraction: false,
+									},
+									effect:"cube",
+									freeMode: true,
+									speed: 1000,
+									observer: true, //修改swiper自己或子元素时，自动初始化swiper
+									observeParents: true, //修改swiper的父元素时，自动初始化swiper
+									observer: true, //修改swiper自己或子元素时，自动初始化swiper
+									observeParents: true, //修改swiper的父元素时，自动初始化swiper
+									disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+								});
+							}
+						}
+					});
+				} else {
+					$('#view_box .swiper-container .swiper-slide .video-js').each(function() {
+						$(this).attr('autoplay', 'autoplay');
+						$(this)[0].muted = false;
+						$(this)[0].play();
+						$(this)[0].load();
+					})
+					if (HTML[0].music) {
+						$('#play_music').attr('src', HTML[0].music);
+						if ($('#play_music') && !$('#play_music')[0].load()) {
+							$('#play_music')[0].play();
+						}
+					}
+					boxSwiper = new Swiper('#view_box .swiper-slide0 .swiper-container', {
+						loop: true,
+						slidesPerview: 'auto',
+						autoplay: {
+							delay: 0,
+							stopOnLastSlide: false,
+							disableOnInteraction: false,
+						},
+						observer: true, //修改swiper自己或子元素时，自动初始化swiper
+						observeParents: true, //修改swiper的父元素时，自动初始化swiper
+						disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+					});
+				}
+				console.log(mySwiper);
+			} else {
+				if ($(".box[data-type='document']").length > 0) {
+					$('.disabledTools').css({
+						"display": "block"
+					});
+				}
+				$('#swiper-wrapper').html('');
+				$('#view_box').css({
+					'display': 'none'
+				});
+				$('#view_box .player audio').trigger('pause');
+				$('#view_box .player audio').attr('src', HTML[HTMLINDEX].music);
+				$('#play_music')[0].pause();
+				if (!!mySwiper) {
+					mySwiper.destroy();
+				}
+				if (!!boxSwiper) {
+					try {
+						for (let i = 0; i < boxSwiper.length; i++) {
+							boxSwiper[i].destroy();
+						}
+					} catch (e) {}
+				}
+			}
+		}
+		//移除页面背景图
+		function removeBackground() {
+			$('#content').css({
+				'background-image': ''
+			});
+			HTML[HTMLINDEX].backgroundImage = '';
+		}
+		//获取背景图片
+		function getImageBg() {
+			console.log('获取背景图片')
+			let param = {
+				"type": "image",
+				"pageSize": 3,
+				"pageNumber": pageNumber,
+				"status":'1'
+			};
+			$.ajax({
+				type: 'get',
+				data: {
+					param: JSON.stringify(param)
+				},
+				url: URL + `/engine/rest/common/hall|publish_release_resource`,
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				success: function(res) {
+					if (res.code == 0) {
+						let html = '';
+						let data = res.rows;
+						rows = res.rows
+						if (ALLPAGE <= 0) {
+							ALLPAGE = ++res.totalPages;
+							//分页器
+							Page({
+								num: ALLPAGE, //页码数
+								startnum: 1, //指定页码
+								elem: $('#page2'), //指定的元素
+								callback: function(n) { //回调函数
+									console.log(n)
+									pageNumber = n;
+									getImageBg();
+								}
+							});
+						}
+						console.log(data)
+						for (let i = 0; i < data.length; i++) {
+							let thumbnail_url = data[i].thumbnail_url?( data[i].thumbnail_url):'images/modify_pic.png';
+							html += '<div class="img_item" onclick="imgClick(this)">' +
+								'<img src="' + thumbnail_url + '" />' +
+								'<div class="img_shadow"></div>' +
+								'<div class="detail">' +
+								data[i].name +
+								'</div>' +
+								'<div class="checked"><input type="checkbox" onchange="changeBgChecked(this,' + i + ',\'' + data[i].url + '\',\'' + data[i].id + '\')" /></div>' +
+								'</div>';
+						}
+						$('#img_box').html(html);
+					}
+				},
+			})
+		}
+
+		function changeBgChecked(_this, index, url , id) {
+			console.log(id)
+			let all = $(".checked input");
+			let checkable = $(_this).is(':checked');
+			if (checkable) {
+				all.prop('checked', false);
+				$(_this).prop('checked', true);
+				backgroundImg = url;
+				backgroundId = id
+			} else {
+				backgroundImg = '';
+				backgroundId = '';
+				all.prop('checked', false);
+			}
+		}
+		var pageNumber = 1;
+		var ALLPAGE = 0;
+		//获取资源列表
+		function getPicList(type) {
+			if (type == 'model') {
+				getModel();
+				return;
+			}
+			type = type == 'Carousel' ? 'image' : type;
+			let param = {
+				"type": type,
+				"pageSize": 10,
+				"pageNumber": pageNumber,
+				"status":'1'
+			};
+			$.ajax({
+				type: 'get',
+				data: {
+					param: JSON.stringify(param)
+				},
+				url: URL + `/engine/rest/common/hall|publish_release_resource`,
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				success: function(res) { 
+					$('#carouselTime').html('');
+					if (res.code == 0) {
+						let html = '';
+						let data = res.rows;
+						PICLIST = data;
+						if (ALLPAGE <= 0) {
+							ALLPAGE = ++res.totalPages;
+							//分页器
+							Page({
+								num: ALLPAGE, //页码数
+								startnum: 1, //指定页码
+								elem: $('#page2'), //指定的元素
+								callback: function(n) { //回调函数
+								console.log(RESOURCES[HTMLINDEX][actDomId]);
+								let res = RESOURCES[HTMLINDEX]&&RESOURCES[HTMLINDEX][actDomId]?RESOURCES[HTMLINDEX][actDomId]:[];  //选中的图片列表数据
+								let changeTime = 0;
+								for (let i = 0; i < res.length; i++) {
+									if(!!$('[data-id='+res[i].id+'] input').val()){
+										let time = parseInt($('[data-id='+res[i].id+'] input').val());
+										changeTime = isNaN(time)?0:time;
+										RESOURCES[HTMLINDEX][actDomId][i].delay = changeTime;
+									}
+								}
+									pageNumber = n;
+									getPicList(type);
+								}
+							});
+						}
+						let source_dom = '';
+						let source_type = '';
+						if (type == 'music') {
+							actDomId = 'music';
+							source_type = 'music';
+						} else {
+							actDomId = $("#actDomId").attr("actDomId");
+							source_type = $('#' + actDomId).attr('data-type');
+						}
+						console.log(RESOURCES)
+
+						console.log(HTMLINDEX,actDomId)
+
+						let res_data = RESOURCES[HTMLINDEX][actDomId] ? RESOURCES[HTMLINDEX][actDomId] : [];
+						var tempDom = '';
+						for (let j = 0; j < res_data.length; j++) {
+							if (res_data[j].pageNumber == pageNumber) {
+								let thumbnail_url = res_data[j].thumbnail_url?(res_data[j].thumbnail_url):'images/modify_pic.png';
+								tempDom += '<div class="item flex" data-id="'+res_data[j].id+'">'+
+												'<div class="pic"><img src="'+thumbnail_url+'" /></div>'+
+												'<label>切换时间（秒）：</label>'+
+												'<div class="input"><input type="number" value="'+(res_data[j]['delay']||5)+'" /></div>'+
+												'<div class="btn_content">'+
+													'<div class="btn" onclick="carouselUp(this)"><img src="images/upward.png" /></div>'+
+													'<div class="btn" onclick="carouselDown(this)"><img src="images/backward.png" /></div>'+
+												'</div>'+
+											'</div>';
+							}
+						}
+						$('#carouselTime').append(tempDom);
+						for (let i = 0; i < data.length; i++) {
+							let checked = false;
+							let thumbnail_url = data[i].thumbnail_url?( data[i].thumbnail_url):'images/modify_pic.png';
+							//mark
+							let res_data = RESOURCES[HTMLINDEX][actDomId] ? RESOURCES[HTMLINDEX][actDomId] : [];
+							for (let j = 0; j < res_data.length; j++) {
+								if (res_data[j].id == data[i].id) {
+									checked = true;
+									break;
+								}
+							}
+							if (type == 'image' || type == 'video' || type == 'music') {
+								source_dom = '<img src="' + thumbnail_url + '" />';
+							} else if (type == 'document') {
+								source_dom = '<img src="images/document.png" />';
+							}
+							let imgBox = '<div class="img_item" onclick="imgClick(this)">' +
+								source_dom +
+								'<div class="img_shadow"></div>' +
+								'<div class="detail">' +
+								data[i].name +
+								'</div>' +
+								'<div class="checked"><input type="checkbox" ' + (checked ? 'checked="true"' : '') +
+								'" onchange="changeChecked(this,' + i + ',\'' + source_type + '\')" /></div>' +
+								'</div>'
+							html += imgBox;
+							imgBoxHTML.push(imgBox)
+						}
+						$('#img_box').html(html);
+					}
+
+					console.log(res.rows);
+				}
+			});
+		}
+		var delResource = []; //要删除的资源列表
+		function changeChecked(_this, index, type) {
+			if ($('#delResource').attr('data-status') == '1') {
+				let indexOf = delResource.indexOf(PICLIST[index].id)
+				if (indexOf > -1) {
+					delResource.splice(indexOf, 1);
+				} else {
+					delResource.push(PICLIST[index].id);
+				}
+				return;
+			} else {
+				RESOURCES[HTMLINDEX][actDomId] = RESOURCES[HTMLINDEX][actDomId] ? RESOURCES[HTMLINDEX][actDomId] : [];
+				let current_data = RESOURCES[HTMLINDEX][actDomId];  //获取当前编辑元素的资源数据
+				if (type == 'Carousel') {  //
+					for (let i = 0; i < current_data.length; i++) {
+						if (PICLIST[index].id == current_data[i].id) {
+							let checked = $(_this).prop('checked');
+							if (!checked) {
+								$('[data-id='+current_data[i].id+']').remove();
+								RESOURCES[HTMLINDEX][actDomId].splice(i, 1);
+							} else {
+								RESOURCES[HTMLINDEX][actDomId].push({
+									id: PICLIST[index].id,
+									type: type,
+									path: PICLIST[index].url,
+									md5: PICLIST[index].md5,
+									delay: 5,
+									pageNumber:pageNumber,
+									thumbnail_url:PICLIST[index].thumbnail_url
+								});
+								var tempDom = '<div class="item flex" data-id="'+PICLIST[index].id+'">'+
+												'<div class="pic"><img src="'+ PICLIST[index].url+'" /></div>'+
+												'<label>切换时间（秒）：</label>'+
+												'<div class="input"><input type="number" value="5" /></div>'+
+												'<div class="btn_content">'+
+													'<div class="btn" onclick="carouselUp(this)"><img src="images/upward.png" /></div>'+
+													'<div class="btn" onclick="carouselDown(this)"><img src="images/backward.png" /></div>'+
+												'</div>'+
+											'</div>';
+								$('#carouselTime').append(tempDom);
+							}
+							$(_this).prop('checked', checked);
+							return;
+						}
+					}
+					RESOURCES[HTMLINDEX][actDomId].push({
+						id: PICLIST[index].id,
+						type: type,
+						path: PICLIST[index].url,
+						md5: PICLIST[index].md5,
+						delay: 5,
+						pageNumber:pageNumber,
+						thumbnail_url:PICLIST[index].thumbnail_url
+					})
+					var tempDom = '<div class="item flex" data-id="'+PICLIST[index].id+'">'+
+									'<div class="pic"><img src="'+ PICLIST[index].url+'" /></div>'+
+									'<label>切换时间（秒）：</label>'+
+									'<div class="input"><input type="number" value="5" /></div>'+
+									'<div class="btn_content">'+
+										'<div class="btn" onclick="carouselUp(this)"><img src="images/upward.png" /></div>'+
+										'<div class="btn" onclick="carouselDown(this)"><img src="images/backward.png" /></div>'+
+									'</div>'+
+								'</div>';
+					$('#carouselTime').append(tempDom);
+				} else {
+					let all = $(".checked input");
+					let checkable = $(_this).is(':checked');
+					RESOURCES[HTMLINDEX][actDomId][0] = [];
+					for (var i = 0; i < all.length; i++) {
+						if (i == index && checkable) {
+							$(_this).prop('checked', true);
+							RESOURCES[HTMLINDEX][actDomId][0] = {
+								id: PICLIST[index].id,
+								type: type,
+								path: PICLIST[index].url,
+								md5: PICLIST[index].md5
+							};
+						} else {
+							all.eq([i]).prop('checked', false);
+						}
+					}
+				}
+			}
+		}
+		//关闭弹出编辑框
+		var shadow = false;
+		var tempResource = '';
+		function carouselUp(dom){
+			let parent = dom.parentElement.parentElement
+			let carouselTime = document.querySelector('#carouselTime')
+			for(let key in carouselTime.childNodes){
+				if(carouselTime.childNodes[key].dataset&&carouselTime.childNodes[key].dataset['id']!=null){
+					if(carouselTime.childNodes[key].dataset['id']==parent.dataset['id']&&Number(key)>0){
+						carouselTime.insertBefore(carouselTime.childNodes[Number(key)],carouselTime.childNodes[Number(key)-1])
+						let target = deepClone(RESOURCES[HTMLINDEX][actDomId][Number(key)])
+						let previous = deepClone(RESOURCES[HTMLINDEX][actDomId][Number(key)-1])
+						RESOURCES[HTMLINDEX][actDomId][Number(key)-1] = target
+						RESOURCES[HTMLINDEX][actDomId][Number(key)] = previous
+						break
+					}
+				}
+			}
+			console.log(RESOURCES)
+		}
+		function carouselDown(dom){
+			let parent = dom.parentElement.parentElement
+			let carouselTime = document.querySelector('#carouselTime')
+			let index 
+			for(let key in carouselTime.childNodes){
+				if(carouselTime.childNodes[key].dataset&&carouselTime.childNodes[key].dataset['id']!=null){
+					if(carouselTime.childNodes[key].dataset['id']==parent.dataset['id']&&Number(key)<carouselTime.childNodes.length-1){
+						let a = carouselTime.childNodes[Number(key)].cloneNode(true)
+						let b = carouselTime.childNodes[Number(key)+1].cloneNode(true)
+						carouselTime.replaceChild(b,carouselTime.childNodes[Number(key)])
+						carouselTime.replaceChild(a,carouselTime.childNodes[Number(key)+1])
+						let target = deepClone(RESOURCES[HTMLINDEX][actDomId][Number(key)])
+						let next = deepClone(RESOURCES[HTMLINDEX][actDomId][Number(key)+1])
+						RESOURCES[HTMLINDEX][actDomId][Number(key)+1] = target
+						RESOURCES[HTMLINDEX][actDomId][Number(key)] = next
+						console.log(RESOURCES)
+						break
+					}
+				}
+			}
+
+		}
+		function editor_status(type) {
+			console.log(type)
+			let fType = '';
+			ALLPAGE = 0;
+			var close_type = '';
+			switch (type) {
+				case 'image':
+					fType = 'image/*';
+					break;
+				case 'video':
+					fType = 'video/*';
+					break;
+				case 'document':
+					fType =
+						'text/plain,.csv,.pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+					break;
+				case 'music':
+					fType = 'audio/*';
+					break;
+				case 'Carousel':
+					let dom = document.querySelector('#swiperType');
+					console.log(HTML[HTMLINDEX])
+					if(HTML[HTMLINDEX]['swiperType'][actDomId]){
+						swiperType[actDomId] = deepClone(HTML[HTMLINDEX]['swiperType'][actDomId])
+					}
+					dom.value = `${swiperType[actDomId]['type']}-${swiperType[actDomId]['direction']}`
+					fType = 'image/*';
+					type = 'image';
+					$('#carouselOpt').css({
+						'display': 'flex'
+					});
+					$('#changeTime').val(5);
+					break;
+				default:
+					break;
+			}
+			//$('#editor_content').empty();
+			// if (actDomId) {
+			// 	console.log($('#' + actDomId).attr('data-type'))
+			// 	let type = $('#' + actDomId).attr('data-type');
+			// 	let options = [];
+			// }
+			pageNumber = 1;
+			if (!shadow) {
+				//actDomId = $(".shadow_editor").attr("actDomId");
+				if(RESOURCES[HTMLINDEX]){
+					tempResource = JSON.stringify(RESOURCES[HTMLINDEX][actDomId])||'';
+				}else{
+					tempResource = '';
+				}
+				
+				$('#keep_opt').removeAttr("onclick");
+				if (type != 'model') {
+					$('#keep_opt').attr("onclick", "save_editor()");
+					let str = '上传<input class="file" name="file" type="file" data-type="' + type + '"' +
+						'accept="' + fType + '" onchange="uploadFiles(event,this)" />';
+					$('#upload').html(str);
+				} else {
+					$('#keep_opt').attr("onclick", "saveModel()");
+				}
+				loadResource(type);  //加载资源
+			} else {
+				if(tempResource&&type!=='save') {
+					RESOURCES[HTMLINDEX][actDomId] = JSON.parse(tempResource);
+				}
+				actDomId = "";
+				cancelDel();
+				$('#carouselOpt').css({
+					'display': 'none'
+				});
+				//$('#carouselTime').empty();
+				
+			}
+			backgroundImg = '';
+			$('.shadow_box').css('visibility', !shadow ? 'visible' : 'hidden');
+			shadow = !shadow;
+		}
+
+		//保存编辑内容并展示
+		function save_editor() {
+			if ($('#upload input').prop('accept') == 'audio/*') {  
+				if (RESOURCES[HTMLINDEX]['music']) {
+					let resource = RESOURCES[HTMLINDEX]['music'][0];
+					HTML[HTMLINDEX].music = resource['path'];
+					// dom_str = '<audio src="'+URL + '/zuul/file/file/' +resource.path+'" controls="controls" autoplay="autoplay">'+
+					// 		'<p>您的浏览器不支持该视频</p>'+
+					// 		'</audio>';
+					$('.player audio').prop('src', resource.path);
+					$('.player').css({
+						'display': 'flex'
+					});
+					$('.player audio')[0].load();
+				}
+				editor_status();
+				return;
+			}
+			if (backgroundImg) {   //背景图
+				console.log(backgroundImg)
+				HTML[HTMLINDEX].backgroundImage = backgroundImg;
+				HTML[HTMLINDEX].backgroundId = backgroundId;
+				$('#content').css({
+					'background-image': 'url(' + backgroundImg + ')',
+					'background-repeat': 'no-repeat',
+					'background-size': '100% 100%'
+				});
+			}
+			let dom_str = '';
+			var actDomId = $("#actDomId").attr("actDomId");
+			let type = $('#' + actDomId).attr('data-type');
+			if (type == 'Carousel') { //图片轮播的保存
+				HTML[HTMLINDEX]['swiperType'][actDomId] = deepClone(swiperType[actDomId])
+				let res = RESOURCES[HTMLINDEX][actDomId];  //选中的图片列表数据
+				let changeTime = 0;
+				for (let i = 0; i < res.length; i++) {
+					let time;
+					if(!!$('[data-id='+res[i].id+'] input').val()){
+						time = parseInt($('[data-id='+res[i].id+'] input').val());
+					}else{
+						time = parseInt(res[i]['delay']);
+					}
+					changeTime = isNaN(time)?0:time;
+					RESOURCES[HTMLINDEX][actDomId][i].swiperType = swiperType[actDomId]['type']
+					RESOURCES[HTMLINDEX][actDomId][i].direction = swiperType[actDomId]['direction']
+					RESOURCES[HTMLINDEX][actDomId][i].delay = changeTime;
+					dom_str += '<div class="swiper-slide" data-swiper-autoplay="' + changeTime * 1000 + '"><img src="' + res[i].path + '" /></div>';
+				}
+				console.log(RESOURCES[HTMLINDEX])
+				dom_str += '<div class="coor"></div>';
+				actDomId = actDomId + ' .swiper-wrapper';
+			} else if (type == 'image') {   //图片的保存
+				dom_str = '<img src="' + RESOURCES[HTMLINDEX][actDomId][0].path +
+					'" /><div class="coor"></div>'
+			} else if (type == 'video') {   //视频的保存
+				dom_str =
+					'<video class="video-js" controls="controls" loop="loop" preload width="100%" height="100%" muted="muted">' +
+					'<source src="' + RESOURCES[HTMLINDEX][actDomId][0].path + '" type="video/mp4">' +
+					'<p>您的浏览器不支持该视频</p>' +
+					'</video>' +
+					'<div class="coor"></div>';
+			} else if (type == 'music') {  //音乐的保存
+				dom_str = '<audio src="' + RESOURCES[HTMLINDEX][actDomId][0].path +
+					'" controls="controls" autoplay="autoplay">' +
+					'<p>您的浏览器不支持该视频</p>' +
+					'</audio>' +
+					'<div class="coor"></div>';
+			} else if (type == 'document') {  //文档的保存
+				dom_str = '<img src="images/document.png" /><div class="coor"></div>'
+			}
+			$('#' + actDomId).html(dom_str);
+			editor_status('save');
+		}
+
+		function uploadFiles(e, dom) {   //文件上传
+			let type = $(dom)[0].dataset.type;
+			type = type == 'background' ? 'image' : type;
+			let file = e.target.files[0];
+			let param = new FormData(); //创建form对象
+			param.append('file', file); //通过append向form对象添加数据
+			console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+			let config = {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			}; //添加请求头
+			$.ajax({
+				type: "post",
+				data: param,
+				url: URL + "/zuul/file/file/upload?typeName=hall&thumbnail=1&type=" + type,
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				async: false,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function(res) {
+					if (res.md5 != '') {
+						res = JSON.parse(res);
+						let data = {
+							"data": [{
+								"type": type,
+								"url": res.path,
+								"name": res.fileName,
+								"md5": res.md5,
+								"thumbnail_url": res.thumbnailUrl
+							}],
+							"mateRule": {}
+						};
+						$.ajax({
+							type: "post",
+							data: JSON.stringify(data),
+							url: URL + "/engine/rest/common/hall|publish_release_resource",
+							beforeSend: function(XMLHttpRequest) {
+								XMLHttpRequest.setRequestHeader("token", token);
+							},
+							async: false,
+							cache: false,
+							contentType: "application/json",
+							processData: false,
+							success: function(result) {
+								console.log(result);
+								if (result.code == 0) {
+									message.add("上传成功！", "success");
+									pageNumber = 1;
+									getPicList(type);
+								}
+							},
+						});
+
+
+					}
+
+				}
+			});
+		}
+		//保存当前编辑页面
+		function keep() {
+			let business_type = 1; //1图片和视频，并且没有url和文件  2表示只包含文档(清空当前节目的所有内容)  3:包含url的都是3
+			var next = save_canvas();
+			if (!next) {
+				return;
+			}
+			if (HTML.length > 1) {
+				for (let i = 0; i < HTML.length; i++) {
+					if (HTML[i].business_type == 3) {
+						business_type = 3;
+					}
+					if (!HTML[i].delay || parseFloat(HTML[i].delay) <= 0) {
+						alert('请设置场景' + (++i) + '的播放时间并且播放时间必须大于0');
+						return
+					}
+				}
+				if(business_type!=3){
+					business_type = HTML[HTMLINDEX].business_type;
+				}
+			} else {
+				business_type = HTML[0].business_type;
+			}
+			for (let i = 0; i < HTML.length; i++) {
+				if (HTML[i].backgroundImage != '') {
+					RESOURCES[i].backgroundImage = [{
+						id: HTML[i].backgroundId,
+						md5: '',
+						path: HTML[i].backgroundImage,
+						type: ''
+					}];
+				}
+			}
+			console.log(proName,'proName')
+			console.log(business_type,'business_type')
+			console.log(HTML,'HTML')
+			console.log(RESOURCES,'RESOURCES')
+			console.log(Request.resolutionId,'resolution'),
+			console.log(Request.id,'id')
+			let data = {
+				"data": [{
+					"name": proName,
+					"business_type": business_type,
+					"module_data": encodeURI(JSON.stringify(HTML)),
+					"resource_data": JSON.stringify(RESOURCES),
+					"resolution": Request.resolutionId,
+					"id": Request.id
+				}],
+				"mateRule": {}
+			};
+			
+			$.ajax({
+				type: "put",
+				data: JSON.stringify(data),
+				contentType: "application/json",
+				url: URL + "/engine/rest/common/hall|" + type_url + "/" + Request.id,
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				success: function(res) {
+					if (res.code !== 0) {
+						message.add("保存失败", "error");
+					} else {
+						message.add("保存成功！", "success");
+					}
+				}
+			});
+		}
+		//保存当前编辑内容
+		function save_canvas() {
+			let bgcolor = HTML[HTMLINDEX].backgroundColor || ""; //设置场景背景色
+			let backgroundImage = HTML[HTMLINDEX].backgroundImage ? 'url(' + HTML[HTMLINDEX].backgroundImage +
+				')' : ''; //设置场景背景图
+			// HTML[HTMLINDEX] = {
+			// 	index:HTMLINDEX,
+			// 	html:$('#content').html(),
+			// 	scalehtml:'<div style="width:'+max_w+'px;height:'+max_h+'px;background-color:'+bgcolor+';background-image:'+backgroundImage+';transform:scale('+ThumbnailScale+');transform-origin:'+transform_origin+'" class="cb_content">'+$('#content').html()+'</div>',
+			// 	backgroundColor:bgcolor,
+			// 	backgroundImage:HTML[HTMLINDEX].backgroundImage?HTML[HTMLINDEX].backgroundImage:'',
+			// 	delay:HTML[HTMLINDEX].delay
+			// };
+			HTML[HTMLINDEX].maxZIndex = maxZIndex; //记录当前场景元素的最大index，便于设置元素的层级关系
+			HTML[HTMLINDEX].minZIndex = minZIndex; ////记录当前场景元素的最小index，便于设置元素的层级关系
+			/* let img = $('#content img').prop('src');
+			let video = $('#content video source').prop('src'); */
+			let doc = HTML[HTMLINDEX]["business_type"];
+			if (doc == 2) {
+				// if(!img){
+				// 	message.add("保存失败,文档内容不能为空", "error");
+				// 	return false;
+				// }
+				HTML[HTMLINDEX].business_type = 2;
+			} else{
+				$('.edit_box .box_box iframe').each(function(){
+					if($(this).attr('src')){
+						HTML[HTMLINDEX].business_type = 3
+						return;
+					};
+					HTML[HTMLINDEX].business_type = 1
+				})
+			}
+			HTML[HTMLINDEX].html = $('#content').html(); //保存html数据用来反显到画布上
+			HTML[HTMLINDEX].scalehtml = '<div style="width:' + Request.width + 'px;height:' + Request.height +
+				'px;background-color:' + bgcolor + ';background-image:' + backgroundImage + ';transform:scale(' + ThumbnailScale +
+				');transform-origin:' + transform_origin + '" class="cb_content">' + $('#content').html() + '</div>';
+			$('#content').css({
+				'background-color': bgcolor,
+				'background-image': backgroundImage
+			}); //保存缩略图数据，用来反显到缩略图上
+			displayHtml();
+			return true;
+		}
+		//添加场景/可用作初始化自动添加第一个场景
+		function add_scene() {
+			$('.player').css({
+				'display': 'none'
+			});
+			RESOURCES.push({});
+			if (MODELTYPE == 0) return false; //MODELTYPE == 0表示当前正在制作模板,不允许添加场景
+			//如果需要切换则需要先保存html到数组里面;
+			save_canvas();
+			//添加场景需要将索引增加一
+			HTMLINDEX = HTML.length * 1;
+			maxZIndex = 0;
+			minZIndex = 0
+			$('#content').html('');
+			//添加场景到HTML数组里面
+			HTML.push({
+				index: HTMLINDEX,
+				html: "",
+				scalehtml: "",
+				backgroundColor: "",
+				delay: 10,
+				business_type: 1,
+				music: ''
+			});
+			save_canvas();
+			displayHtml();
+		}
+
+		//点击切换场景
+		function changeScene(dom) {
+			$('.tab_two').css({
+				'display': 'none'
+			});
+			save_canvas();
+			//debugger
+			//获取点击场景的索引
+			var index = $(dom).attr("data-index");
+			//改变索引
+			HTMLINDEX = index;
+			maxZIndex = HTML[HTMLINDEX].maxZIndex;
+			if (HTML[HTMLINDEX].business_type != 2) {
+				$('.disabledTools').css({
+					'display': 'none'
+				}); //选择了文档左侧操作栏不可编辑,删除文档也左侧操作栏恢复原状态
+			} else {
+				$('.disabledTools').css({
+					'display': 'block'
+				});
+			}
+			//切换场景右侧工具栏变成场景设置
+			showBgOpt(1);
+			displayHtml();
+			$('.player audio').trigger("pause");
+			if (HTML[HTMLINDEX].music) {
+				$('.player audio').prop('src', HTML[HTMLINDEX].music);
+				$('.player audio').load(function() {
+					$('.player').css({
+						'display': 'flex'
+					});
+				})
+			} else {
+				$('.player').css({
+					'display': 'none'
+				});
+			}
+		}
+
+		//渲染html到canvas上
+		function displayHtml() {
+			if (HTML.length <= 0) {
+				return;
+			}
+			var htmlJson = HTML[HTMLINDEX]; //获取当前编辑场景数据
+			let backgroundImage = htmlJson.backgroundImage ? 'url(' + htmlJson.backgroundImage + ')' :
+				'';
+			$("#content").html(htmlJson.html);
+			$("#content").css({
+				'transform': 'scale(' + canvasScale + ')',
+				'background-color': htmlJson.backgroundColor,
+				'background-image': backgroundImage
+			});
+			$(".timmer").val(htmlJson.delay);
+			//初始化缩略图的所有场景
+			var html = "";
+			for (var i = 0; i < HTML.length; i++) {
+				html += '<div class="scene" data-index="' + (i) + '" onclick="changeScene(this)">' +
+					'<div>' +
+					'<div class="Preview">' +
+					HTML[i].scalehtml +
+					'<div class="mark">' + (i + 1) + '</div>' +
+					'</div>' +
+					'<div class="sign">场景' + (i + 1) + '</div>' +
+					'</div>' +
+					'<div class="tips">' +
+					'<div class="item" title="上移" onclick="sceneUpward(event,' + i + ')"><img src="images/upward.png" /></div>' +
+					'<div class="item" title="下移" onclick="sceneBackward(event,' + i + ')"><img src="images/backward.png" /></div>' +
+					'<div class="item" title="复制" onclick="sceneCopy(event,' + i + ')"><img src="images/copy.png" /></div>' +
+					'<div class="item" title="删除" onclick="delete_page(event,' + i + ')"><img src="images/delete.png" /></div>' +
+					'</div>' +
+					'</div>';
+			}
+			$('.tools .scene_body').html(html);
+			$('.tools .scene_body .Preview .box').removeAttr('onclick').removeAttr('id');
+			//重新初始化拖拽事件
+			init();
+			//重新给textarea赋值
+			var textareaDom = $("#content").find("textarea");
+			var textareaVal = '';
+			for (var z = 0; z < textareaDom.length; z++) {
+				textareaVal = $(textareaDom[z]).attr("data-val");
+				if (textareaVal) {
+					//console.log(textareaVal.indexOf('<br>'));
+					//textareaVal = textareaVal.substr(0,textareaVal.indexOf('<br>'))+textareaVal.substr(textareaVal.indexOf('<br>')+4);
+					textareaVal = textareaVal.replace(/<br\/>/g, '\r\n');
+					textareaVal = textareaVal.replace(/<br>/g, '\r\n');
+					textareaVal = textareaVal.replace(/<\/textarea>/g, '');
+					//var reg=new RegExp("＜br＞","g");
+					//textareaVal= textareaVal.replace(/<br\/>/g,'\r\n');;
+					$(textareaDom[z]).val(textareaVal);
+				}
+			}
+		}
+		function fontDisplayType(type) { //设置文字显示效果（滚动）
+			if ($('#' + actDomId).attr('data-fType')) {
+				$('.font_display .direction').removeClass('selected');
+				$('#' + actDomId).attr('data-type', 'font');
+				$('#' + actDomId).removeAttr('data-ftype');
+			} else {
+				$('.font_display .direction').removeClass('selected');
+				$('.font_display .direction').eq(type).addClass('selected');
+				$('#' + actDomId).removeAttr('data-type');
+				$('#' + actDomId).attr('data-fType', type);
+			}
+
+			//type:0(向上滚动),1(向下滚动),1(向左滚动),3(向右滚动)
+		}
+		//显示上传的图片
+		function showPic(f) {
+			var rd = new FileReader(); //创建文件读取对象
+			var files = f.files[0]; //获取file组件中的文件
+			rd.readAsDataURL(files); //文件读取装换为base64类型
+			rd.onloadend = function(e) {
+				//加载完毕之后获取结果赋值给img
+				console.log(this.result)
+				$('#pic').attr('src', this.result);
+				//$('#'+actDomId+' img').attr('src',this.result);
+				//document.getElementById("book-pic").src = this.result;
+			}
+		}
+
+		function setFullScreen() { //设置全屏
+			$('#' + actDomId).css({
+				'width': Request.width,
+				'height': Request.height,
+				'top': 0,
+				'left': 0
+			});
+			$('#box_h').val(Request.height);
+			$('#box_w').val(Request.width);
+			$('#box_x').val(0);
+			$('#box_y').val(0);
+		}
+
+		function clearNoNum(obj) {
+			//先把非数字的都替换掉，除了数字和.
+			obj.value = obj.value.replace(/[^\d.]/g, "");
+			//必须保证第一个为数字而不是.
+			obj.value = obj.value.replace(/^\./g, "");
+			//保证只有出现一个.而没有多个.
+			obj.value = obj.value.replace(/\.{2,}/g, ".");
+			//保证.只出现一次，而不能出现两次以上
+			obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace(
+				"$#$", ".");
+		}
+
+		function confirmTIPS() { //提示框点击确认按钮后的操作
+			$('#' + actDomId).css({
+				'display': 'flex'
+			});
+			if ($('#delResource').attr('data-status') == '1') {
+				confirmDel();
+			} else {
+				let dom = $('#' + actDomId);
+				//选择了文档则需要清空当前节目的资源数据和页面数据
+				RESOURCES[HTMLINDEX] = {};
+				HTML[HTMLINDEX] = {
+					index: 0,
+					html: "",
+					scalehtml: '<div style="width:' + Request.width + 'px;height:' + Request.height + 'px;transform:scale(' +
+						ThumbnailScale + ');transform-origin:' + transform_origin + '" class="cb_content"></div>',
+					backgroundColor: "",
+					delay: 10,
+					maxZIndex: 0,
+					minZIndex: 0,
+					business_type: 2 //1图片和视频，并且没有url和文件  2表示只包含文档 3表示只包含url
+				};
+				displayHtml();
+				$("#content").append(dom);
+				init(); //初始化drag事件
+				$('.tips_box').css({
+					'display': 'none'
+				}); //隐藏提示框
+				$('.disabledTools').css({
+					'display': 'block'
+				}); //选择了文档则不可使用左侧操作栏
+			}
+
+		}
+
+		function cancelTIPS() { //提示框点击取消按钮后的操作
+			$('.tips_box').css({
+				'display': 'none'
+			}); //隐藏提示框
+			$('#' + actDomId).remove();
+		}
+		//删除页面背景音乐
+		function removeMusic() {
+			$('.player audio').prop('src', '');
+			$('.player').css({
+				'display': 'none'
+			});
+			HTML[HTMLINDEX].music = '';
+			delete RESOURCES[HTMLINDEX].music;
+		}
+		//删除资源
+		function deleteResource(_this) {
+			let status = $(_this).attr('data-status');
+			if (status == '0') {
+				$(_this).text('删除');
+				$(_this).attr('data-status', '1').css({
+					'background': 'red'
+				});
+				$('.image_box .checked input').prop('checked', false);
+				$('.shadow_editor .content .image_box .img_item').css({
+					'border-color': 'red'
+				});
+				$('#upload').css({
+					'display': 'none'
+				});
+				$('#cancelDel').css({
+					'display': 'block'
+				});
+			} else {
+				if (delResource.length < 1) {
+					message.add("请选择要删除的内容！", "error");
+					return;
+				}
+
+				$('.tips_box').css({
+					'display': 'block'
+				}); //显示提示框
+				$('.tips_box .tips .content').text('确定删除所选资源？');
+				$('.tips_box .tips').animate({
+					'opacity': 1
+				});
+
+				//$(_this).attr('data-status','0');
+			}
+		}
+
+		function cancelDel() { //取消删除
+			$('#delResource').text('操作');
+			$('.shadow_editor .content .image_box .img_item').css({
+				'border-color': '#ececec'
+			});
+			$('#delResource').attr('data-status', '0').css({
+				'background': '#2d8cf0'
+			});
+			$('#upload').css({
+				'display': 'block'
+			});
+			$('#cancelDel').css({
+				'display': 'none'
+			});
+			$('.image_box .checked input').prop('checked', false);
+			delResource = [];
+
+		}
+
+		function getVoice() { //开启声音
+			$('video').each(function() {
+				$(this)[0].muted = false;
+			})
+			$('#getVoice').css({
+				'display': 'none'
+			});
+		}
+		function saveCanvas(){
+			var content = document.getElementById('htmlToImage');
+			html2canvas(content, {
+				onrendered: function(canvas) {
+					/*自动保存为png*/
+					// 获取图片资源
+					var img_data1 = Canvas2Image.saveAsPNG(canvas, true).getAttribute('src');
+					saveFile(img_data1, 'abc');
+					
+				},
+				width: content.clientWidth, //dom 原始宽度
+				height: content.clientHeight,
+				scrollY:0,
+				scrollX:0,
+				useCORS:true
+			});
+			
+		}
+		// 保存文件函数
+		var saveFile = function(data, filename) {
+			var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+			save_link.href = data;
+			save_link.download = filename;
+		
+			var event = document.createEvent('MouseEvents');
+			event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+			save_link.dispatchEvent(event);
+		};
+
+		function confirmDel() { //确定删除
+			var params = '';
+			for (let i = 0; i < delResource.length; i++) {
+				params += 'ids=' + delResource[i] + '&';
+			}
+			params = params.substr(0, params.length - 1);
+			$.ajax({
+				type: "delete",
+				contentType: "application/json",
+				url: URL + "/hall/busi/publish/resource/delete-more?" + params,
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("token", token);
+				},
+				success: function(res) {
+					if (res.code == 0) {
+						message.add("删除成功！", "success");
+						delResource = [];
+						$('.tips_box').css({
+							'display': 'none'
+						}); //显示提示框
+						$('#delResource').attr('data-status', '0').css({
+							'background': '#2d8cf0'
+						});
+						$('#delResource').text('操作');
+						$('.shadow_editor .content .image_box .img_item').css({
+							'border-color': '#ececec'
+						});
+						$('#upload').css({
+							'display': 'block'
+						});
+						$('#cancelDel').css({
+							'display': 'none'
+						});
+						getPicList($('#' + actDomId).attr('data-type'));
+
+					}
+					console.log(res)
+				}
+			})
+		}
+		// //读取上传的图片
+		// function readers(fil){
+		//             var reader = new FileReader();  // 异步读取存储在用户计算机上的文件
+		//             reader.readAsDataURL(fil); // 开始读取指定的Blob对象或File对象中的内容
+		//             reader.onload = function(){
+		//                 document.getElementById("dd").innerHTML += "<img src='"+reader.result+"'>";  // 添加图片到指定容器中
+		//             };
+		//         }
+	</script>
+
+
+</html>

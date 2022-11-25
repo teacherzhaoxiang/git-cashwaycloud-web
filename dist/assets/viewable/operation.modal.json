@@ -1,0 +1,190 @@
+{
+	"id":"operation",
+	"formType":1,
+	"columns":1,
+	"ui": {
+		"spanLabel": 5,
+		"spanControl": 19,
+		"grid": {
+			"span": 24
+		}
+	},
+	"editField": [
+		{
+            "key": "type",
+			"relate": "type",
+			"config": {
+				"type": "string",
+				"title": "类型",
+				"enum":[
+					{
+						"label": "新增",
+						"value": "add"
+					},
+					{
+						"label": "删除",
+						"value": "delete"
+					},
+                    {
+						"label": "导出",
+						"value": "export"
+					},
+                    {
+						"label": "引入",
+						"value": "import"
+					},
+                    {
+						"label": "刷新",
+						"value": "refresh"
+					}
+				],
+				"ui": {
+					"widget": "select",
+					"mate": {
+						"id": "value",
+						"adver_name": "label"
+					},
+					"params": ""
+				}
+			},
+			"required": "true",
+			"display": "",
+			"disabled": "V"
+        },
+        {
+			"key": "label",
+			"relate": "label",
+			"config": {
+				"type": "string",
+				"title": "名称",
+				"maxLength": 50
+			},
+			"required": "true",
+			"display": "",
+			"disabled": "V"
+		},
+        {
+			"key": "icon",
+			"relate": "icon",
+			"config": {
+				"type": "string",
+				"title": "图标",
+				"enum":[
+					{
+						"label": "add",
+						"value": "add"
+					},
+					{
+						"label": "delete",
+						"value": "delete"
+					},
+                    {
+						"label": "export",
+						"value": "export"
+					},
+                    {
+						"label": "import",
+						"value": "import"
+					},
+                    {
+						"label": "refresh",
+						"value": "refresh"
+					}
+				],
+				"ui": {
+					"widget": "select",
+					"mate": {
+						"id": "value",
+						"adver_name": "label"
+					},
+					"params": ""
+				}
+			},
+			"required": "true",
+			"display": "",
+			"disabled": "V"
+		},
+        {
+			"key": "click",
+			"relate": "click",
+			"config": {
+				"type": "string",
+				"title": "点击事件",
+				"maxLength": 32,
+				"enum":[
+					{
+						"label": "add",
+						"value": "add"
+					},
+					{
+						"label": "refresh",
+						"value": "refresh"
+					},
+					{
+						"label": "modal",
+						"value": "modal"
+					},
+					{
+						"label": "deletes",
+						"value": "deletes"
+					},
+					{
+						"label": "downloadTemplate",
+						"value": "downloadTemplate"
+					},
+					{
+						"label": "export",
+						"value": "export"
+					},
+					{
+						"label": "download",
+						"value": "download"
+					},
+					{
+						"label": "serviceUrl",
+						"value": "serviceUrl"
+					},
+					{
+						"label": "router",
+						"value": "router"
+					},
+					{
+						"label": "jump",
+						"value": "jump"
+					}
+				],
+                "ui": {
+					"widget": "select",
+					"mate": {
+						"id": "value",
+						"adver_name": "label"
+					},
+					"params": ""
+				}
+			},
+			"required": "true",
+			"display": "",
+			"disabled": "V"
+		},
+        {
+			"key": "class",
+			"relate": "class",
+			"config": {
+				"type": "string",
+				"title": "样式",
+				"maxLength": 32,
+                "ui": {
+					"widget": "textarea",
+					"mate": {
+						"id": "value",
+						"adver_name": "label"
+					},
+					"params": ""
+				}
+			},
+			"required": "true",
+			"display": "",
+			"disabled": "V"
+		}
+	]
+}

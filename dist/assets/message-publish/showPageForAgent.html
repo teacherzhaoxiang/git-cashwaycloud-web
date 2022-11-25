@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+		<title></title>
+		<link rel="icon" type="image/x-icon" href="../cashway-logo.png" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<style>
+			body{
+				overflow: auto;
+				background: #000000;
+			}
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box {
+				/* width: 200px;
+				height: 100px; */
+				cursor: move;
+				position: absolute;
+				top: 30px;
+				left: 30px;
+				background-color: transparent !important;
+				overflow: hidden;
+				border: none !important;
+			}
+
+			.box img {
+				width: 100%;
+				height: 100%;
+			}
+			textarea{
+				resize: none;
+				border: none;
+				outline: none;
+			}
+			.swiper-slide{
+
+			}
+			.pages{
+				margin: 0 auto;
+				position: relative;
+			}
+			.swiper-container .swiper-container{
+				width: 100% !important;
+				height: 100% !important;
+				overflow: hidden;
+				transform:translate3d(0,0,0);
+				overflow:hidden;
+			}
+			.swiper-container .swiper-container .swiper-slide{
+				transform:translate3d(0,0,0);
+				overflow:hidden;
+			}
+			.swiper-container .swiper-container .swiper-slide img{
+				transform:translate3d(0,0,0)
+			}
+			.coor{
+				background: transparent !important;
+			}
+			video{
+				outline: none;
+			}
+			#getVoice{
+				position: fixed;
+				right: 20px;
+				top: 20px;
+				z-index: 999;
+				background: #007AFF;
+				color: #FFFFFF;
+				width: 200px;
+				height: 60px;
+				border-radius: 60px;
+				outline: none;
+			}
+			.box[data-type='video']{
+				background: black;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div id="check"></div> -->
+		<div class="swiper-container swiper-no-swiping check_out" style="width: 100%;height: 100%;">
+			<div class="swiper-wrapper" id="swiper-wrapper" style="width: 100%;height: 100%;">
+			</div>
+		</div>
+		<audio id="play_music" src="" loop="loop"></audio>
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/config.js"></script>
+		<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
+		<script src="" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//var URL = 'http://192.168.43.23:8090';
+			function sleep(numberMillis) {
+				var now = new Date();
+				var exitTime = now.getTime() + numberMillis;
+				while (true) {
+				now = new Date();
+				if (now.getTime() > exitTime)
+				return;
+				}
+			}
+			$(function() {
+				// try {
+					// var dataObjectString = "";
+					// dataObjectString = window['JSObject'].GetData("PlayProgramEvent", "");
+					// var termNo = window['JSObject'].GetData("termNo", "");
+					// //获取服务器地址
+					// URL = "http://"+window['JSObject'].GetData("ipaddress", "");
+					// console.log('termNo='+termNo);
+					// if (dataObjectString == "") {
+					// 	window['JSObject'].Notify("error", 'The dataObjectString is empty');
+					// 	return;
+					// }
+					// var dataObject = JSON.parse(dataObjectString);
+					var termNo = '1235'; //测试数据
+					var dataObject = {"id":"46e02b5be0d64bb5bc1bfac5a0ff3d55","name":"JJJK",
+					"moduleData": 
+					"%5B%7B%22index%22:0,%22html%22:%22%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:flex;align-items:center;justify-content:center;z-index:7%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1646034459361%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%20swiper-no-swiping%5C%22%20style=%5C%22text-align:center;line-height:170px;%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%221000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.15:8885/file/download?filename=hall/2022-02-28/c2d56491d1ff4126a8667f8291f3157f.jpeg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%221000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.13:8090/zuul/file/file/download?filename=hall/2022-02-28/4e057a5ae7e54230998c12a9eb61a090.jpg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%208;%20top:%20357.55px;%20left:%20312.25px;%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1646034493555%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%20swiper-no-swiping%5C%22%20style=%5C%22text-align:center;line-height:170px;%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%221000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.13:8090/zuul/file/file/download?filename=hall/2022-02-28/4e057a5ae7e54230998c12a9eb61a090.jpg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%222000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.15:8885/file/download?filename=hall/2022-02-28/c2d56491d1ff4126a8667f8291f3157f.jpeg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%22,%22scalehtml%22:%22%3Cdiv%20style=%5C%22width:1920px;height:1080px;background-color:;background-image:;transform:scale(0.052083333333333336);transform-origin:left%2021.875px%5C%22%20class=%5C%22cb_content%5C%22%3E%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:flex;align-items:center;justify-content:center;z-index:7%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1646034459361%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%20swiper-no-swiping%5C%22%20style=%5C%22text-align:center;line-height:170px;%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%221000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.15:8885/file/download?filename=hall/2022-02-28/c2d56491d1ff4126a8667f8291f3157f.jpeg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%221000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.13:8090/zuul/file/file/download?filename=hall/2022-02-28/4e057a5ae7e54230998c12a9eb61a090.jpg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22box%20boxBg%5C%22%20onclick=%5C%22change_type(event,this)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20z-index:%208;%20top:%20357.55px;%20left:%20312.25px;%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1646034493555%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%20swiper-no-swiping%5C%22%20style=%5C%22text-align:center;line-height:170px;%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%221000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.13:8090/zuul/file/file/download?filename=hall/2022-02-28/4e057a5ae7e54230998c12a9eb61a090.jpg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%20data-swiper-autoplay=%5C%222000%5C%22%3E%3Cimg%20src=%5C%22http://192.168.1.15:8885/file/download?filename=hall/2022-02-28/c2d56491d1ff4126a8667f8291f3157f.jpeg%5C%22%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%22,%22backgroundColor%22:%22%22,%22delay%22:10,%22maxZIndex%22:8,%22minZIndex%22:0,%22business_type%22:1,%22swiperType%22:%7B%22box1646034459361%22:%7B%22type%22:%22slide%22,%22direction%22:%22vertical%22%7D,%22box1646034493555%22:%7B%22type%22:%22cube%22,%22direction%22:%22vertical%22%7D%7D%7D%5D","description":"","resolution":"8cc877d41bdd48108e9803679a3f4d3b","resolutionValue":"1080*1920","flag":false,"gmtCreated":1591337539189,"type":2,"orgId":"0","createUser":"admin","auditUser":"admin","status":"2","begin_time":"","end_time":"","termScreenIdList":"","term_screen_id_list":"","programTimeType":1,"playWay":1,"resourceData":"[{\"backgroundImage\":[{\"id\":\"\",\"md5\":\"\",\"type\":\"\"}]}]","publishSelectType":4,"auditTime":1591337543379,"businessType":1,"publishType":1,"screenId":"85838b919f034bb9b7e495c3c421786b","ip":"0.0.0.0","publishPageScreenId":"d9dd5c3cf48a4cc29e6fe6e3321643fc","termOrgId":"070000001","publishPageScreenPublishStatus":0,"programDetial":""}   ////测试数据
+					var resourcedata = dataObject['resourceData'];
+					console.log(dataObject)
+					var resource_data = JSON.parse(resourcedata);
+					var heightWidth = dataObject['resolutionValue'].split('*');
+
+					var screenId = dataObject['publishPageScreenId'].split('*');
+					// var I = navigator.userAgent.toLowerCase();;
+					//var isiPad = (I.match(/(iPad).*OS\s([\d_]+)/)) ? true : false;
+					//$('#check').html(I);
+					// var aa = "%5B%7B%22index%22:0,%22html%22:%22%3Cdiv%20class=%5C%22box%5C%22%20onclick=%5C%22change_type(event)%5C%22%20style=%5C%22display:flex;align-items:center;justify-content:center;background:#ececec;z-index:1%5C%22%20data-type=%5C%22image%5C%22%20id=%5C%22box1574497554083%5C%22%3E%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%5Ct%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22box%5C%22%20onclick=%5C%22change_type(event)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20background:%20rgb(236,%20236,%20236);%20z-index:%203;%20top:%20242px;%20left:%20444px;%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1574497554515%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%3E%E6%B7%BB%E5%8A%A0%E8%BD%AE%E6%92%AD%3C/div%3E%3C/div%3E%3C/div%3E%5Ct%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%22,%22scalehtml%22:%22%3Cdiv%20style=%5C%22width:1920px;height:1200px;background-color:;background-image:;transform:scale(0.052083333333333336);transform-origin:left%2018.75px%5C%22%20class=%5C%22cb_content%5C%22%3E%3Cdiv%20class=%5C%22box%5C%22%20onclick=%5C%22change_type(event)%5C%22%20style=%5C%22display:flex;align-items:center;justify-content:center;background:#ececec;z-index:1%5C%22%20data-type=%5C%22image%5C%22%20id=%5C%22box1574497554083%5C%22%3E%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%5Ct%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%5C%22box%5C%22%20onclick=%5C%22change_type(event)%5C%22%20style=%5C%22display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20background:%20rgb(236,%20236,%20236);%20z-index:%203;%20top:%20242px;%20left:%20444px;%5C%22%20data-type=%5C%22Carousel%5C%22%20id=%5C%22box1574497554515%5C%22%3E%3Cdiv%20class=%5C%22swiper-container%5C%22%3E%3Cdiv%20class=%5C%22swiper-wrapper%5C%22%3E%3Cdiv%20class=%5C%22swiper-slide%5C%22%3E%E6%B7%BB%E5%8A%A0%E8%BD%AE%E6%92%AD%3C/div%3E%3C/div%3E%3C/div%3E%5Ct%3Cdiv%20class=%5C%22coor%5C%22%3E%3C/div%3E%3C/div%3E%3C/div%3E%22,%22backgroundColor%22:%22%22,%22delay%22:0,%22maxZIndex%22:3%7D%5D";
+					var HTMLSTR = decodeURIComponent(dataObject.moduleData);
+					/* HTMLSTR = HTMLSTR.replace(/http:\/\/192.168.43.23:8090\/zuul\/file\/file\/\/download\?filename=hall\/resource/g,
+						native_url+'/'+screenId); */
+					var HTML = JSON.parse(HTMLSTR);
+					var slide = '';
+					var len = HTML.length;
+					var boxSwiper;
+					var mySwiper;
+
+					for (var i = 0; i < len; i++) {
+						// slide +='<div class="swiper-slide swiper-slide'+i+'" data-swiper-autoplay="'+(HTML[i].delay*1000)+'"><div class="pages" style="width:378px;height:567px;background-color:'+HTML[i].backgroundColor+';">'+HTML[i].html+'</div></div>';
+						slide += '<div class="swiper-slide-outer swiper-slide swiper-slide" data-swiper-autoplay="' + (HTML[i].delay * 1000) + '">' + HTML[i].scalehtml + '</div>';
+					}
+					$('#swiper-wrapper').html(slide);
+					
+					$('.swiper-container').css({
+						//'height': Request.height,
+						//'width': Request.width
+						'height': heightWidth[1],
+						'width': heightWidth[0]
+					});
+					var winW = window.innerWidth;
+					/* try {
+						winW = window['JSObject'].GetData("winW", "");
+					} catch (e) {}; */
+					//取窗口高度
+					var winH = window.innerHeight;
+					/* try {
+						winH = window['JSObject'].GetData("winH", "");
+					} catch (e) {}; */
+					var Request = {};
+					Request.width = heightWidth[0];
+					Request.height = heightWidth[1];
+					var wScale = winW / Request.width;
+					var hScale = winH / Request.height;
+					console.log("app>>>>" + winW + "-----" + Request.width + "----" + wScale);
+					console.log("app>>>>" + winH + "-----" + Request.height + "----" + hScale);
+					/* var WH = Request.width / Request.height;
+					var scale;
+					var marginL = 0;
+					var marginT = 0;
+					if (winWH > WH) {
+						scale = winH / Request.height;
+						marginL = (winW - Request.width * scale) / 2;
+					} else {
+						scale = winW / Request.width;
+						marginT = (winH - Request.height * scale) / 2;
+					} */
+					$('.cb_content').css({
+						'transform': 'scale(' + wScale + ',' + hScale + ')',
+						'transform-origin': '0px 0px'
+					});
+					$('textarea').attr('readonly', 'readonly');
+					$('.swiper-container').find("[onclick]").removeAttr("onclick");
+					$('.swiper-container').find("[onchange]").removeAttr("onchange");
+					//更换textarea标签并重新赋值
+					$(".check_out .box[data-type='font']").each(function(i) {
+						if ($(this).find('.cDate').length <= 0 && $(this).find('.weather').length <= 0) {
+							var str = '<div class="textarea" style="width:100%;height:100%;' + $(this).find('.textarea').attr('style') +
+								'">' + ($(this).find('textarea').attr('data-val') || "") + '</div>';
+						}
+						$(this).html(str);
+						// $(this).css({
+						// 	width: ($(this).width() + 20) / scale,
+						// 	height: ($(this).height() + 20) / scale
+						// })
+					});
+					$(".check_out .box[data-fType]").each(function(i) {
+						var direction = "";
+						switch ($(this).attr("data-fType")) {
+							case "0":
+								direction = "up";
+								break;
+							case "1":
+								direction = "down";
+								break;
+							case "2":
+								direction = "left";
+								break;
+							case "3":
+								direction = "right";
+								break;
+							default:
+								"left";
+								breakl
+						}
+						var marqWidth = $(".check_out .box[data-fType]").eq(i).width();
+						var marquee = '<marquee behavior="scroll" direction="' + direction + '" style="width:' + marqWidth +
+							'px !important;' + $(this).find(
+								'textarea').attr('style') + '">' +
+							$(this).find('textarea').attr("data-val") +
+							'</marquee>';
+						$(this).html(marquee);
+					})
+					// termNo = '123123';  //xxx
+
+					// console.log(termNo)
+					// getWeather(termNo);
+					getTime();
+					//var activeIndex = 0;
+					var HideDocIndex=-1;
+					if (len > 1) {  //多个场景展示效果
+						if (!!mySwiper) {
+							mySwiper.destroy();
+						}
+						console.log('11111')
+						console.log(boxSwiper)
+						mySwiper = new Swiper('.check_out', {
+							loop: true,
+							effect : 'fade',
+							  fadeEffect: {
+							    crossFade: true,
+							  },
+							  speed:500,
+							slidesPerview: 'auto',
+							autoplay: {
+								delay: 0,
+								stopOnLastSlide: false,
+								disableOnInteraction: false,
+							},
+							freeMode: true,
+							observer: true, //修改swiper自己或子元素时，自动初始化swiper
+							observeParents: true, //修改swiper的父元素时，自动初始化swiper
+							disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+							on: {
+								transitionStart: function(swiper){
+									$('video').css({
+										"display":"none"
+									})
+								},
+								slideChangeTransitionEnd: function(){
+									console.log('slideChangeTransitionEnd');
+									if(HideDocIndex!=-1){  //如果原生文档播放标记不等于-1,则当过度完成之后立马隐藏原生文档播放插件
+										var pageIndex = $('.swiper-slide-outer.swiper-slide-active').attr('data-swiper-slide-index');  //当前播放场景下标
+										pageIndex = parseInt(pageIndex);
+										if(pageIndex == HideDocIndex){  //当前播放场景下标等于原生文档播放标记位置，则要在当前场景隐藏原生文档播放
+											window['JSObject'].ButtonClick("hideDocument", "");  //隐藏文档显示插件
+											HideDocIndex = -1;
+										}
+									}
+								},
+								slideChangeTransitionStart: function() {
+									console.log('slideChangeTransitionStart');
+									var pageIndex = $('.swiper-slide-outer.swiper-slide-active').attr('data-swiper-slide-index'); //当前播放场景下标
+									$('.swiper-slide-outer.swiper-slide-active video').css({
+										"display":"block"
+									});
+									pageIndex = parseInt(pageIndex);
+									if (HTML[pageIndex]&&HTML[pageIndex]["business_type"] == 2) {
+										//如果是文档播放的则跳到原生播放方式
+										var max = $('.swiper-slide-outer').length-3;
+          								HideDocIndex = pageIndex==max?0:pageIndex+1; //标记下一个场景显示的时候就立马隐藏原生文档播放
+										for (k in resource_data[pageIndex]) {
+										
+											if (resource_data[pageIndex][k][0].type == 'document') {
+										
+												
+												var result = window['JSObject'].ButtonClick("showDocument", resource_data[pageIndex][k][0].path);
+												console.log(resource_data[pageIndex][k][0].path);
+												console.log("HideDocIndex="+HideDocIndex);
+											}
+										}
+									}
+									if($('video').length>0){
+										$('video').trigger('pause');
+										$('video').prop("muted");
+									}
+									
+									var musicSrc = '';
+									if (HTML[pageIndex].music) {  //重新赋值音乐路径并自动播放
+										$('#play_music').trigger('pause');
+										musicSrc = HTML[pageIndex].music.split('/');
+										$('#play_music').attr('src', native_url + '/' + screenId + '/' + musicSrc[musicSrc.length - 1]);
+										//$('#play_music').attr('src',URL+'/zuul/file/file/'+HTML[pageIndex].music);
+										$('#play_music').attr('autoplay', 'autoplay');
+										$('#play_music').attr('loop', 'loop');
+									}
+									//$('.box').eq(index).css({'display':'block'});
+									$('.swiper-slide-outer.swiper-slide-active video').each(function() {
+										$(this).attr('autoplay', 'autoplay');  //自动播放当前场景的视频
+										var that = this;
+										$(this)[0].onplaying = function(){
+											setTimeout(function(){
+												$(that).removeProp("muted");
+											},1000);
+										}
+										sleep(1000);
+										$(this)[0].play();
+
+									})
+									if (!!boxSwiper) {  //进入播放场景前如果存在场景内轮播对象，则销毁后再重建
+										try {
+											if (Array.isArray(boxSwiper)) {
+												for (var i = 0; i < boxSwiper.length; i++) {
+													boxSwiper[i].destroy();
+												}
+											} else {
+												boxSwiper.destroy();
+											}
+										} catch (e) {}
+									}
+									//创建创景内图片轮播对象 -
+									boxSwiper = new Swiper('.check_out .swiper-slide-active .swiper-container', {
+										loop: true,
+										effect : 'fade',
+										  fadeEffect: {
+										    crossFade: true,
+										  },
+										  speed:500,
+										autoplay: {
+											delay: 0,
+											stopOnLastSlide: false,
+											disableOnInteraction: false,
+										},
+										observer: true, //修改swiper自己或子元素时，自动初始化swiper
+										observeParents: true, //修改swiper的父元素时，自动初始化swiper
+										disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+										/* freeMode: true,
+										observer: true, //修改swiper自己或子元素时，自动初始化swiper
+										observeParents: true, //修改swiper的父元素时，自动初始化swiper
+										observer: true, //修改swiper自己或子元素时，自动初始化swiper
+										observeParents: true, //修改swiper的父元素时，自动初始化swiper
+										disableOnInteraction: false, //用户操作swiper之后自动切换不会停止 */
+									});
+								}
+							}
+						});
+					} else {  //单个场景展示效果
+						if (HTML[0]["business_type"] == 2) {
+							//如果是文档播放的则跳到原生播放方式
+							for (k in resource_data[0]) {
+								if (resource_data[0][k][0].type == 'document') {
+									var result = window['JSObject'].ButtonClick("showDocument", resource_data[0][k][0].path);
+								}
+							}
+							return;
+						}
+						$('#swiper-wrapper .swiper-slide .video-js').each(function() {
+							$(this).attr('autoplay', 'autoplay');  //自动播放当前场景的视频
+							var that = this;
+							$(this)[0].onplaying = function(){
+								setTimeout(function(){
+									$(that).removeProp("muted");
+								},1000);
+							}
+							$(this)[0].play();
+						})
+						if (HTML[0].music) {
+							$('#play_music').attr('src', URL + '/zuul/file/file/' + HTML[0].music);
+							$('#play_music').attr('autoplay','autoplay')
+							// if ($('#play_music') && !$('#play_music').load()) {
+							// 	$('#play_music')[0].play();
+							// }
+						}
+						if (!!boxSwiper) {
+							console.log(boxSwiper)
+							try {
+								if (Array.isArray(boxSwiper)) {
+									for (var i = 0; i < boxSwiper.length; i++) {
+										boxSwiper[i].destroy();
+									}
+								} else {
+									boxSwiper.destroy();
+								}
+							} catch (e) {}
+						}
+						console.log(HTML)
+						let boxBg = document.querySelectorAll('.boxBg')
+							Array.from(boxBg).forEach((ele,index)=>{
+								if(ele.dataset.type = 'Carousel'){
+									ele.firstElementChild.classList.add(`swiper-${ele.id}`)
+									console.log(HTML[0]['swiperType'],ele.id)
+									let boxSwiper = new Swiper(`.swiper-${ele.id}`, {
+										loop: true,
+										direction : HTML[0]['swiperType'][ele.id]['direction']?HTML[0]['swiperType'][ele.id]['direction']:'horizontal',
+										slidesPerview: 'auto',
+										effect : HTML[0]['swiperType'][ele.id]['type'],
+										autoplay: {
+											delay: 0,
+											stopOnLastSlide: false,
+											disableOnInteraction: false,
+										},
+										observer: true, //修改swiper自己或子元素时，自动初始化swiper
+										observeParents: true, //修改swiper的父元素时，自动初始化swiper
+										disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+									});
+								}
+							})
+						// boxSwiper = new Swiper('.check_out .swiper-slide .swiper-container', {
+						// 	loop: true,
+						// 	effect : 'fade',
+						// 	  fadeEffect: {
+						// 	    crossFade: true,
+						// 	  },
+						// 	  speed:5000,
+						// 	slidesPerview: 'auto',
+						// 	autoplay: {
+						// 		delay: 0,
+						// 		stopOnLastSlide: false,
+						// 		disableOnInteraction: false,
+						// 	},
+						// 	observer: true, //修改swiper自己或子元素时，自动初始化swiper
+						// 	observeParents: true, //修改swiper的父元素时，自动初始化swiper
+						// 	disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+						// });
+					}
+					//dataObjectString = json;
+				// } 
+				// catch (exception) {
+				// 	//window['JSObject'].Notify("error", exception);
+				// 	console.log('1111111')
+				// }
+
+			});
+
+			function getWeather(termNo) {
+			// console.log(">>>天气接口："+URL + "/hall-manage/hall_service_weather/getWeather?termNo=" + termNo);
+			// 	try {
+			// 		$.ajax({
+			// 			type: "get",
+			// 			dataType: "json",
+			// 			beforeSend: function(req) {
+			// 				req.setRequestHeader("token", token);
+			// 			},
+			// 			url: URL + "/hall-manage/hall_service_weather/getWeather?termNo=" + termNo,
+			// 			success: function(res) {
+			// 				if (res.code == 0) {
+			// 					WEATHER = res.msg;
+			// 					var weatherStr = '<div class="weather">' + (WEATHER.cityName || '') + '</div><div class="weather">' + (
+			// 							WEATHER.temp2 || '') + '/' + (WEATHER.temp1 || '') + '</div><div>' + (WEATHER.wea || '') +
+			// 						' 空气' + (WEATHER.airLevel || '') + '</div>';
+			// 					$('.textarea.weather').html(weatherStr);
+			// 				}
+			// 			}
+			// 		});
+			// 	} catch (e) {};
+			}
+
+			function getTime() {
+				timeInterval = setInterval(function() {
+					var date = new Date();
+					var year = date.getFullYear();
+					var month = date.getMonth() + 1;
+					var day = date.getDate();
+					var hours = date.getHours();
+					var minutes = date.getMinutes();
+					var seconds = date.getSeconds();
+					var cDate = year + '年' + month + '月' + day + '日  ' + hours + "时" + minutes + "分" + seconds + "秒";
+					if (month < 10) {
+						month = '0' + month;
+					}
+					if (day < 10) {
+						day = '0' + day;
+					}
+					if (hours < 10) {
+						hours = '0' + hours;
+					}
+					if (minutes < 10) {
+						minutes = '0' + minutes;
+					}
+					if (seconds < 10) {
+						seconds = '0' + seconds;
+					}
+					var nomalDate = year + '-' + month + '-' + day + ' ' + hours + ":" + minutes + ":" + seconds; //默认类型的日期时间格式
+					$('.timmer .textarea').text(nomalDate); // 默认类型的日期时间格式
+					$('.timmer .cDate').text(cDate);
+				}, 1000)
+
+			}
+
+			function getVoice() {
+				$('video').each(function() {
+					$(this)[0].muted = false;
+				})
+				$('#getVoice').css({
+					'display': 'none'
+				});
+			}
+			function change_type(e, dom) {}
+			function changeDom(dom){}
+		</script>
+	</body>
+</html>

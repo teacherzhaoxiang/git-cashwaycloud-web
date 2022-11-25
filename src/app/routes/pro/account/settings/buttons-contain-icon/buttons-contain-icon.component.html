@@ -1,0 +1,9 @@
+<nz-list nzItemLayout="horizontal">
+  <nz-list-item [nzActions]="[passwordOp]">
+    <ng-template #passwordOp>
+      <nz-switch [(ngModel)]="value" nzCheckedChildren="带" nzUnCheckedChildren="不带" (ngModelChange)="change()"></nz-switch>
+    </ng-template>
+    <nz-list-item-meta nzTitle="系统内部按钮带图标" nzDescription="系统内部按钮是否带图标"></nz-list-item-meta>
+  </nz-list-item>
+
+</nz-list>

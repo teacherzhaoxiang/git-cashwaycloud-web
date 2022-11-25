@@ -1,0 +1,56 @@
+<page-header [title]="pageTitle"></page-header>
+<div class="split-container" style="height: calc(100% - 30px);">
+
+    <as-split direction="horizontal" class="as-split-back" (dragEnd)="resize('dragEnd', $event)" (gutterClick)="resize('gutterClick', $event)">
+        <as-split-area [size]="treeSize">
+            <as-split direction="vertical">
+                <as-split-area [size]="100">
+                    <nz-card [nzTitle]="treeTitle">
+                        <nz-input-group [nzSuffix]="suffixIcon" style="padding-top:4px;padding-bottom: 5px" (click)="searchData2()">
+                            <input type="text" nz-input placeholder="" [(ngModel)]="searchValueTemp">
+                        </nz-input-group>
+                        <ng-template #suffixIcon>
+                            <i nz-icon class="anticon anticon-search ng-star-inserted"></i>
+                        </ng-template>
+                        <nz-tree style="overflow-y: auto;" [nzData]="nodes" nzCheckable="false" nzMultiple="false" nzShowIcon="true" [nzSearchValue]="searchValue" [nzCheckedKeys]="defaultCheckedKeys" [nzExpandedKeys]="defaultExpandedKeys" [nzSelectedKeys]="defaultSelectedKeys"
+                            (nzClick)="nzEvent($event)" nzAsyncData (nzExpandChange)="nzEvent($event)" (nzCheckBoxChange)="nzEvent($event)">
+                            <ng-template #nzTreeTemplate let-node>
+                                <span class="custom-node">
+                  <span [class.active]="treeId===node.key">
+                    <img *ngIf="checkNodeType(node) == 'home'" style="width: 20px;height: 20px;margin-bottom: 2px;margin-right: 2px;" src="./assets/tree-icon/tree-home.png">
+                    <img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'leaf'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px;" src="./assets/tree-icon/tree-leaf.png">
+                    <img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'open'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px" src="./assets/tree-icon/tree-open.png">
+                    <img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'close'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px" src="./assets/tree-icon/tree-close.png">
+                   <span [class.serachMatch]="this.searchMatchKey.includes(node.key)">{{node.title}}</span>
+                                </span>
+                                </span>
+                            </ng-template>
+                        </nz-tree>
+                    </nz-card>
+                </as-split-area>
+            </as-split>
+        </as-split-area>
+        <as-split-area [size]="tableSize">
+            <as-split direction="vertical">
+                <as-split-area [size]="100">
+                    <nz-card [nzTitle]="pageTitle">
+                        <sf #sf mode="search" [schema]="searchSchema" [formData]="params" (formSubmit)="refresh()" (formReset)="st.reset(params)" button="none"></sf>
+                        <nz-row style="padding: 10px;display: flex">
+                            <nz-col [nzSpan]="12">
+                                <button *ngIf="readable" nz-button (click)="add()" class="ant-btn ant-btn-primary"><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1" class="anticon-cashway anticon-cashway-add"></i>新增</button>
+                                <button *ngIf="readable" nz-button (click)="deletes()" class="ant-btn ant-btn-danger"><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1" class="anticon-cashway anticon-cashway-delete"></i>删除</button>
+                            </nz-col>
+                            <nz-col [nzSpan]="12">
+                                <div style="float: right">
+                                    <button nz-button [nzLoading]="loading" (click)="buttonGetData(null)" class="ant-btn ant-btn-primary"><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1" class="anticon-cashway anticon-cashway-search"></i>查询</button>
+                                    <button nz-button (click)="sf.reset(params)" class="ant-btn"><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1" class="anticon-cashway anticon-cashway-reset"></i>重置</button>
+                                </div>
+                            </nz-col>
+                        </nz-row>
+                        <st #st [data]="data" [columns]="columns" [req]="{params: params}" [page]="page" [total]="total" (change)="tableChange($event)"></st>
+                    </nz-card>
+                </as-split-area>
+            </as-split>
+        </as-split-area>
+    </as-split>
+</div>

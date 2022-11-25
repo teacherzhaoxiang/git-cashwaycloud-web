@@ -1,0 +1,44 @@
+.edit_box{
+    background: #FFFFFF;
+    width: 800px;
+    /*position: fixed !important;*/
+    z-index: 999999999999;
+    border-radius: 6px;
+    /*margin-left: -400px;*/
+    /*left: 50%;*/
+}
+.edit_box .topper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 16px;
+    border-bottom: 1px solid #ececec;
+}
+.edit_box .topper .closer{
+    cursor: pointer;
+}
+.edit_box .edit_content{
+    padding: 20px 40px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+.modal-content{
+    padding: 20px;
+}
+.modal-footer{
+    margin: 0;
+    padding: 20px 24px;
+}
+.modal-footer .keep{
+    background: #1890ff;
+    color: #FFFFFF;
+}
+.content{
+    padding-top: 20px;
+}
+.closeBtn{
+    border: 1px solid #1890ff;color: #1890ff
+}

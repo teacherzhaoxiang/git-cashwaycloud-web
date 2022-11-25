@@ -1,0 +1,11 @@
+{
+  "properties":{
+    "name":{ "name":"id","component":"eText","default":"123","description":"节点id"},
+    "hasLane":{"name":"泳道设置","component":"eSwitch","iif":"this.modifyCanvas(value)","type":"laneSwitch"}
+  },
+  "ui":{
+    "spanLabel":8,
+    "spanControl":16,
+    "offsetControl":0
+  }
+}

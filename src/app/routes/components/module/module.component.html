@@ -1,0 +1,17 @@
+<div class="edit_box" drag>
+    <div class="modal-header box_header" style="margin: 0">
+        <div class="modal-title">编辑</div>
+        <div class="closer" (click)="close()"><i nz-icon nzType="close" nzTheme="outline"></i></div>
+    </div>
+    <div (mousedown)="$event.stopPropagation()">
+        <div nz-row class="modal-content">
+            <nz-col nzSpan="24">
+                sdfas
+            </nz-col>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button nz-button type="button" (click)="close()" class="closeBtn">关闭</button>
+        <button nz-button type="submit">保存</button>
+    </div>
+</div>

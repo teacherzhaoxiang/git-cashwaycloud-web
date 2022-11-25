@@ -1,0 +1,30 @@
+<div class="container">
+    <as-split direction="horizontal">
+      <as-split-area [size]="70" class="left" >
+        <!-- <div>
+          <button (click)="test1()">测试create</button>
+          <button (click)="test2()">测试修改</button>
+        </div> -->
+        <h2 >
+          <div style="text-indent: 20px;">{{name}}</div>
+          <div class="button">
+            <a nz-button nzType="link" style="color: red; width: 80px;display: inline-block;" (click)="closeAll()">
+              <i nz-icon nzType="close" nzTheme="outline" style="padding: 0;"></i>
+              关闭
+            </a>
+            <a nz-button nzType="link" style="width: 80px;display: inline-block;" (click)="saveAll()">
+              <i nz-icon nzType="save" nzTheme="outline" style="padding: 0;"></i>
+              保存
+            </a>
+          </div>
+        </h2>
+        <nz-divider></nz-divider>
+        <app-search-area (getSearch)="getSelectedFromSearch($event)"></app-search-area>
+        <app-operate-area (passSfEdit)="getSelectedFromSfEdit($event)"></app-operate-area>
+        <app-table-area></app-table-area>
+      </as-split-area>
+      <as-split-area [size]="30" class="right">
+        <app-edit-area></app-edit-area>
+      </as-split-area>
+    </as-split>
+  </div>

@@ -1,0 +1,25 @@
+
+
+<div nz-row *ngIf="formColumns==1">
+  <nz-col nzSpan="24" >
+    <sf #sf1 mode="edit" [schema]="editSchema1" (formChange)="formChange()" [formData]="record1" button="none" >
+    </sf>
+  </nz-col>
+  <button nz-button type="button" style="margin-top: 4px;" (click)="dd()">查询</button>
+</div>
+
+<div nz-row nzGutter="32" *ngIf="formColumns==2">
+  <nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" >
+    <sf #sf1 mode="edit" [schema]="editSchema1" [formData]="record1" button="none" >
+
+    </sf>
+  </nz-col>
+  <nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" >
+    <sf #sf2 mode="edit" [schema]="editSchema2" [formData]="record2" button="none" >
+
+    </sf>
+  </nz-col>
+
+</div>
+
+

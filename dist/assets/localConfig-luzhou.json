@@ -1,0 +1,16 @@
+{
+  "__url":"http://127.0.0.1:8090",
+  "orgEdit":true,
+  "userEdit":true,
+  "orgTree":true,
+  "termTeamSelectConditions":"luzhou",
+  "password":{
+    "minLength":8,
+    "maxLength":16,
+    "uppercase":true,
+    "alphabet":true,
+    "number":true,
+    "specialCha":true
+
+  }
+}

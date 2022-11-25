@@ -1,0 +1,28 @@
+<nz-card [nzBordered]="false">
+
+  <nz-steps [(nzCurrent)]="item.currentStep">
+    <nz-step nzTitle="{{module.title}}" *ngFor="let module of item.childrens">
+    </nz-step>
+    <!--<nz-step nzTitle="确认转账信息"></nz-step>-->
+    <!--<nz-step nzTitle="完成"></nz-step>-->
+  </nz-steps>
+
+  <ng-container *ngFor="let step of item.childrens;let i=index">
+    <app-step #as{{i}} *ngIf="item.currentStep==i" [record1]="item.params[item.currentStep]['record1']" [transferServiceData]="item" ></app-step>
+    <!--<base-form [entity]="item.entity" [data]="item"  *ngIf="item.childrens[item.currentStep]['formType']==1"></base-form>-->
+
+  </ng-container>
+
+
+  <!--<app-step *ngFor="let module of steps"></app-step>-->
+  <!--<app-step1 *ngIf="item.step==0"></app-step1>-->
+  <!--<app-step2 *ngIf="item.step==1"></app-step2>-->
+  <!--<app-step3 *ngIf="item.step==2"></app-step3>-->
+
+  <div>
+    <button nz-button (click)="next()" *ngIf="item.steps-1>item.currentStep">下一步</button>
+    <button nz-button (click)="prev()" *ngIf="item.currentStep>0">上一步</button>
+    <button nz-button  *ngIf="item.steps-1==item.currentStep" (click)="save()">保存</button>
+  </div>
+
+</nz-card>

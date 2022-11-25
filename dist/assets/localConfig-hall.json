@@ -1,0 +1,24 @@
+{
+    "__url": "http://127.0.0.1:8090",
+    "orgEdit": true,
+    "userEdit": true,
+    "orgLeafCheckable": true,
+    "orgTree": false,
+    "roleOrgFlag": false,
+    "termTeamSelectConditions": "",
+    "password": {
+        "minLength": 8,
+        "maxLength": 16,
+        "alphabet": true,
+        "number": true,
+        "specialCha": true
+    },
+    "treeDisplay": false,
+    "listType": "simple",
+    "hall-config": true,
+    "allOptional": true,
+    "roleManageFlag": true,
+    "electronicWaterFlag": "/hall/monitor_terminal_log/file",
+    "selectTerminalUrl": "/hall/monitor_terminal_manage/monitorTerminalManage/terminalList?params={}",
+    "hallHeadBigImage": "./assets/xingye-bank/xingye-bank-head.png"
+}

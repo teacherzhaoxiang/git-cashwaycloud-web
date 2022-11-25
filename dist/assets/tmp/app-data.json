@@ -1,0 +1,81 @@
+{
+  "app": {
+    "name": "Alain",
+    "description": "Ng-zorro admin panel front-end framework"
+  },
+  "user": {
+    "name": "Admin",
+    "avatar": "./assets/tmp/img/avatar.jpg",
+    "email": "cipchk@qq.com"
+  },
+  "menu": [
+        {
+          "text": "form-engine",
+          "i18n": "menu.form-engine",
+          "icon": "anticon anticon-bulb",
+          "children": [
+            {
+              "text": "Dynamic Form",
+              "link": "/form-engine/dynamic-form",
+              "i18n": "menu.form-engine.dynamic-form"
+            }
+          ]
+        },
+        {
+          "text": "template",
+          "i18n": "menu.template",
+          "icon": "anticon anticon-bulb",
+          "children": [
+            {
+              "text": "table template",
+              "link": "/template/table-template",
+              "i18n": "menu.template.table-template"
+            }
+          ]
+        },
+    {
+      "text": "system",
+      "i18n": "menu.system",
+      "icon": "anticon anticon-bulb",
+      "children": [
+        {
+          "text": "user",
+          "link": "/system/user",
+          "i18n": "menu.system.user"
+        },
+        {
+          "text": "role",
+          "link": "/system/role",
+          "i18n": "menu.system.role"
+        },
+        {
+          "text": "org",
+          "link": "/system/org",
+          "i18n": "menu.system.org"
+        },
+        {
+          "text": "menu",
+          "link": "/system/menu",
+          "i18n": "menu.system.menu"
+        }
+      ]
+    },
+    {
+      "text": "monitor",
+      "i18n": "menu.monitor",
+      "icon": "anticon anticon-bulb",
+      "children": [
+        {
+          "text": "menu",
+          "link": "/template/monitor/terminal",
+          "i18n": "menu.monitor.terminal"
+        },
+        {
+          "text": "menu",
+          "link": "/template/table-template/monitor_terminal_manage",
+          "i18n": "menu.monitor.monitor_terminal_manage"
+        }
+      ]
+    }
+  ]
+}

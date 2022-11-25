@@ -1,0 +1,46 @@
+<!--<page-header [title]="pageTitle"></page-header>-->
+<div style="width: 1920px;height: 1080px;background: url('/assets/images/show-monitor1.png') no-repeat ;background-size:cover;">
+  <div style="padding-top: 40px">
+    <div style="height: 75px;width: 100%;padding-bottom: 90px;padding-top: 10px">
+      <span style="color: white;font-size: 36px;font-weight:bold;font-family: -webkit-body;padding-left: 900px;">交易监控</span>
+    </div>
+  <!--<sf #sf mode="search" [schema]="searchSchema" [formData]="params" button="none" (formReset)="sf.reset()">-->
+  <!--</sf>-->
+
+  <!--<nz-row  style="padding: 10px">-->
+    <!--<nz-col [nzSpan]="12">-->
+    <!--</nz-col>-->
+    <!--<nz-col [nzSpan]="12">-->
+      <!--<div style="float: right" >-->
+        <!--<button nz-button (click)="getData()" class="ant-btn ant-btn-primary" ><i class="anticon-cashway anticon-cashway-search"></i>查询</button>-->
+        <!--<button nz-button (click)="sf.reset(params)" class="ant-btn" ><i class="anticon-cashway anticon-cashway-reset"></i>重置</button>-->
+      <!--</div>-->
+    <!--</nz-col>-->
+  <!--</nz-row>-->
+
+  <st #st [data]="data"
+      [expand]="expand"
+      [columns]="columns"
+      [req]="{params: params}"
+      [page]="page"
+      [total]="total"
+      expandRowByClick
+      expandAccordion
+      (change)="tableChange($event)">
+
+    <ng-template #expand let-item let-index="index" let-column="column">
+      <nz-row>
+        <nz-col [nzSpan]="3" *ngFor="let image of item.images">
+          <div>
+            <img src="{{image}}" style="width: 220px;height: 40px;">
+          </div>
+        </nz-col>
+      </nz-row>
+    </ng-template>
+  </st>
+  </div>
+  </div>
+<!--<page-header title="冠字号黑名单监控"></page-header>-->
+<!--<nz-card style="height: 1000px">-->
+    <!--<st #st [data]="data2" [columns]="columns2"  [page]="page" [total]="total"></st>-->
+<!--</nz-card>-->

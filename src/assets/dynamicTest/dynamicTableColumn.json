@@ -1,0 +1,141 @@
+{
+  "tables":[
+    {
+      "fullName":"sys_user",
+      "id":"user"
+    },
+    {
+      "fullName":"sys_org",
+      "id":"org"
+    },
+    {
+      "fullName":"sys_role",
+      "id":"role"
+    }
+  ],
+  "sql":{
+    "seachKeys":[
+      {
+        "key":"userName",
+        "name":"user.name",
+        "option":"like"
+      },
+      {
+        "key":"orgName",
+        "name":"org.name",
+        "option":"like"
+      }
+    ],
+    "tableUnion":[
+      {
+        "user.orgId":"org.id"
+      },
+      {
+        "user.roleId":"role.id"
+      }
+    ],
+    "permission":{
+      "key":"org.path",
+      "option":"likeStart",
+      "value":"_user.orgPath"
+    },
+    "sort":[
+      {
+        "user.id":"desc"
+      }
+    ]
+  },
+  "viewColumns":[
+    {
+      "_relate":"user.contact",
+      "index":"contact",
+      "title":"用户姓名"
+    },
+    {
+      "_relate":"user.avatar",
+      "index":"avatar",
+      "title":"头像",
+      "type":"img",
+      "width":"50px"
+    },
+    {
+      "_relate":"user.create_time",
+      "index":"create_time",
+      "title":"创建时间",
+      "type":"date",
+      "dateFormat":"YYYY-MM-DD HH:mm:ss"
+    },
+    {
+      "_relate":"org.name",
+      "index":"orgName",
+      "title":"所属机构"
+    },
+    {
+      "_relate":"role.name",
+      "index":"roleName",
+      "title":"角色"
+    },
+    {
+      "_relate":"user.status",
+      "index":"status",
+      "title":"用户状态",
+      "type":"badge",
+      "badge":{"1":{"text":"失效","color":"error"},"0":{"text":"正常","color":"success"}}
+    },
+    {
+      "_relate":"user.gender",
+      "index":"gender",
+      "title":"性别",
+      "type":"tag",
+      "tag":{"1":{"text":"男","color":"blue"},"0":{"text":"女","color":"red"}}
+    },
+    {
+      "_relate":"user.is_manager",
+      "index":"isManager",
+      "title":"是否管理员",
+      "type":"yn",
+      "yn":{"yes":"√","no":"×"}
+    },
+    {
+      "title":"操作",
+      "buttons":[
+        {
+          "text": "编辑",
+          "icon": "edit",
+          "type": "modal",
+          "modal": {
+            "component": "TableEditModalComponent"
+          },
+          "click": ""
+        },
+        {
+            "text": "详情",
+            "type": "drawer",
+            "drawer": {
+              "title": "信息",
+              "component": "TableDetailDrawerComponent"
+            }
+        },
+        {
+          "text": "删除",
+          "icon": "delete",
+          "type": "del",
+          "click": ""
+        },
+        {
+          "text": "更多",
+          "children": [
+            {
+                "text":"授权",
+                "click":""
+            },
+            {
+                "text":"禁用",
+                "click":""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

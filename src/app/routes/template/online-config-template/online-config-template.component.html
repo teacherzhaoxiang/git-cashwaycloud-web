@@ -1,0 +1,76 @@
+<page-header [title]="'在线配置'"></page-header>
+<div class="split-container">
+    <as-split direction="horizontal" class="as-split-back"
+              (dragEnd)="resize('dragEnd', $event)"
+              (gutterClick)="resize('gutterClick', $event)">
+        <as-split-area [size]="treeSize">
+            <as-split direction="vertical">
+                <as-split-area [size]="100">
+                    <nz-card [nzTitle]="treeTitle" class="menuTree">
+                        <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                            <sf [schema]="schema" [formData]="params"></sf>
+                        </nz-modal>
+                        <div class="hy-flex">
+                            <button nz-button nzType="primary" (click)="add()">新增</button>
+                            <button nz-button nzType="primary">删除</button>
+                        </div>
+                        <nz-input-group class="search" nzSearch [nzAddOnAfter]="suffixIconButton" (click)="searchData()">
+                            <input type="text" nz-input placeholder="input search text" [(ngModel)]="searchValueTemp" />
+                        </nz-input-group>
+                        <ng-template #suffixIconButton>
+                            <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+                        </ng-template>
+                        <ul class="list">
+                            <li *ngFor="let item of data" [ngClass]="{'item':true,'actItem':actItem.id==item.id}" (click)="selectItem(item)">
+                                <div class="i_left">{{item.name}} ( {{item.id}} )</div>
+                                <div class="i_right hy-flex">
+                                    <div class="option" (click)="edit(item,$event)"><i nz-icon nzType="edit" nzTheme="outline"></i>编辑</div>
+                                    <div class="option" (click)="delete(item,$event)"><i nz-icon nzType="delete" nzTheme="outline"></i>删除</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nz-card>
+                </as-split-area>
+            </as-split>
+        </as-split-area>
+        <as-split-area  [size]="tableSize">
+            <as-split direction="vertical">
+                <as-split-area [size]="100">
+                    <nz-card [nzTitle]="pageTitle">
+                        <!--<sf [schema]="modalSchema" [formData]="modalParams"></sf>-->
+                        <nz-tabset [nzSelectedIndex]="selectedIndex" nzAnimated="false" (nzSelectChange)="selectChange($event)">
+                            <div *ngFor="let item of tabs" >
+                                <nz-tab [nzTitle]="item.type">
+                                    <ng-template nz-tab>
+                                        <sf #sf [schema]="modalSchema" [formData]="modalParams"></sf>
+                                    </ng-template>
+                                </nz-tab>
+                            </div>
+
+                            <!--<nz-tab nzTitle="tree" *ngIf="actItem.type=='tree-table-template'">
+                                <ng-template nz-tab>
+                                    <sf [schema]="modalSchema" [formData]="modalParams"></sf>
+                                </ng-template>
+                            </nz-tab>
+                            <nz-tab nzTitle="sf">
+                                <ng-template nz-tab>
+                                    <sf [schema]="modalSchema" [formData]="modalParams"></sf>
+                                </ng-template>
+                            </nz-tab>
+                            <nz-tab nzTitle="options">
+                                <ng-template nz-tab>
+                                    options
+                                </ng-template>
+                            </nz-tab>
+                            <nz-tab nzTitle="st">
+                                <ng-template nz-tab>
+                                    st
+                                </ng-template>
+                            </nz-tab>-->
+                        </nz-tabset>
+                    </nz-card>
+                </as-split-area>
+            </as-split>
+        </as-split-area>
+    </as-split>
+</div>

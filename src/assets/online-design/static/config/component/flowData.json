@@ -1,0 +1,23 @@
+{
+  "canvasData":{
+    "nodeDataArray": [
+      {"id":"MessageComm", "text":"后台通信组件", "category":"step", "color":"blue", "key":"cis_001", "loc":"-155.6666717529297 -164", "params":{"msgId":"1", "timeout":1, "url":"/tx/1"}, "tempColor":"blue", "linkArray":[ {"from":"cis_001", "to":"cis_003", "fromPort":"B", "toPort":"T", "points":[-155.6666717529297,-146.96667225914683,-155.6666717529297,-136.96667225914683,-155.6666717529297,-97.49198728633158,-156.1666717529297,-97.49198728633158,-156.1666717529297,-58.01730231351631,-156.1666717529297,-48.01730231351631], "linktext":"default", "key":1608175488848, "color":"gray"} ]},
+      {"id":"start", "text":"start", "category":"start", "background":"#bc0b0b", "color":"#ffffff", "key":"cis_002", "loc":"-155.6666717529297 -309", "params":{}, "tempColor":"#ffffff", "linkArray":[ {"from":"cis_002", "to":"cis_001", "fromPort":"B", "toPort":"T", "points":[-155.6666717529297,-288.48269768648373,-155.6666717529297,-278.48269768648373,-155.6666717529297,-234.75801271366845,-155.6666717529297,-234.75801271366845,-155.6666717529297,-191.0333277408532,-155.6666717529297,-181.0333277408532], "linktext":"default", "key":1608175485759} ]},
+      {"id":"flowReturn", "text":"回跳组件", "category":"end", "background":"#bc0b0b", "color":"#ffffff", "key":"cis_003", "loc":"-156.1666717529297 -27.5", "params":{"return":"success"}, "tempColor":"#ffffff"}
+    ],
+    "linkDataArray": [
+      {"from":"cis_002", "to":"cis_001", "fromPort":"B", "toPort":"T", "points":[-155.6666717529297,-288.48269768648373,-155.6666717529297,-278.48269768648373,-155.6666717529297,-234.75801271366845,-155.6666717529297,-234.75801271366845,-155.6666717529297,-191.0333277408532,-155.6666717529297,-181.0333277408532], "linktext":"default", "key":1608175485759},
+      {"from":"cis_001", "to":"cis_003", "fromPort":"B", "toPort":"T", "points":[-155.6666717529297,-146.96667225914683,-155.6666717529297,-136.96667225914683,-155.6666717529297,-97.49198728633158,-156.1666717529297,-97.49198728633158,-156.1666717529297,-58.01730231351631,-156.1666717529297,-48.01730231351631], "linktext":"default", "key":1608175488848, "color":"gray"}
+    ]
+  },
+  "flowData":{
+    "flowName": "FN_GetELBalnce",
+    "id":"FN_GetELBalnce",
+    "lanes":["泳道"],
+    "flows":[
+      {"node":"cis_003","componentName":"start","params":{},"return":{},"remark":"start","laneName":"泳道"},
+      {"node":"cis_002","componentName":"MessageComm","params":{"msgId":"1","timeout":1,"url":"/tx/1"},"return":{},"remark":"后台通信组件","laneName":"泳道"},
+      {"node":"cis_004","componentName":"flowReturn","params":{},"return":{},"remark":"回跳组件","laneName":"泳道"}
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+<page-header [title]="''" *ngIf="hasHeader"></page-header>
+<div class="split-container" #container style="height: calc(100% - 30px);">
+    <as-split direction="horizontal" class="as-split-back" [disabled]="treeDisplay" (dragEnd)="resize('dragEnd', $event)" (gutterClick)="resize('gutterClick', $event)">
+        <as-split-area [size]="15">
+            <as-split direction="vertical">
+                <as-split-area [size]="100">
+                    <nz-card nzTitle="机构目录">
+                        <!--<nz-input-group [nzSuffix]="suffixIcon" style="padding-top:4px;padding-bottom: 5px">-->
+                        <!--<input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue">-->
+                        <!--</nz-input-group>-->
+                        <!--<ng-template #suffixIcon>-->
+                        <!--<i nz-icon class="anticon anticon-search ng-star-inserted"></i>-->
+                        <!--</ng-template>-->
+                        <!-- <nz-tree style="overflow-y: auto;" [nzData]="nodes" nzCheckable="false" nzMultiple="false" nzShowIcon="true" [nzSearchValue]="searchValue" [nzCheckedKeys]="defaultCheckedKeys" [nzExpandedKeys]="defaultExpandedKeys" [nzSelectedKeys]="defaultSelectedKeys"
+                            (nzClick)="nzEvent($event)" nzAsyncData (nzExpandChange)="nzEvent($event)" (nzCheckBoxChange)="nzEvent($event)">
+                            <ng-template #nzTreeTemplate let-node>
+                                <span class="custom-node">
+                        <span [class.active]="treeId===node.key">
+                        <img *ngIf="checkNodeType(node) == 'home'" style="width: 20px;height: 20px;margin-bottom: 2px;margin-right: 2px;" src="/assets/tree-icon/tree-home.png">
+                        <img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'leaf'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px;" src="/assets/tree-icon/tree-leaf.png">
+                        <img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'open'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px" src="/assets/tree-icon/tree-open.png">
+                        <img [ngStyle]="{'background-color':treeId === node.key ? '#1890ff' : '#000000' }" *ngIf="checkNodeType(node) == 'close'" style="width: 16px;height: 16px;margin-bottom: 2px;margin-right: 2px" src="/assets/tree-icon/tree-close.png">
+                        <span >{{node.title}}</span>
+                                </span>
+                                </span>
+                            </ng-template>
+                        </nz-tree> -->
+                        <tree [initUri]="treeInitUri"></tree>
+                    </nz-card>
+                </as-split-area>
+            </as-split>
+        </as-split-area>
+        <as-split-area [size]="85">
+            <as-split direction="vertical">
+                <as-split-area [size]="100">
+                    <nz-card [nzTitle]="name">
+                        <!--<tab-list (event)="getParam($event)" [tabListConfig]="tabListConfig"></tab-list>-->
+                        <trade_monitor *ngIf="id=='monitor_trade_current'&& trade_monitor"></trade_monitor>
+                        <sf #sf mode="search" [schema]="searchSchema" [formData]="params" (formSubmit)="refresh" (formReset)="st.reset(params)" button="none"></sf>
+                        <!--<my-sv *ngIf="statisticFlag" [cols]="statisticCols" [asyncData]="staticAsyncData" [enum]="statisticEnum"  [labels]="statisticLabels" ></my-sv>-->
+                        <nz-row class="search" [nzJustify]="'end'">
+                            <nz-col [nzSpan]="12">
+                                <div #buttonsDiv>
+                                    <span *ngFor="let item of buttons">
+                    <nz-upload *ngIf="item.type === 'import'"    [nzLimit]="1" [nzShowUploadList]="false" style="float: left;margin-left: 5px;">
+                      <button nz-button class="ant-btn ant-btn-primary">
+                        <i  class="anticon-cashway anticon-cashway-upload"></i>导入
+                      </button>
+                    </nz-upload>
+                    <button nz-button [nzLoading]="item.type == 'export'?loading2:false" *ngIf="item.type !== 'import'"    class="{{item['_class']?item['_class']:'ant-btn ant-btn-primary'}}"
+                          (click)="globalButtonClick(item)"
+                          type="button"
+                          style="margin-left: 4px;float: left" >{{item['label']}}</button>
+                </span>
+                                </div>
+                                <template id="uploadTemplate">
+                  <button id="add" type="button"></button>
+                  <button id="delete" type="button"></button>
+                  <button id="downloadTemplate" type="button"></button>
+                  <button id="export" type="button"></button>
+                  <nz-upload  [nzLimit]="1" [nzShowUploadList]="false" id="import" style="float: left;margin-left: 5px;">
+                    <button nz-button class="ant-btn ant-btn-primary">
+                      <i  class="anticon-cashway anticon-cashway-upload"></i>导入
+                    </button>
+                  </nz-upload>
+                </template>
+                                <!--                <div *ngIf="editFlag">-->
+                                <!--                  <button nz-button (click)="add()" class="ant-btn ant-btn-primary" >新增</button>-->
+                                <!--                  <button nz-button (click)="deletes()" class="ant-btn ant-btn-danger">删除</button>-->
+                                <!--                </div>-->
+                            </nz-col>
+                            <nz-col [nzSpan]="12">
+                                <div style="float: right">
+                                    <button nz-button [nzLoading]="loading" (click)="buttonGetData()" class="ant-btn ant-btn-primary">查询</button>
+                                    <button nz-button (click)="buttonResetData()" class="ant-btn">重置</button>
+                                </div>
+                            </nz-col>
+
+                        </nz-row>
+                        <st #st class="table" [widthMode]="{ type: 'strict' }" [data]="data" [columns]="columns" [req]="{params: params}" [page]="page" [(ps)]="pageSize" [total]="total" (change)="tableChange($event)">
+                            <!--<ng-template st-row="option" let-item let-index="index" let-column="column">-->
+                            <!--<div style="display: flex;align-items: center;justify-content: center;flex-wrap: wrap;max-width: 120px;">-->
+                            <!--<a *ngFor="let item of column.buttons" style="height:20px;line-height: 20px;display: inline-block;text-align: center;padding: 2px" (click)="item['click'](item['type'])">-->
+                            <!--{{item['text']}}-->
+                            <!--</a>-->
+                            <!--</div>-->
+                            <!--</ng-template>-->
+                        </st>
+                    </nz-card>
+                </as-split-area>
+            </as-split>
+        </as-split-area>
+    </as-split>
+</div>

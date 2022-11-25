@@ -1,0 +1,79 @@
+<div class="alain-default__aside-inner">
+  <nz-dropdown nzTrigger="click" class="alain-default__aside-user" style="padding-top: 12px;margin: 0;">
+    <div [routerLink]="['/']" nz-dropdown class="user-block-dropdown" style="display: flex;justify-content: center">
+      <!--<div style="background-image: url('/src/assets/images/sidebar-head.png');width: 1.5rem;height: 1.5rem;margin-right: 5px;background-repeat: no-repeat;background-size: contain;float:left;"></div>-->
+
+      <!--<div class="anticon anticon-global" style="font-size:20px;margin-right: 10px;"></div>-->
+
+      <!--<div style="font-size: 20px;font-weight: 500;color: rgba(0, 0, 0, 0.85);" *ngIf="loginUrl==utilsService.passportLogin">厅堂管理</div>-->
+      <!--<div style="font-size: 20px;font-weight: 500;color: rgba(0, 0, 0, 0.85);" *ngIf="loginUrl==utilsService.loginOperationPlatform">综合运营管理</div>-->
+      <nz-avatar class="alain-default__aside-user-avatar" style="margin: 10px 10px 0 10px" nzSrc="./assets/images/card-sidebar-head.png"></nz-avatar>
+      <div class="alain-default__aside-user-info" style="white-space: normal;padding-right: 10px">
+        <strong style="font-size: 16px;" *ngIf="loginUrl==utilsService.passportLogin">{{programName}}</strong>
+        <strong style="font-size: 16px;" *ngIf="loginUrl==utilsService.loginOperationPlatform">综合运营管理</strong>
+        <!--<p class="text-truncate mb0">{{settings.user.email}}</p>-->
+      </div>
+    </div>
+    <!--<ul nz-menu>-->
+      <!--<li nz-menu-item routerLink="/pro/account/center">{{ '' | translate }}</li>-->
+      <!--<li nz-menu-item routerLink="/pro/account/settings">{{ 'menu.account.settings' | translate }}</li>-->
+    <!--</ul>-->
+  </nz-dropdown>
+  <ul nz-menu [nzMode]="'inline'" style="margin-left: -10px" nzTheme='light' [nzInlineCollapsed]="settings.layout.collapsed">
+    <ng-container *ngFor="let group of list">
+      <ng-template [ngIf]="group._hidden !== true">
+        <!-- 菜单分组 -->
+        <!--<li nz-menu-group [hidden]="settings.layout.collapsed">-->
+        <!--<span title>{{ group.text }}</span>-->
+        <!--</li>-->
+        <ng-container *ngFor="let child1 of group.children">
+          <ng-container *ngIf="child1._hidden !== true">
+            <ng-container *ngIf="child1._type !== 3">
+              <li nz-menu-item [nzSelected]="child1._open" (click)="onSelect(child1)">
+              <span title>
+                <i class="{{ child1.icon }}"></i>
+                <span>{{ child1.text }}</span>
+              </span>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="child1._type === 3">
+              <li nz-submenu [nzOpen]="child1._open">
+              <span title>
+                <i nz-icon [nzType]="child1.icon.value?child1.icon.value:''" [nzTheme]="child1.icon.theme?child1.icon.theme:''"></i>
+                <!--<i nz-icon nzType="credit-card" nzTheme="outline"></i>-->
+                <!--<i class="{{ child1.icon }}"></i>-->
+                <span>{{ child1.text }}</span>
+              </span>
+                <ul>
+                  <!-- 第二层 -->
+                  <ng-container *ngFor="let child2 of child1.children">
+                    <ng-container *ngIf="child2._hidden !== true">
+                      <ng-container *ngIf="child2._type !== 3">
+                        <li nz-menu-item [nzSelected]="child2._open" (click)="onSelect(child2)">{{ child2.text }}</li>
+                      </ng-container>
+                      <ng-container *ngIf="child2._type === 3">
+                        <li nz-submenu [nzOpen]="child2._open">
+                        <span title>
+                          <i class="{{ child2.icon }}"></i>
+                          <span>{{ child2.text }}</span>
+                        </span>
+                          <ul>
+                            <!-- 第三层 -->
+                            <ng-container *ngFor="let child3 of child2.children">
+                              <li nz-menu-item *ngIf="child3._hidden !== true" [nzSelected]="child3._open" (click)="onSelect(child3)">{{ child3.text }}</li>
+                            </ng-container>
+                          </ul>
+                        </li>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-template>
+    </ng-container>
+  </ul>
+  <!--<sidebar-nav class="d-block py-lg" style="padding-top: 0px !important;"></sidebar-nav>-->
+</div>

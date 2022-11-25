@@ -1,0 +1,23 @@
+.imgBox{
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+.imgBox img{
+    width: 100%;
+    height: 100%;
+}
+.up{
+    padding-right: 5px;
+}
+.search{
+    margin-bottom: 16px;
+}
+.keep{
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+.back{
+    padding-bottom: 16px;
+}

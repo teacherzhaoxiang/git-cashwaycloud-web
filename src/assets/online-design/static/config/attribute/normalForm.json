@@ -1,0 +1,11 @@
+{
+  "properties":{
+    "key":{"name":"泳道id","component":"eInput","description":"nodeId"},
+    "text":{ "name":"泳道名称","component":"eInput","type":"text","required":true,"readOnly":false,"description":"nodeName","placeholder":"泳道名称"}
+  },
+  "ui":{
+    "spanLabel":8,
+    "spanControl":16,
+    "offsetControl":0
+  }
+}

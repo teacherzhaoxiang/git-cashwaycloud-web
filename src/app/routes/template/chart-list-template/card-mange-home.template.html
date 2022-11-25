@@ -1,0 +1,27 @@
+<page-header [title]="'首页'"></page-header>
+
+<sf #sf style="margin-left: 10px" mode="search" [schema]="searchSchema" [formData]="record" button="none"   (formReset)="sf.reset()" size="large"></sf>
+<div id="have-terminal">
+<nz-row [nzGutter]="8" *ngIf="loading" >
+  <nz-col  *ngFor="let module of modules;" [nzSpan]="module.size" >
+    <div style="padding: 5px; margin: 5px;border-color: #ffffff;border-radius: 10px;background-color: #ffffff">
+      <div >
+        <!--<input  [ngModel]="value" (ngModelChange)="change($event)"/>-->
+        <img src="{{module.src}}" style="width: 16px;height: 16px;margin-right: 10px;margin-left: 10px"/>
+        <label style="line-height: 16px;font-weight: bold;font-family: 新宋体">{{module.label}}</label>
+      </div>
+      <hr>
+      <div [id]="module.index" style="height: 300px;">
+
+      </div>
+    </div>
+
+  </nz-col>
+</nz-row>
+</div>
+<div id="no-terminal" style="text-align: center;">
+   <img src="/assets/images/no-terminal.png">
+</div>
+<!--<div *ngIf="utilsService.loginUrl==utilsService.passportLogin">-->
+  <!--<img src="/src/assets/images/cis_sys_manage.png" style="max-width: 100%;"/>-->
+<!--</div>-->

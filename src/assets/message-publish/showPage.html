@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+		<title></title>
+		<link rel="icon" type="image/x-icon" href="../cashway-logo.png" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<style>
+			body{
+				overflow: auto;
+			}
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box {
+				cursor: move;
+				position: absolute;
+				top: 30px;
+				left: 30px;
+				background-color: transparent !important;
+				overflow: hidden;
+				border: none !important;
+			}
+
+			.box img {
+				width: 100%;
+				height: 100%;
+			}
+			textarea{
+				resize: none;
+				border: none;
+				outline: none;
+			}
+			.swiper-slide{
+
+			}
+			.pages{
+				margin: 0 auto;
+				position: relative;
+			}
+			.swiper-container .swiper-container{
+				width: 100% !important;
+				height: 100% !important;
+				overflow: hidden;
+			}
+			.coor{
+				background: transparent !important;
+			}
+			video{
+				outline: none;
+			}
+			#getVoice{
+				position: fixed;
+				right: 20px;
+				top: 20px;
+				z-index: 999;
+				background: #007AFF;
+				color: #FFFFFF;
+				width: 200px;
+				height: 60px;
+				border-radius: 60px;
+				outline: none;
+			}
+			.box[data-type='video']{
+				background: black;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="getVoice" onclick="getVoice()">开启声音</button>
+		<div id="check"></div>
+		<div class="swiper-container swiper-no-swiping check_out">
+			<div class="swiper-wrapper" id="swiper-wrapper">
+				<!-- <div class="swiper-slide">slider1</div>
+				<div class="swiper-slide">slider2</div>
+				<div class="swiper-slide">slider3</div> -->
+			</div>
+		</div>
+		<audio id="play_music" src="" loop="loop" style="visibility: hidden;"></audio>
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/config.js"></script>
+		<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//var URL = 'http://localhost:8090';
+			console.log(11)
+			let aa =
+				"%5B%7B%22index%22%3A0%2C%22html%22%3A%22%3Cdiv+class%3D%5C%22box+boxBg%5C%22+onclick%3D%5C%22change_type%28event%2Cthis%29%5C%22+style%3D%5C%22display%3A+flex%3B+align-items%3A+center%3B+justify-content%3A+center%3B+z-index%3A+1%5B%7B%22index%22%3A0%2C%22html%22%3A%22%3Cdiv+class%3D%5C%22box+boxBg%5C%22+onclick%3D%5C%22change_type%28event%2Cthis%29%5C%22+style%3D%5C%22display%3A+flex%3B+align-items%3A+center%3B+justify-content%3A+center%3B+z-index%3A+1%3B+width%3A+1920px%3B+height%3A+1080px%3B+top%3A+0px%3B+left%3A+0px%3B%5C%22+data-type%3D%5C%22document%5C%22+id%3D%5C%22box1576485394107%5C%22%3E%3Cimg+src%3D%5C%22images%2Fdocument.png%5C%22%3E%3Cdiv+class%3D%5C%22coor%5C%22%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%22%2C%22scalehtml%22%3A%22%3Cdiv+style%3D%5C%22width%3A1920px%3Bheight%3A1080px%3Bbackground-color%3A%3Bbackground-image%3A%3Btransform%3Ascale%280.052083333333333336%29%3Btransform-origin%3Aleft+21.875px%5C%22+class%3D%5C%22cb_content%5C%22%3E%3Cdiv+class%3D%5C%22box+boxBg%5C%22+onclick%3D%5C%22change_type%28event%2Cthis%29%5C%22+style%3D%5C%22display%3A+flex%3B+align-items%3A+center%3B+justify-content%3A+center%3B+z-index%3A+1%3B+width%3A+1920px%3B+height%3A+1080px%3B+top%3A+0px%3B+left%3A+0px%3B%5C%22+data-type%3D%5C%22document%5C%22+id%3D%5C%22box1576485394107%5C%22%3E%3Cimg+src%3D%5C%22images%2Fdocument.png%5C%22%3E%3Cdiv+class%3D%5C%22coor%5C%22%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%22%2C%22backgroundColor%22%3A%22%22%2C%22delay%22%3A0.1%2C%22maxZIndex%22%3A1%2C%22minZIndex%22%3A0%2C%22business_type%22%3A2%7D%5D%3B+width%3A+1920px%3B+height%3A+1080px%3B+top%3A+0px%3B+left%3A+0px%3B%5C%22+data-type%3D%5C%22image%5C%22+id%3D%5C%22box1576479010487%5C%22%3E%3Cimg+src%3D%5C%22http%3A%2F%2F114.116.120.8%3A8090%2Fzuul%2Ffile%2Ffile%2F%2Fdownload%3Ffilename%3Dhall%2Fresource%2F6b8d8b0f-cb6b-4e0e-9d22-41aa49e92cbb.jpg%5C%22%3E%3Cdiv+class%3D%5C%22coor%5C%22%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%22%2C%22scalehtml%22%3A%22%3Cdiv+style%3D%5C%22width%3A1920px%3Bheight%3A1080px%3Bbackground-color%3A%3Bbackground-image%3A%3Btransform%3Ascale%280.052083333333333336%29%3Btransform-origin%3Aleft+21.875px%5C%22+class%3D%5C%22cb_content%5C%22%3E%3Cdiv+class%3D%5C%22box+boxBg%5C%22+onclick%3D%5C%22change_type%28event%2Cthis%29%5C%22+style%3D%5C%22display%3A+flex%3B+align-items%3A+center%3B+justify-content%3A+center%3B+z-index%3A+1%3B+width%3A+1920px%3B+height%3A+1080px%3B+top%3A+0px%3B+left%3A+0px%3B%5C%22+data-type%3D%5C%22image%5C%22+id%3D%5C%22box1576479010487%5C%22%3E%3Cimg+src%3D%5C%22http%3A%2F%2F114.116.120.8%3A8090%2Fzuul%2Ffile%2Ffile%2F%2Fdownload%3Ffilename%3Dhall%2Fresource%2F6b8d8b0f-cb6b-4e0e-9d22-41aa49e92cbb.jpg%5C%22%3E%3Cdiv+class%3D%5C%22coor%5C%22%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%22%2C%22backgroundColor%22%3A%22%22%2C%22delay%22%3A0.1%2C%22maxZIndex%22%3A1%2C%22minZIndex%22%3A0%2C%22business_type%22%3A1%2C%22music%22%3A%22%22%7D%5D%0A\n";
+			let bb = decodeURIComponent(aa);
+			//let cc = encodeURIComponent(aa);
+
+			function GetRequest() {
+				//获取url传递的参数
+				var url = location.search; //获取url中"?"符后的字串
+				var theRequest = new Object();
+				if (url.indexOf("?") != -1) {
+					var str = url.substr(1);
+					strs = str.split("&");
+					for (var i = 0; i < strs.length; i++) {
+						theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+					}
+				}
+				return theRequest;
+			}
+			var type_url = '';
+			$(function() {
+				Request = GetRequest();
+				switch (Request.type) {
+					case "1":
+						type_url = "hall|publish_program_template";
+						break;
+					case "2":
+						type_url = "hall|publish_page_manage";
+						break;
+					case "3":
+						//增加这个类型，表示已经提交
+						type_url = "hall|publish_page_manage_his";
+						break;
+					default:
+						break;
+				}
+				let heightWidth = Request.resolutionValue.split('*');
+				Request.width = heightWidth[0];
+				Request.height = heightWidth[1];
+				if(typeof(token)=="undefined"){
+					let token  = localStorage._token; //正式版的token获取方式
+					Request.token = JSON.parse(token).token;  //正式版的token获取方式
+				}else{
+					Request.token = token;  //测试获取全局配置token
+				}
+				let I = navigator.userAgent.toLowerCase();;
+				//var isiPad = (I.match(/(iPad).*OS\s([\d_]+)/)) ? true : false;
+				//$('#check').html(I);
+				$.ajax({
+					type: "get",
+					contentType: "application/json",
+					url: URL + "/engine/rest/common/" + type_url + "/" + Request.id,
+					beforeSend: function(XMLHttpRequest) {
+						XMLHttpRequest.setRequestHeader("token", Request.token);
+					},
+					success: function(res) {
+						console.log(res);
+						let HTML = JSON.parse(decodeURIComponent(res.module_data));
+						console.log(HTML);
+						let slide = '';
+						let len = HTML.length;
+						let boxSwiper;
+						let mySwiper;
+						for (let i = 0; i < len; i++) {
+							// slide +='<div class="swiper-slide swiper-slide'+i+'" data-swiper-autoplay="'+(HTML[i].delay*1000*60)+'"><div class="pages" style="width:378px;height:567px;background-color:'+HTML[i].backgroundColor+';">'+HTML[i].html+'</div></div>';
+							slide += '<div class="swiper-slide swiper-slide' + i + '" data-swiper-autoplay="' + (HTML[i].delay * 1000) + '">' + HTML[i].scalehtml + '</div>';
+						}
+						$('#swiper-wrapper').html(slide);
+						if(showWeather && $('.textarea.weather').length>0){
+							// getWeather();
+						}else{
+							$('.textarea.weather').css({'display':'none'});
+						}
+						// $('.swiper-container').css({
+						// 	'height': Request.height,
+						// 	'width': Request.width
+						// });
+						var winW = window.innerWidth;
+						var winH = window.innerHeight;
+						/* var winWH = winW / winH;
+						var WH = Request.width / Request.height;
+						var scale;
+						var marginL = 0;
+						var marginT = 0;
+						if (winWH > WH) {
+							scale = winH / Request.height;
+							marginL = (winW - Request.width * scale) / 2;
+						} else {
+							scale = winW / Request.width;
+							marginT = (winH - Request.height * scale) / 2;
+						} */
+						var wScale = winW / Request.width;
+						var hScale = winH / Request.height;
+						$('.cb_content').css({
+							'transform': 'scale('+wScale+','+hScale+')',
+							'transform-origin': '0px 0px'
+						});
+						$('textarea').attr('readonly', 'readonly');
+						$('.swiper-container').find("[onclick]").removeAttr("onclick");
+						$('.swiper-container').find("[onchange]").removeAttr("onchange");
+						//更换textarea标签并重新赋值
+						$(".check_out .box[data-type='font']").each(function(i) {
+							if ($(this).find('.cDate').length <= 0 && $(this).find('.weather').length <= 0) {
+								var str = '<div class="textarea" style="width:100%;height:100%;' + $(this).find('.textarea').attr('style') + '">' + ($(this).find('textarea').attr('data-val') || "") + '</div>';
+							}
+							$(this).html(str);
+							//$(this).css({width:($(this).width()+20)/scale,height:($(this).height()+20)/scale});
+						});
+						$(".check_out .box[data-fType]").each(function(i) {
+							var direction = "";
+							switch ($(this).attr("data-fType")) {
+								case "0":
+									direction = "up";
+									break;
+								case "1":
+									direction = "down";
+									break;
+								case "2":
+									direction = "left";
+									break;
+								case "3":
+									direction = "right";
+									break;
+								default:
+									"left";
+									breakl
+							}
+							var marqWidth = $(".check_out .box[data-fType]").eq(i).width();
+							var marquee = '<marquee behavior="scroll" direction="' + direction + '" style="width:'+marqWidth+'px !important;' + $(this).find(
+									'textarea').attr('style') + '">' +
+								$(this).find('textarea').attr("data-val") +
+								'</marquee>';
+							$(this).html(marquee);
+							
+						})
+						getTime();
+
+						//$('#swiper-wrapper .swiper-slide0 .video-js').trigger('play');
+
+						if (len > 1) {
+							if (!!mySwiper) {
+								mySwiper.destroy();
+							}
+							mySwiper = new Swiper('.check_out', {
+								loop: true,
+								slidesPerview: 'auto',
+								autoplay: {
+									delay: 0,
+									stopOnLastSlide: false,
+									disableOnInteraction: false,
+								},
+								freeMode: true,
+								speed: 1000,
+								observer: true, //修改swiper自己或子元素时，自动初始化swiper
+								observeParents: true, //修改swiper的父元素时，自动初始化swiper
+								disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+								on: {
+									slideChangeTransitionStart: function() {
+										var activeIndex = this.activeIndex;
+										var previousIndex = this.previousIndex;
+										$('#play_music').trigger('pause');
+										if(previousIndex==0&&HTML[previousIndex]&&HTML[previousIndex].music){
+											$('#play_music').attr('src',URL+'/zuul/file/file/' + HTML[previousIndex].music);
+										}else if(previousIndex>HTML.length-1&&HTML[0].music){
+											$('#play_music').attr('src',URL+'/zuul/file/file/' + HTML[0].music);
+										}else{
+											if(HTML[previousIndex]){
+												$('#play_music').attr('src',URL+'/zuul/file/file/' + HTML[previousIndex].music);
+											}
+										}
+										if(HTML[previousIndex]){
+											if(!HTML[previousIndex].music){
+												$('#play_music').attr('src','');
+											} else{
+												$('#play_music').attr('autoplay','autoplay')
+												//$('#play_music')[0].play();
+											}
+										}
+										if($('#play_music').length>0){
+											$('#play_music').attr('autoplay','autoplay')
+											//$('#play_music')[0].play();
+										}
+										$('#swiper-wrapper .swiper-slide[data-swiper-slide-index] .video-js').trigger('pause');
+										$("#swiper-wrapper").children().eq(activeIndex).find("video").each(function(){
+											if($(this)[0].readyState==4){
+												$(this)[0].play();
+											}else{
+												if(!$(this)[0].load()){
+													$(this)[0].play();
+												}
+											}
+										});
+										if (!!boxSwiper) {
+											try {
+												if (Array.isArray(boxSwiper)) {
+													for (let i = 0; i < boxSwiper.length; i++) {
+														boxSwiper[i].destroy();
+													}
+												} else {
+													boxSwiper.destroy();
+												}
+											} catch (e) {}
+										}
+										boxSwiper = new Swiper('.check_out .swiper-slide-active .swiper-container', {
+											loop: true,
+											autoplay: {
+												delay: 0,
+												stopOnLastSlide: false,
+												disableOnInteraction: false,
+											},
+											freeMode: true,
+											speed: 1000,
+											observer: true, //修改swiper自己或子元素时，自动初始化swiper
+											observeParents: true, //修改swiper的父元素时，自动初始化swiper
+											observer: true, //修改swiper自己或子元素时，自动初始化swiper
+											observeParents: true, //修改swiper的父元素时，自动初始化swiper
+											disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+										});
+									}
+								}
+							});
+						} else {
+							$('#swiper-wrapper .swiper-slide0 .video-js').each(function() {
+								$(this).load();
+								$(this).attr('autoplay', 'autoplay');
+								$(this)[0].play();
+								$(this)[0].muted = false;
+							})
+							if (HTML[0].music) {
+								$('#play_music').attr('src', URL + '/zuul/file/file/' + HTML[0].music);
+								$('#play_music').attr('autoplay','autoplay')
+								// if ($('#play_music') && !$('#play_music').load()) {
+								// 	$('#play_music')[0].play();
+								// }
+							}
+							if (!!boxSwiper) {
+								try {
+									if (Array.isArray(boxSwiper)) {
+										for (let i = 0; i < boxSwiper.length; i++) {
+											boxSwiper[i].destroy();
+										}
+									} else {
+										boxSwiper.destroy();
+									}
+								} catch (e) {}
+							}
+							let boxBg = document.querySelectorAll('.boxBg')
+							Array.from(boxBg).forEach((ele,index)=>{
+								if(ele.dataset.type = 'Carousel'){
+									console.log(ele.dataset,ele.id,HTML[0]['swiperType'])
+									ele.firstElementChild.classList.add(`swiper-${ele.id}`)
+									if(HTML[0]['swiperType'][ele.id]){
+										let boxSwiper = new Swiper(`.swiper-${ele.id}`, {
+										loop: true,
+										direction : HTML[0]['swiperType'][ele.id]['direction']?HTML[0]['swiperType'][ele.id]['direction']:'horizontal',
+										slidesPerview: 'auto',
+										effect : HTML[0]['swiperType'][ele.id]['type'],
+										autoplay: {
+											delay: 0,
+											stopOnLastSlide: false,
+											disableOnInteraction: false,
+										},
+										observer: true, //修改swiper自己或子元素时，自动初始化swiper
+										observeParents: true, //修改swiper的父元素时，自动初始化swiper
+										disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+									});
+									}
+									
+								}
+							})
+							// boxSwiper = new Swiper('.check_out .swiper-slide0 .swiper-container', {
+							// 	loop: true,
+							// 	slidesPerview: 'auto',
+							// 	effect : "coverflow",
+							// 	autoplay: {
+							// 		delay: 0,
+							// 		stopOnLastSlide: false,
+							// 		disableOnInteraction: false,
+							// 	},
+							// 	observer: true, //修改swiper自己或子元素时，自动初始化swiper
+							// 	observeParents: true, //修改swiper的父元素时，自动初始化swiper
+							// 	disableOnInteraction: false, //用户操作swiper之后自动切换不会停止
+							// });
+						}
+					}
+				});
+			});
+			WEATHER = {};
+			function getWeather(){
+				// $.ajax({
+				// 	type: "get",
+				// 	dataType: "json",
+				// 	url: URL+"/hall-manage/hall_service_weather/getWeather",
+				// 	success: function(res) {
+				// 		if(res.code==0){
+				// 			WEATHER = res.msg;
+				// 			var weatherStr = '<div class="weather">'+(WEATHER.cityName||'')+'</div><div class="weather">'+(WEATHER.temp2||'')+'/'+(WEATHER.temp1||'')+'</div><div>'+(WEATHER.wea||'')+(WEATHER.airLevel?' 空气'+WEATHER.airLevel:'')+'</div>';
+				// 			$('.textarea.weather').html(weatherStr);
+				// 		}
+				// 	}
+				// });
+			}
+			function getTime(type = '') {
+				timeInterval = setInterval(function() {
+					var date = new Date();
+					var year = date.getFullYear();
+					var month = date.getMonth() + 1;
+					var day = date.getDate();
+					var hours = date.getHours();
+					var minutes = date.getMinutes();
+					var seconds = date.getSeconds();
+					var cDate = year + '年' + month + '月' + day + '日  ' + hours + "时" + minutes + "分" + seconds + "秒";
+					if (month < 10) {
+						month = '0' + month;
+					}
+					if (day < 10) {
+						day = '0' + day;
+					}
+					if (hours < 10) {
+						hours = '0' + hours;
+					}
+					if (minutes < 10) {
+						minutes = '0' + minutes;
+					}
+					if (seconds < 10) {
+						seconds = '0' + seconds;
+					}
+					var nomalDate = year + '-' + month + '-' + day + ' ' + hours + ":" + minutes + ":" + seconds; //默认类型的日期时间格式
+					$('.timmer .textarea').text(nomalDate); // 默认类型的日期时间格式
+					$('.timmer .cDate').text(cDate);
+				}, 1000)
+			}
+			function getVoice(){
+				$('video').each(function(){
+					$(this)[0].muted = false;
+				})
+				$('#getVoice').css({'display':'none'});
+			}
+		</script>
+	</body>
+</html>

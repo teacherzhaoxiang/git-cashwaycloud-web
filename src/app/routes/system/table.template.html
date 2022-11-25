@@ -1,0 +1,44 @@
+<page-header [title]="pageTitle"></page-header>
+<div class="split-container" style="height: calc(100% - 120px);">
+  <nz-card>
+    <sf #sf mode="search" [schema]="searchSchema" (formSubmit)="refresh()" [formData]="params" button="none" (formReset)="sf.reset()">
+    </sf>
+
+    <nz-row  style="padding: 10px 0">
+      <nz-col [nzSpan]="12" class="opt_left">
+        <button nz-button (click)="add()" class="ant-btn ant-btn-primary" *ngIf="showButton['新增']" ><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1  " class="anticon-cashway anticon-cashway-add"></i>新增</button>
+        <button nz-button (click)="deletes()" class="ant-btn ant-btn-danger" *ngIf="showButton['删除']"><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1" class="anticon-cashway anticon-cashway-delete"></i>删除</button>
+      </nz-col>
+      <nz-col [nzSpan]="12">
+        <div style="float: right" >
+          <button nz-button [nzLoading]="loading" (click)="buttonGetData()" class="ant-btn ant-btn-primary" ><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1 " class="anticon-cashway anticon-cashway-search"></i>查询</button>
+          <button nz-button (click)="buttonReset()" class="ant-btn" ><i *ngIf="userService.user.sysUserExtensionDO.buttonIcon==1" class="anticon-cashway anticon-cashway-reset"></i>重置</button>
+        </div>
+      </nz-col>
+    </nz-row>
+    <div class="spin" *ngIf="showLoading" >
+      <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+    </div>
+    <st class="table" #st [data]="data" [columns]="columns" [req]="{params: params}" [page]="page" [total]="total" (change)="tableChange($event)" [hidden]="showLoading"></st>
+  </nz-card>
+</div>
+<style>
+  :host ::ng-deep .table .ng-star-inserted{
+    text-align: center;
+  }
+  :host ::ng-deep .ng-star-inserted a {
+    white-space: nowrap
+  }
+  :host ::ng-deep .opt_left{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .split-container{
+    position: relative;
+ }
+ .spin{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+ }
+</style>

@@ -1,0 +1,22 @@
+<div>
+    <div class="table-header" style="width:100%;">
+        <div style="font-size: 26px;margin-left: 30px;">表格区</div>
+      </div>
+      <nz-card style="width:100%;">
+        <nz-tabset (nzSelectedIndexChange)="indexChange($event)" [(nzSelectedIndex)]="tabIndex">
+          <nz-tab nzTitle="表头设置" >
+            <div style="margin-bottom:10px;">
+              <button nz-button nzType="primary" [nzSize]="'small'" (click)="add()">新增</button>
+              <button nz-button nzType="default" [nzSize]="'small'" style="background-color:red;color:white;" (click)="del()">删除</button>
+            </div>
+            <st #st [(data)]="viewFields" [req]="{ params: params }" [widthMode]="{ type: 'strict' }"   [columns]="columns" ></st>
+          </nz-tab>
+          <nz-tab nzTitle="操作按钮设置" >
+            <div style="margin-bottom:10px;">
+              <button nz-button nzType="primary" [nzSize]="'small'" (click)="add()">新增</button>
+            </div>
+            <st #st [(data)]="buttonData" [req]="{ params: params }" [widthMode]="{ type: 'strict' }"   [columns]="buttonColumns" ></st>
+          </nz-tab>
+        </nz-tabset>
+      </nz-card> 
+</div>

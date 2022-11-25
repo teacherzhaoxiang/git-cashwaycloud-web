@@ -1,0 +1,26 @@
+<page-header [title]="pageTitle"></page-header>
+<nz-card>
+  <sf #sfUp mode="search" [schema]="searchSchemaUp" (formSubmit)="refreshUp()" [formData]="paramsUp" (formReset)="sfUp.reset()">
+
+  </sf>
+  <div style="padding: 20px">
+    <!--<nz-button-group  [nzSize]="'large'">-->
+    <!--<button nz-button (click)="add()"   class="ant-btn ant-btn-primary">新增</button>-->
+    <!--<button nz-button (click)="deletes()"  class="ant-btn ant-btn-danger">删除</button>-->
+    <!--<button nz-button (click)="refreshUp()" class="ant-btn ">刷新</button>-->
+    <!--</nz-button-group>-->
+    <button nz-button (click)="add()"  class="ant-btn ant-btn-primary" >新增</button>
+    <button nz-button (click)="deletes()" acl [acl-ability]="deletePerms" class="ant-btn ant-btn-danger">删除</button>
+  </div>
+  <st #stUp [data]="dataUp" [columns]="columnsUp" [req]="{params: paramsUp}" [page]="pageUp" [total]="totalUp" (change)="tableChangeUp($event)"></st>
+
+</nz-card>
+
+<nz-card>
+  <div style="margin-top: 20px;"></div>
+
+  <sf #sfDown mode="search" [schema]="searchSchemaDown" (formSubmit)="refreshDown()" [formData]="paramsDown" (formReset)="sfDown.reset()">
+
+  </sf>
+  <st #stDown [data]="dataDown" [columns]="columnsDown" [req]="{params: paramsDown}" [page]="pageDown" [total]="totalDown" (change)="tableChangeDown($event)"></st>
+</nz-card>

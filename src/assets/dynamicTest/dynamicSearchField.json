@@ -1,0 +1,36 @@
+{
+  "contact":{
+    "type":"string",
+    "title":"姓名",
+    "maxLength":20,
+    "ui":{
+      "width":300
+    }
+  },
+
+  "orgId":{
+      "type":"string",
+      "title":"机构树",
+      "default":"0",
+      "ui":{
+        "widget": "tree-select",
+        "width":300,
+        "asyncData":"http://127.0.0.1:8080/atmv/system/org/tree",
+        "defaultExpandAll":false
+      }
+  },
+  "status":{
+    "type":"string",
+    "title":"状态",
+    "enum":[{"label":"正常","value":"0"},{"label":"失效","value":"1"}],
+    "default":"0",
+    "ui":{
+      "widget": "select",
+      "width":300
+    }
+  },
+  "createTime":{
+    "type":"string",
+    "ui": { "widget": "date", "mode": "range" }
+  }
+}

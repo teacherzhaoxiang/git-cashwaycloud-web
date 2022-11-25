@@ -1,0 +1,29 @@
+<page-header [title]="'首页'"></page-header>
+<ng-template #paramTemplate>
+    <div>我是参数</div>
+</ng-template>
+<div>
+    <nz-modal [(nzVisible)]="isVisible" [(nzTitle)]="newMessage.title" (nzOnOk)="handleOk()" [nzOkDisabled]="canDisabled" nzClosable="false" [nzCancelText]="null" [(nzOkText)]=okButton>
+        <ng-container>
+            <p style="height: 250px;">{{newMessage.content}}</p>
+          </ng-container>
+    </nz-modal>
+    <sf #sf style="margin-left: 10px" mode="search" hidden="true" [schema]="searchSchema" button="none" (formChange)="searchData()" (formSubmit)="searchData()" (formReset)="sf.reset()" size="large"></sf>
+    <nz-row [nzGutter]="8" *ngIf="loading" style="height: calc(100vh - 140px);overflow-y: auto;">
+        <nz-col *ngFor="let module of modules;" [nzSpan]="module.size">
+            <div style="padding: 5px; margin: 5px;border-color: #ffffff;border-radius: 10px;background-color: #ffffff">
+                <div>
+                    <img src="{{module.src}}" style="width: 16px;height: 16px;margin-right: 10px;margin-left: 10px" />
+                    <label style="line-height: 16px;font-weight: bold;font-family: 新宋体">{{module.label}}</label>
+                </div>
+                <hr>
+                <div *ngIf="module.type !== 'news'" [id]="module.index" style="height: 300px;">
+
+                </div>
+                <div *ngIf="module.type === 'news'" style="height: 300px;">
+                    <my-news [data]="module.news"></my-news>
+                </div>
+            </div>
+        </nz-col>
+    </nz-row>
+</div>

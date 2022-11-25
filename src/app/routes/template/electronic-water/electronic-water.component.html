@@ -1,0 +1,31 @@
+<page-header></page-header>
+<sf #sf1  mode="search" [schema]="searchSchema1"  button="none" style="min-width: 800px;">
+    <div nz-col nzSpan="8" class="form_top">
+        <button nz-button (click)="getLog()" style="margin-left: 100px" class="ant-btn ant-btn-primary" >查询</button>
+<!--        <button nz-button *ngIf="checkPerms(':elec:download')" (click)="download()" style="" class="ant-btn ant-btn-primary" >下载</button>-->
+        <button nz-button (click)="download()" style="" class="ant-btn ant-btn-primary" >下载</button>
+        <button nz-button (click)="searchReset()" class="ant-btn" >重置</button>
+    </div>
+</sf>
+<!--<nz-modal [(nzVisible)]="isVisible" nzTitle="下载" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">-->
+<!--<sf #sf2  mode="search" [schema]="searchSchema2"  button="none">-->
+<!--</sf>-->
+<!--</nz-modal>-->
+<div class="logContainer" style="min-width: 800px;">
+    <sf #sf  mode="search" [button]="'none'" [schema]="searchSchema"  [formData]="record" (formChange)="formChange()">
+        <button nz-button type="button" style="margin-left:100px" (click)="nextStep()">下一个</button>
+        <button type="submit" nz-button style="margin-left: 4px;" [disabled]="!sf.valid" (click)="frontStep()">上一个</button>
+        <button (click)="reset()" type="button" style="margin-left: 4px;" nz-button>重置</button>
+        <span *ngFor="let item of buttons">
+        <button nz-button type="button" style="margin-left: 4px;"  (click)="nextStep()">{{item['label']}}</button>
+    </span>
+
+    </sf>
+
+    <div #scrollMe id="scrollDiv" style="overflow: auto;width: 100%; height: 450px;white-space:normal;
+         word-break:break-all;
+         top:0;
+         word-wrap:break-word; " contenteditable="true" [innerHTML]="safeHtml " onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false">
+
+    </div>
+</div>
